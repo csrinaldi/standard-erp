@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <!-- Inherit our applications main module.                      -->
+  <inherits name='com.logikas.hipokrates.hipokrates' />
+
+  <!-- Specify the path to any remote services.                   -->
+  <servlet path="/hipokrates/greet" class="com.logikas.hipokrates.server.GreetingServiceImpl" />
+
+</module>
