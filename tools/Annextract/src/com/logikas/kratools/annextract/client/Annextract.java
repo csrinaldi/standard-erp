@@ -23,7 +23,7 @@ public class Annextract implements EntryPoint {
   static interface ValidationAnnotationExtractor extends AnnotationExtractor {
   }
 	
-  @AllowedWrappers
+  	@AllowedWrappers
 	//@DefaultsToNull
 	@ExtractorFor(Person.class)
 	static interface PersonAnnotationExtractor extends ValidationAnnotationExtractor {
