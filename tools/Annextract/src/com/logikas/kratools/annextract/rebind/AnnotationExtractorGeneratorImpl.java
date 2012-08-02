@@ -41,7 +41,7 @@ public class AnnotationExtractorGeneratorImpl {
 
   @SuppressWarnings({"unchecked", "rawtypes"})
   public String generate(String typeName) throws UnableToCompleteException {
-
+    
     final JClassType inspectorType = getInspectorType(typeName);
 
     final Class<?> inspectedClass = getInspectedClass(inspectorType);

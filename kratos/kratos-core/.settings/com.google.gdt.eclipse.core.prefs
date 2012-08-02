@@ -1,5 +1,5 @@
-#Thu Sep 02 10:55:28 CEST 2010
 eclipse.preferences.version=1
 jarsExcludedFromWebInfLib=
+lastWarOutDir=/home/atesti/git/standard-erp/kratos/kratos-core/target/kratos-core-1.0-SNAPSHOT
 warSrcDir=src/main/webapp
-warSrcDirIsOutput=true
+warSrcDirIsOutput=false

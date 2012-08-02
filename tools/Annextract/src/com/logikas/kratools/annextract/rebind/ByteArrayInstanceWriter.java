@@ -18,7 +18,8 @@ public class ByteArrayInstanceWriter extends ArrayInstanceWriter<byte[]> {
 
 	@Override
 	public CacheHolder<byte[]> createHolder(byte[] instance) {
-		return new CacheHolder<byte[]>(instance) {
+		
+	  return new CacheHolder<byte[]>(instance) {
 			@Override
 			public boolean equals(Object obj) {
 				return Arrays.equals(getInstance(), getHeldInstance(obj));
@@ -30,5 +31,4 @@ public class ByteArrayInstanceWriter extends ArrayInstanceWriter<byte[]> {
 			}
 		};
 	}
-
 }
