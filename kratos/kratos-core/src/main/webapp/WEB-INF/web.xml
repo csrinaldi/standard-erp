@@ -5,11 +5,13 @@
 
 <web-app>
 
-  <!-- Servlets -->
+	<listener>
+		<listener-class>com.logikas.kratos.core.server.KratosServletContextListener</listener-class>
+	</listener>
 
-  <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>kratoscore.html</welcome-file>
-  </welcome-file-list>
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>kratoscore.html</welcome-file>
+	</welcome-file-list>
 
 </web-app>
