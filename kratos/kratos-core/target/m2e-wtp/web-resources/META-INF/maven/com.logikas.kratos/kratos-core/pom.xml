@@ -13,8 +13,9 @@
 		<!-- Convenience property to set the GWT version -->
 		<gwtVersion>2.5.0-rc1</gwtVersion>
 		<guiceVersion>3.0</guiceVersion>
-		<guavaVersion>12.0.1</guavaVersion>
+		<guavaVersion>13.0</guavaVersion>
 		<ginVersion>1.5.0</ginVersion>
+		<hibernateVersion>4.1.5.Final</hibernateVersion>
 		<!-- GWT needs at least java 1.5 -->
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -72,6 +73,12 @@
 			<artifactId>gin</artifactId>
 			<version>${ginVersion}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernateVersion}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
