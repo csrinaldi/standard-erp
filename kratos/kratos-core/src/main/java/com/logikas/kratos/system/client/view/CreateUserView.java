@@ -1,13 +1,13 @@
 package com.logikas.kratos.system.client.view;
 
-import com.logikas.kratos.system.shared.proxy.UserProxy;
 
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
 import com.google.web.bindery.requestfactory.shared.RequestFactory;
+import com.logikas.kratos.system.shared.proxy.UserProxy;
 
-public interface SearchUserView extends IsWidget {
+public interface CreateUserView extends IsWidget {
 
   interface Presenter {
 

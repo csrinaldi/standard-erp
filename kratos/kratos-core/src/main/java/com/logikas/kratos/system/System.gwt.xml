@@ -6,6 +6,7 @@
   <!-- Other module inherits                                      -->
   
   <inherits name='com.google.gwt.inject.Inject' />
+  <inherits name='com.google.gwt.activity.Activity' />
 
   <!-- Specify the paths for translatable code                    -->
   <source path='client' />
