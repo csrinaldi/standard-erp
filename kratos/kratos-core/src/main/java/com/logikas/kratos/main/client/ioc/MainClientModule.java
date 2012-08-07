@@ -54,7 +54,7 @@ public class MainClientModule extends AbstractGinModule {
   
   @Provides
   @Singleton
-  public PlaceHistoryHandler getPlaceHistoryHandler(PlaceHistoryMapper mapper) {
+  PlaceHistoryHandler getPlaceHistoryHandler(PlaceHistoryMapper mapper) {
     return new PlaceHistoryHandler(mapper);
   }
 }
