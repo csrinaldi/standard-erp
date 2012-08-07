@@ -1,2 +1,0 @@
-# Module com.logikas.kratos.main.KratosMainJUnit.JUnit
-# RPC service class, partial path of RPC policy file
