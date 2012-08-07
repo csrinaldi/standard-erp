@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <profiles version="11">
-<profile kind="CodeFormatterProfile" name="GWT Format" version="11">
+<profile kind="CodeFormatterProfile" name="Logikas Format" version="11">
 <setting id="org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode" value="enabled"/>
 <setting id="org.eclipse.jdt.core.compiler.codegen.targetPlatform" value="1.5"/>
 <setting id="org.eclipse.jdt.core.compiler.compliance" value="1.5"/>
