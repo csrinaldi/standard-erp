@@ -13,8 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
-//import javax.validation.constraints.NotNull;
-//import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user", schema = "system")
@@ -45,8 +45,8 @@ public class User implements Serializable, HasName {
     this.version = version;
   }
 
-  //@NotNull
-  //@Size(min = 5, max = 20)
+  @NotNull
+  @Size(min = 5, max = 20)
   @Column(name = "name", nullable = false, unique = true)
   @Override
   public String getName() {

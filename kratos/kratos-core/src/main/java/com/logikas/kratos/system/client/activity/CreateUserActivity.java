@@ -28,7 +28,7 @@ public class CreateUserActivity extends AbstractActivity implements CreateUserVi
   private final RequestFactoryEditorDriver<UserProxy, ? extends Editor<UserProxy>> driver;
     
   @Inject
-  public CreateUserActivity(SystemRequestFactory rf, CreateUserView view) {
+  CreateUserActivity(SystemRequestFactory rf, CreateUserView view) {
     this.rf = rf;
     this.view = view;
     this.driver = view.createEditor(rf);

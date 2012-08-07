@@ -2,6 +2,7 @@ package com.logikas.kratos.system.client.widget;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.editor.client.Editor;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
@@ -32,7 +33,7 @@ public class CreateUserWidget extends Composite implements CreateUserView, Edito
   } 
   
   @UiHandler("save")
-  void save() {
+  void save(ClickEvent event) {
     presenter.save();
   }
 
