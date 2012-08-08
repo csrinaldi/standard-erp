@@ -4,7 +4,9 @@ import com.google.web.bindery.requestfactory.server.ExceptionHandler;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class KratosRequestFactoryServlet extends RequestFactoryServlet {
 
   @Inject

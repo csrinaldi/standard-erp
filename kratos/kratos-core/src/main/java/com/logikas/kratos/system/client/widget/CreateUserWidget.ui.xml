@@ -4,8 +4,8 @@
 	<ui:style>
 		
 	</ui:style>
-	<g:HTMLPanel>
-		<g:TextBox ui:field="name"></g:TextBox>
-		<g:Button ui:field="save">Guardar</g:Button>
-	</g:HTMLPanel>
+	<g:VerticalPanel>
+		<g:TextBox ui:field="name">{name}</g:TextBox>
+		<g:Button ui:field="save">save</g:Button>
+	</g:VerticalPanel>
 </ui:UiBinder> 

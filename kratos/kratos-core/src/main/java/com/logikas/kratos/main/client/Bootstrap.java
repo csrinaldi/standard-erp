@@ -3,6 +3,7 @@ package com.logikas.kratos.main.client;
 import com.logikas.kratos.system.shared.place.CreateUserPlace;
 
 import com.google.gwt.activity.shared.ActivityManager;
+import com.google.gwt.core.shared.GWT;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.ui.InsertPanel;

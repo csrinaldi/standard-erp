@@ -22,7 +22,7 @@ public class SystemActivityMapper implements ActivityMapper {
   @Override
   public Activity getActivity(Place place) {
     if(place instanceof CreateUserPlace) {
-      createUser.get();      
+      return createUser.get();      
     }
     return null;
   }

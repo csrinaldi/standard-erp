@@ -6,6 +6,7 @@ import com.logikas.kratos.system.shared.request.SystemRequestFactory;
 import com.logikas.kratos.system.shared.request.UserServiceRequest;
 
 import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.core.shared.GWT;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
@@ -36,6 +37,7 @@ public class CreateUserActivity extends AbstractActivity implements CreateUserVi
 
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
+
     final UserServiceRequest request = rf.createUserService();
     view.setPresenter(this);
     panel.setWidget(view);
