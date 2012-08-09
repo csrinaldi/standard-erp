@@ -1,6 +1,6 @@
 package com.logikas.kratos.system.shared.request;
 
-import com.logikas.kratos.core.facade.GenericServiceLocator;
+import com.logikas.kratos.core.locator.GenericServiceLocator;
 import com.logikas.kratos.system.service.UserService;
 import com.logikas.kratos.system.shared.proxy.UserProxy;
 

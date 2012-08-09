@@ -14,7 +14,6 @@ public class GenericEntityLocator<T extends GenericEntity> extends Locator<T, Lo
 
   @Override
   public T find(Class<? extends T> clazz, Long id) {
-    // TODO Auto-generated method stub
     return null;
   }
 
