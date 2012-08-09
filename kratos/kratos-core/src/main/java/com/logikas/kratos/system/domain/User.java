@@ -1,5 +1,6 @@
 package com.logikas.kratos.system.domain;
 
+import com.logikas.kratos.core.domain.GenericEntity;
 import com.logikas.kratos.core.domain.HasName;
 
 import com.google.common.base.Objects;
@@ -18,7 +19,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user", schema = "system")
-public class User implements Serializable, HasName {
+public class User implements Serializable, GenericEntity, HasName {
 
   private Long id;
 

@@ -1,8 +1,8 @@
 package com.logikas.kratos.system.repository;
 
+import com.logikas.kratos.core.repository.Repository;
 import com.logikas.kratos.system.domain.User;
 
-public interface UserRepository {
+public interface UserRepository extends Repository<User, Long> {
 
-  User find(Long id);
 }

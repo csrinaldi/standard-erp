@@ -4,6 +4,7 @@
 
 	<!-- POM file generated with GWT webAppCreator -->
 	<modelVersion>4.0.0</modelVersion>
+	
 	<groupId>com.logikas.kratos</groupId>
 	<artifactId>kratos-core</artifactId>
 	<packaging>war</packaging>
@@ -15,7 +16,8 @@
 		<guiceVersion>3.0</guiceVersion>
 		<guavaVersion>13.0</guavaVersion>
 		<ginVersion>1.5.0</ginVersion>
-		<hibernateVersion>4.1.5.Final</hibernateVersion>
+		<hibernateEntityManagerVersion>4.1.5.Final</hibernateEntityManagerVersion>
+		<hibernateValidatorVersion>4.3.0.Final</hibernateValidatorVersion>
 		<validationVersion>1.0.0.GA</validationVersion>
 		<!-- GWT needs at least java 1.5 -->
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
@@ -45,14 +47,14 @@
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>${validationVersion}</version>
-		<!-- 	<scope>test</scope> -->
+			<!-- <scope>test</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>${validationVersion}</version>
 			<classifier>sources</classifier>
-		<!-- 	<scope>test</scope> -->
+			<!-- <scope>test</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject</groupId>
@@ -77,13 +79,19 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>${hibernateVersion}</version>
+			<version>${hibernateEntityManagerVersion}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>4.3.0.Final</version>
+			<version>${hibernateValidatorVersion}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.web.bindery</groupId>
+			<artifactId>requestfactory-apt</artifactId>
+			<version>${gwtVersion}</version>
 		</dependency>
 
 	</dependencies>
@@ -91,7 +99,6 @@
 	<build>
 		<!-- Generate compiled stuff in the folder used for developing mode -->
 		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
-
 		<plugins>
 
 			<!-- GWT Maven Plugin -->
@@ -139,8 +146,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
 		</plugins>
