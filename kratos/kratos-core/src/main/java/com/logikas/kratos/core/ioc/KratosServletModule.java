@@ -1,6 +1,7 @@
 package com.logikas.kratos.core.ioc;
 
 import com.logikas.kratos.core.facade.KratosRequestFactoryServlet;
+import com.logikas.kratos.system.ioc.SystemModule;
 
 import com.google.inject.Singleton;
 import com.google.inject.servlet.ServletModule;
@@ -13,5 +14,6 @@ public class KratosServletModule extends ServletModule {
   protected void configureServlets() {
     bind(ExceptionHandler.class).to(DefaultExceptionHandler.class).in(Singleton.class);
     serve("/gwtRequest").with(KratosRequestFactoryServlet.class);
+    install(new SystemModule());
   }
 }
