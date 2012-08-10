@@ -12,15 +12,18 @@
 
 	<properties>
 		<!-- Convenience property to set the GWT version -->
-		<gwtVersion>2.5.0-rc1</gwtVersion>
-		<guiceVersion>3.0</guiceVersion>
-		<guavaVersion>13.0</guavaVersion>
-		<ginVersion>1.5.0</ginVersion>
-		<hibernateEntityManagerVersion>4.1.5.Final</hibernateEntityManagerVersion>
-		<hibernateValidatorVersion>4.3.0.Final</hibernateValidatorVersion>
-		<validationVersion>1.0.0.GA</validationVersion>
+		<java.version>1.6</java.version>
+		<junit.version>4.7</junit.version>
+		<gwt.version>2.5.0-rc1</gwt.version>
+		<guice.version>3.0</guice.version>
+		<guava.version>13.0</guava.version>
+		<gin.version>1.5.0</gin.version>
+		<hibernate.entityManager.version>4.1.5.Final</hibernate.entityManager.version>
+		<hibernate.validator.version>4.3.0.Final</hibernate.validator.version>
+		<validation.version>1.0.0.GA</validation.version>
 		<!-- GWT needs at least java 1.5 -->
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+		<jpa.configurationFile>src/main/resources/META-INF/persistence.xml</jpa.configurationFile>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -28,70 +31,70 @@
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-servlet</artifactId>
-			<version>${gwtVersion}</version>
+			<version>${gwt.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>${gwtVersion}</version>
+			<version>${gwt.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>${validationVersion}</version>
+			<version>${validation.version}</version>
 			<!-- <scope>test</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>${validationVersion}</version>
+			<version>${validation.version}</version>
 			<classifier>sources</classifier>
 			<!-- <scope>test</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>
-			<version>${guiceVersion}</version>
+			<version>${guice.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
 			<artifactId>guice-servlet</artifactId>
-			<version>${guiceVersion}</version>
+			<version>${guice.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava-gwt</artifactId>
-			<version>${guavaVersion}</version>
+			<version>${guava.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt.inject</groupId>
 			<artifactId>gin</artifactId>
-			<version>${ginVersion}</version>
+			<version>${gin.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>${hibernateEntityManagerVersion}</version>
+			<version>${hibernate.entityManager.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>${hibernateValidatorVersion}</version>
+			<version>${hibernate.validator.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.google.web.bindery</groupId>
 			<artifactId>requestfactory-apt</artifactId>
-			<version>${gwtVersion}</version>
+			<version>${gwt.version}</version>
 		</dependency>
 
 	</dependencies>
@@ -99,13 +102,14 @@
 	<build>
 		<!-- Generate compiled stuff in the folder used for developing mode -->
 		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+		
 		<plugins>
-
+		
 			<!-- GWT Maven Plugin -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<version>2.5.0-rc1</version>
+				<version>${gwt.version}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -146,8 +150,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
 		</plugins>

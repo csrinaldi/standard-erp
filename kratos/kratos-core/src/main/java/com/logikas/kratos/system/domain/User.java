@@ -48,7 +48,7 @@ public class User implements Serializable, GenericEntity, HasName {
 
   @NotNull
   @Size(min = 5, max = 20)
-  @Column(name = "name", nullable = false, unique = true)
+  @Column(name = "name", unique = true)
   @Override
   public String getName() {
     return name;
