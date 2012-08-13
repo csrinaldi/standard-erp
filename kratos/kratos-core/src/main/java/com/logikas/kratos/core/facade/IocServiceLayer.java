@@ -10,7 +10,6 @@ import com.google.web.bindery.requestfactory.shared.Locator;
 import com.google.web.bindery.requestfactory.shared.ServiceLocator;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 
 class IocServiceLayer extends ServiceLayerDecorator {
 
@@ -31,10 +30,10 @@ class IocServiceLayer extends ServiceLayerDecorator {
 
     if (locator instanceof GenericEntityLocator) {
       @SuppressWarnings("rawtypes")
-      final GenericEntityLocator genericLocator = (GenericEntityLocator<?, ?, ?>) locator;
+      final GenericEntityLocator genericLocator = (GenericEntityLocator) locator;
 
       @SuppressWarnings("rawtypes")
-      final Provider<EntityFinder> finder = injector.getProvider(genericLocator.getFinderType());
+      final EntityFinder finder = injector.getInstance(genericLocator.getFinderType());
       genericLocator.setFinder(finder);
 
       @SuppressWarnings("rawtypes")

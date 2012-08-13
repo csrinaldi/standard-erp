@@ -10,59 +10,63 @@ import com.google.web.bindery.requestfactory.shared.Locator;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-import javax.inject.Provider;
+public class GenericEntityLocator<F extends EntityFinder<?, ?>> extends Locator<Object, Object> {
 
-public class GenericEntityLocator<T, I, F extends EntityFinder<T, I>> extends Locator<T, I> {
+  private final Class<? extends Object> domainType;
 
-  private final Class<T> domainType;
+  private final Class<? extends Object> idType;
 
-  private final Class<I> idType;
-  
   private final Class<F> finderType;
-  
-  private Provider<EntityFinder<T, I>> finder;
 
-  private EntityAccessor<T, I> accessor;
-  
+  private EntityFinder<?, ?> finder;
+
+  private EntityAccessor<?, ?> accessor;
+
   @SuppressWarnings("unchecked")
   public GenericEntityLocator() {
-    final TypeLiteral<?> literal =
+    final TypeLiteral<?> actualLocatorLiteral =
         TypeLiteral.get(getClass()).getSupertype(GenericEntityLocator.class);
 
-    final ParameterizedType generic = ((ParameterizedType) literal.getType());
+    final ParameterizedType actualLocatorGeneric =
+        ((ParameterizedType) actualLocatorLiteral.getType());
 
-    @SuppressWarnings({"unused", "rawtypes"})
-    final TypeLiteral<Repository<T, I>> appliedGeneric = (TypeLiteral) TypeLiteral.get(generic);
+    final Type actualFinderType = actualLocatorGeneric.getActualTypeArguments()[0];
 
-    final Type actualDomainType = generic.getActualTypeArguments()[0];
+    assert actualFinderType instanceof Class : "Wrong finder type parameter in "
+        + getClass().getName();
 
-    assert actualDomainType instanceof Class:"Wrong domain type parameter in " + getClass().getName();
+    finderType = (Class<F>) actualFinderType;
 
-    domainType = (Class<T>) actualDomainType;
+    @SuppressWarnings({"rawtypes"})
+    final TypeLiteral<Repository<?, ?>> actualFinderLiteral =
+        (TypeLiteral) TypeLiteral.get(actualFinderType).getSupertype(EntityFinder.class);
 
-    final Type actualIdType = generic.getActualTypeArguments()[1];
+    final ParameterizedType actualFinderGeneric = (ParameterizedType) actualFinderLiteral.getType();
 
-    assert actualIdType instanceof Class: "Wrong id type parameter in " + getClass().getName();
+    final Type actualDomainType = actualFinderGeneric.getActualTypeArguments()[0];
 
-    idType = (Class<I>) actualIdType;
-    
-    final Type actualFinderType = generic.getActualTypeArguments()[2];
+    assert actualDomainType instanceof Class : "Wrong domain type parameter in "
+        + finderType.getName();
 
-    assert actualIdType instanceof Class: "Wrong finder type parameter in " + getClass().getName();
+    domainType = (Class<?>) actualDomainType;
 
-    finderType = (Class<F>) actualFinderType;    
+    final Type actualIdType = actualFinderGeneric.getActualTypeArguments()[1];
+
+    assert actualIdType instanceof Class : "Wrong id type parameter in " + finderType.getName();
+
+    idType = (Class<?>) actualIdType;
   }
 
-  public void setFinder(Provider<EntityFinder<T, I>> finder) {   
+  public void setFinder(EntityFinder<?, ?> finder) {
     this.finder = finder;
   }
-  
-  public void setAccessor(EntityAccessor<T, I> accessor) {
+
+  public void setAccessor(EntityAccessor<?, ?> accessor) {
     this.accessor = accessor;
   }
 
   @Override
-  public T create(Class<? extends T> clazz) {
+  public Object create(Class<? extends Object> clazz) {
     try {
       return clazz.newInstance();
     } catch (Exception e) {
@@ -70,32 +74,37 @@ public class GenericEntityLocator<T, I, F extends EntityFinder<T, I>> extends Lo
     }
   }
 
+  @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
-  public T find(Class<? extends T> clazz, I id) {
-    return finder.get().find(id);
+  public Object find(Class<? extends Object> clazz, Object id) {
+    return ((EntityFinder) finder).find(id);
   }
 
+  @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
-  public Class<T> getDomainType() {
-    return domainType;
+  public Class<Object> getDomainType() {
+    return (Class) domainType;
   }
 
+  @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
-  public I getId(T domainObject) {
-    return accessor.getId(domainObject);
+  public Object getId(Object domainObject) {
+    return ((EntityAccessor) accessor).getId(domainObject);
   }
 
+  @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
-  public Class<I> getIdType() {
-    return idType;
+  public Class<Object> getIdType() {
+    return (Class) idType;
   }
-  
+
   public Class<F> getFinderType() {
     return finderType;
   }
 
+  @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
-  public Object getVersion(T domainObject) {
-    return accessor.getVersion(domainObject);
+  public Object getVersion(Object domainObject) {
+    return ((EntityAccessor) accessor).getVersion(domainObject);
   }
 }
