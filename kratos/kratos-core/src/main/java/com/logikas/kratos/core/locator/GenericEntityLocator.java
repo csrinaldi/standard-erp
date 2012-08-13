@@ -1,28 +1,66 @@
 package com.logikas.kratos.core.locator;
 
-import com.logikas.kratos.core.domain.GenericEntity;
+import com.logikas.kratos.core.repository.EntityAccessor;
+import com.logikas.kratos.core.repository.EntityFinder;
 import com.logikas.kratos.core.repository.Repository;
 
-import com.google.inject.Injector;
-import com.google.inject.Key;
-import com.google.inject.util.Types;
+import com.google.inject.TypeLiteral;
 import com.google.web.bindery.requestfactory.shared.Locator;
 
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-import javax.inject.Inject;
+public class GenericEntityLocator<T, I, F extends EntityFinder<T, I>> extends Locator<T, I> {
 
-public class GenericEntityLocator extends Locator<GenericEntity, Long> {
+  private EntityFinder<T, I> finder;
 
-  private final Injector injector;
+  private final Class<T> domainType;
 
-  @Inject
-  GenericEntityLocator(Injector injector) {
-    this.injector = injector;
+  private final Class<I> idType;
+  
+  private final Class<F> finderType;
+
+  private EntityAccessor<T, I> accessor;
+  
+  @SuppressWarnings("unchecked")
+  public GenericEntityLocator() {
+    final TypeLiteral<?> literal =
+        TypeLiteral.get(getClass()).getSupertype(GenericEntityLocator.class);
+
+    final ParameterizedType generic = ((ParameterizedType) literal.getType());
+
+    @SuppressWarnings({"unused", "rawtypes"})
+    final TypeLiteral<Repository<T, I>> appliedGeneric = (TypeLiteral) TypeLiteral.get(generic);
+
+    final Type actualDomainType = generic.getActualTypeArguments()[0];
+
+    assert actualDomainType instanceof Class:"Wrong domain type parameter in " + getClass().getName();
+
+    domainType = (Class<T>) actualDomainType;
+
+    final Type actualIdType = generic.getActualTypeArguments()[1];
+
+    assert actualIdType instanceof Class: "Wrong id type parameter in " + getClass().getName();
+
+    idType = (Class<I>) actualIdType;
+    
+    final Type actualFinderType = generic.getActualTypeArguments()[2];
+
+    assert actualIdType instanceof Class: "Wrong finder type parameter in " + getClass().getName();
+
+    finderType = (Class<F>) actualFinderType;    
+  }
+
+  public void setFinder(EntityFinder<T, I> finder) {   
+    this.finder = finder;
+  }
+  
+  public void setAccessor(EntityAccessor<T, I> accessor) {
+    this.accessor = accessor;
   }
 
   @Override
-  public GenericEntity create(Class<? extends GenericEntity> clazz) {
+  public T create(Class<? extends T> clazz) {
     try {
       return clazz.newInstance();
     } catch (Exception e) {
@@ -31,31 +69,31 @@ public class GenericEntityLocator extends Locator<GenericEntity, Long> {
   }
 
   @Override
-  public GenericEntity find(Class<? extends GenericEntity> clazz, Long id) {
-    final Type type = Types.newParameterizedType(Repository.class, clazz, Long.class);
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    final Repository<GenericEntity, Long> repository =
-        (Repository) injector.getInstance(Key.get(type));
-    return repository.find(id);
+  public T find(Class<? extends T> clazz, I id) {
+    return finder.find(id);
   }
 
   @Override
-  public Class<GenericEntity> getDomainType() {
-    return null;
+  public Class<T> getDomainType() {
+    return domainType;
   }
 
   @Override
-  public Long getId(GenericEntity domainObject) {
-    return domainObject.getId();
+  public I getId(T domainObject) {
+    return accessor.getId(domainObject);
   }
 
   @Override
-  public Class<Long> getIdType() {
-    return Long.class;
+  public Class<I> getIdType() {
+    return idType;
+  }
+  
+  public Class<F> getFinderType() {
+    return finderType;
   }
 
   @Override
-  public Object getVersion(GenericEntity domainObject) {
-    return domainObject.getVersion();
+  public Object getVersion(T domainObject) {
+    return accessor.getVersion(domainObject);
   }
 }
