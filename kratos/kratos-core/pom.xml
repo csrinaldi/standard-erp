@@ -4,7 +4,7 @@
 
 	<!-- POM file generated with GWT webAppCreator -->
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<groupId>com.logikas.kratos</groupId>
 	<artifactId>kratos-core</artifactId>
 	<packaging>war</packaging>
@@ -70,6 +70,11 @@
 			<version>${guice.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-multibindings</artifactId>
+			<version>${guice.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava-gwt</artifactId>
 			<version>${guava.version}</version>
@@ -102,9 +107,9 @@
 	<build>
 		<!-- Generate compiled stuff in the folder used for developing mode -->
 		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
-		
+
 		<plugins>
-		
+
 			<!-- GWT Maven Plugin -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

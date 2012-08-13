@@ -25,6 +25,18 @@ class IocServiceLayer extends ServiceLayerDecorator {
   public <T extends ServiceLocator> T createServiceLocator(Class<T> clazz) {
     return injector.getInstance(clazz);
   }
+  
+  /*
+  @SuppressWarnings("unchecked")
+  @Override
+  public Class<? extends Locator<?, ?>> resolveLocator(Class<?> domainType) {
+    if(GenericEntity.class.isAssignableFrom(domainType)) {
+      final Type locatorType = Types.newParameterizedType(GenericEntityLocator.class, domainType);
+      return (Class<? extends Locator<?, ?>>) locatorType;
+    }
+    return super.resolveLocator(domainType);
+  }
+  */
 
 /*
  TODO revisar. Esto en teoria no hace innecesario definir locator mediante anotaciones(non-Javadoc)

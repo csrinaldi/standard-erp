@@ -11,29 +11,4 @@ public class UserRepositoryImpl implements UserRepository {
     user.setId(id);
     return user;
   }
-
-  @Override
-  public Long getId(User entity) {
-    return entity.getId();
-  }
-
-  @Override
-  public Object getVersion(User entity) {
-    return entity.getVersion();
-  }
-
-  @Override
-  public Class<User> getDomainType() {
-    return User.class;
-  }
-
-  @Override
-  public Class<Long> getIdType() {
-    return Long.class;
-  }
-
-  @Override
-  public User create() {
-    return new User();
-  }
 }

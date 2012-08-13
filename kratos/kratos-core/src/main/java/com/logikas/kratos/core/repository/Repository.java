@@ -1,17 +1,6 @@
 package com.logikas.kratos.core.repository;
 
 
-public interface Repository<T, I> {
+public interface Repository<T, I> extends EntityFinder<T, I>{
   
-  T find(I id);
-
-  I getId(T entity);
-
-  Object getVersion(T entity);
-
-  Class<T> getDomainType();
-  
-  Class<I> getIdType();
-
-  T create();
 }
