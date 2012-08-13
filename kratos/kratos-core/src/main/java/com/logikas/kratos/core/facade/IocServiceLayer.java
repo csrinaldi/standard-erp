@@ -1,6 +1,5 @@
 package com.logikas.kratos.core.facade;
 
-import com.logikas.kratos.core.domain.GenericEntity;
 import com.logikas.kratos.core.locator.GenericEntityLocator;
 import com.logikas.kratos.core.repository.EntityAccessor;
 import com.logikas.kratos.core.repository.EntityFinder;
@@ -11,39 +10,42 @@ import com.google.web.bindery.requestfactory.shared.Locator;
 import com.google.web.bindery.requestfactory.shared.ServiceLocator;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
 
 class IocServiceLayer extends ServiceLayerDecorator {
 
   private final Injector injector;
 
+  private final EntityAccessorFactory accessorFactory;
+
   @Inject
-  IocServiceLayer(Injector injector) {
+  IocServiceLayer(Injector injector, EntityAccessorFactory accessorFactory) {
     this.injector = injector;
+    this.accessorFactory = accessorFactory;
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public <T extends Locator<?, ?>> T createLocator(Class<T> clazz) {
     final T locator = injector.getInstance(clazz);
-    
-    if(locator instanceof GenericEntityLocator) {
+
+    if (locator instanceof GenericEntityLocator) {
       @SuppressWarnings("rawtypes")
-      final GenericEntityLocator genericLocator = (GenericEntityLocator<?, ?, ?>)locator;
+      final GenericEntityLocator genericLocator = (GenericEntityLocator<?, ?, ?>) locator;
+
       @SuppressWarnings("rawtypes")
-      final EntityFinder finder = injector.getInstance(genericLocator.getFinderType()); 
+      final Provider<EntityFinder> finder = injector.getProvider(genericLocator.getFinderType());
       genericLocator.setFinder(finder);
-      genericLocator.setAccessor(new EntityAccessor<GenericEntity, Long>() {
-        @Override
-        public Long getId(GenericEntity entity) {
-          return entity.getId();
-        }
-        
-        public Object getVersion(GenericEntity entity) {
-          return entity.getVersion();
-        }
-      });      
+
+      @SuppressWarnings("rawtypes")
+      final EntityAccessor accessor =
+          accessorFactory
+              .createAccessor(genericLocator.getDomainType(), genericLocator.getIdType());
+      
+      genericLocator.setAccessor(accessor);
     }
-    
-    return locator;    
+
+    return locator;
   }
 
   @Override

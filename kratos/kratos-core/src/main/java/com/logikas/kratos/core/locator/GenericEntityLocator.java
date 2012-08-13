@@ -10,15 +10,17 @@ import com.google.web.bindery.requestfactory.shared.Locator;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-public class GenericEntityLocator<T, I, F extends EntityFinder<T, I>> extends Locator<T, I> {
+import javax.inject.Provider;
 
-  private EntityFinder<T, I> finder;
+public class GenericEntityLocator<T, I, F extends EntityFinder<T, I>> extends Locator<T, I> {
 
   private final Class<T> domainType;
 
   private final Class<I> idType;
   
   private final Class<F> finderType;
+  
+  private Provider<EntityFinder<T, I>> finder;
 
   private EntityAccessor<T, I> accessor;
   
@@ -51,7 +53,7 @@ public class GenericEntityLocator<T, I, F extends EntityFinder<T, I>> extends Lo
     finderType = (Class<F>) actualFinderType;    
   }
 
-  public void setFinder(EntityFinder<T, I> finder) {   
+  public void setFinder(Provider<EntityFinder<T, I>> finder) {   
     this.finder = finder;
   }
   
@@ -70,7 +72,7 @@ public class GenericEntityLocator<T, I, F extends EntityFinder<T, I>> extends Lo
 
   @Override
   public T find(Class<? extends T> clazz, I id) {
-    return finder.find(id);
+    return finder.get().find(id);
   }
 
   @Override
