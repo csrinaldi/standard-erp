@@ -9,9 +9,14 @@ class PluginDefinitionJso extends JavaScriptObject implements PluginDefinition {
 
   protected PluginDefinitionJso() {
   }
-  
-  public native static PluginDefinitionJso create(String name, String title) /*-{
-    return {name: name, title: title, actionTriggers: [], placeTriggers: []};
+
+  public native static PluginDefinitionJso create(String name) /*-{
+		return {
+			name : name,
+			title : null,
+			actionTriggers : [],
+			placeTriggers : []
+		};
   }-*/;
 
   @Override
@@ -22,6 +27,10 @@ class PluginDefinitionJso extends JavaScriptObject implements PluginDefinition {
   @Override
   public native final String getTitle() /*-{
 		return this.title;
+  }-*/;
+
+  native final String setTitle(String title) /*-{
+		return this.title = title;
   }-*/;
 
   @Override

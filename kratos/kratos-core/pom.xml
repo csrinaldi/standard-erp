@@ -24,6 +24,7 @@
 		<!-- GWT needs at least java 1.5 -->
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 		<jpa.configurationFile>src/main/resources/META-INF/persistence.xml</jpa.configurationFile>
+		<jpa.persistenceUnit>Kratos</jpa.persistenceUnit>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -109,6 +110,29 @@
 		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
 
 		<plugins>
+
+			<plugin>
+				<!-- run "mvn hibernate3:hbm2ddl" to generate a schema -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>hibernate3-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<components>
+						<component>
+							<name>hbm2ddl</name>
+							<implementation>jpaconfiguration</implementation>
+						</component>
+					</components>
+					<componentProperties>
+						<persistenceunit>Kratos</persistenceunit>
+						<outputfilename>kratos.ddl</outputfilename>
+						<drop>false</drop>
+						<create>true</create>
+						<export>false</export>
+						<format>true</format>
+					</componentProperties>
+				</configuration>
+			</plugin>
 
 			<!-- GWT Maven Plugin -->
 			<plugin>

@@ -2,11 +2,11 @@ package com.logikas.kratos.core.plugin.shared;
 
 public interface PluginDefinitionBuilder {
   
-  PluginDefinitionBuilder definition(String name, String title);
+  PluginDefinitionBuilder title(String title);
   
-  PluginDefinitionBuilder action(String name, String title, String image);
+  PluginTriggerBuilder action(String name);
   
-  PluginDefinitionBuilder place(String name, String title, String image);
+  PluginTriggerBuilder place(String name);
   
   PluginDefinition build();
 }

@@ -4,7 +4,9 @@ public interface PluginTrigger {
   
   String getName();
   
-  String getImage();
+  String getToken();
+  
+  String getIcon();
   
   String getTitle();
 }
