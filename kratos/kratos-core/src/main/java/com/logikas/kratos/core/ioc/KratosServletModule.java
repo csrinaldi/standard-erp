@@ -10,15 +10,24 @@ import com.google.inject.Singleton;
 import com.google.inject.servlet.ServletModule;
 import com.google.web.bindery.requestfactory.server.DefaultExceptionHandler;
 import com.google.web.bindery.requestfactory.server.ExceptionHandler;
+import com.logikas.kratos.core.ioc.security.SecurityAOPModule;
+import com.logikas.kratos.core.ioc.security.SecurityModule;
+import com.logikas.kratos.core.ioc.security.SecurityWebModule;
 
 public class KratosServletModule extends ServletModule {
   
   @Override
   protected void configureServlets() {
+      
     bind(ExceptionHandler.class).to(DefaultExceptionHandler.class).in(Singleton.class);
     bind(EntityAccessorFactory.class).to(JpaEntityAccessorFactory.class).in(Singleton.class);
+    
     serve("/gwtRequest").with(KratosRequestFactoryServlet.class);
+    
     install(new SystemModule());
     install(new ValidationModule());
+    
+    install(new SecurityModule(this.getServletContext()));
+
   }
 }
