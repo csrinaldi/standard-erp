@@ -27,33 +27,39 @@
 		<jpa.persistenceUnit>Kratos</jpa.persistenceUnit>
 		<spring.version>3.1.2.RELEASE</spring.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<hsqldb.version>2.2.8</hsqldb.version>
 	</properties>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-servlet</artifactId>
 			<version>${gwt.version}</version>
 			<scope>runtime</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
 			<version>${gwt.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>${validation.version}</version>
 			<!-- <scope>test</scope> -->
 		</dependency>
+
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -61,31 +67,43 @@
 			<classifier>sources</classifier>
 			<!-- <scope>test</scope> -->
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>
 			<version>${guice.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
 			<artifactId>guice-servlet</artifactId>
 			<version>${guice.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
 			<artifactId>guice-multibindings</artifactId>
 			<version>${guice.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-persist</artifactId>
+			<version>${guice.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava-gwt</artifactId>
 			<version>${guava.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.gwt.inject</groupId>
 			<artifactId>gin</artifactId>
 			<version>${gin.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -99,12 +117,18 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.google.web.bindery</groupId>
 			<artifactId>requestfactory-apt</artifactId>
 			<version>${gwt.version}</version>
 		</dependency>
-		
-		<!-- Requerido por su AnnotationUtils -->
+
+		<!-- TODO: Esto es requerido por su AnnotationUtils. Ver la opcion de eliminarlo -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -132,6 +156,7 @@
 					</components>
 					<componentProperties>
 						<persistenceunit>Kratos</persistenceunit>
+						<ouputdirectory>src/main/resources/db/hsqldb</ouputdirectory>
 						<outputfilename>kratos.ddl</outputfilename>
 						<drop>false</drop>
 						<create>true</create>
@@ -181,6 +206,7 @@
 					<webappDirectory>${webappDirectory}</webappDirectory>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

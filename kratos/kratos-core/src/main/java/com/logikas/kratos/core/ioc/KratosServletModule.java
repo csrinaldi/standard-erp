@@ -6,19 +6,37 @@ import com.logikas.kratos.core.facade.jpa.JpaEntityAccessorFactory;
 import com.logikas.kratos.core.ioc.validation.ValidationModule;
 import com.logikas.kratos.system.ioc.SystemModule;
 
-import com.google.inject.Singleton;
+import com.google.inject.Provides;
+import com.google.inject.persist.PersistFilter;
+import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.ServletModule;
 import com.google.web.bindery.requestfactory.server.DefaultExceptionHandler;
 import com.google.web.bindery.requestfactory.server.ExceptionHandler;
+
+import javax.inject.Singleton;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.metamodel.Metamodel;
 
 public class KratosServletModule extends ServletModule {
   
   @Override
   protected void configureServlets() {
+    
     bind(ExceptionHandler.class).to(DefaultExceptionHandler.class).in(Singleton.class);
-    bind(EntityAccessorFactory.class).to(JpaEntityAccessorFactory.class).in(Singleton.class);
+    bind(EntityAccessorFactory.class).to(JpaEntityAccessorFactory.class).in(Singleton.class);    
+    
     serve("/gwtRequest").with(KratosRequestFactoryServlet.class);
+    
     install(new SystemModule());
     install(new ValidationModule());
+    
+    install(new JpaPersistModule("Kratos"));
+    filter("/*").through(PersistFilter.class);
+  }
+  
+  @Provides
+  @Singleton
+  Metamodel getMetamodel(EntityManagerFactory factory) {
+    return factory.getMetamodel();
   }
 }
