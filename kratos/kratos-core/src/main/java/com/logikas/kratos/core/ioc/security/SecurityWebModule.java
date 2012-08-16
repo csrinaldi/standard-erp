@@ -4,6 +4,7 @@
  */
 package com.logikas.kratos.core.ioc.security;
 
+import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import org.apache.shiro.guice.web.ShiroWebModule;
 
@@ -19,7 +20,7 @@ public class SecurityWebModule extends ShiroWebModule{
     
     @Override
     protected void configureShiroWeb() {
-        //throw new UnsupportedOperationException("Not supported yet.");
+        //bindRealm().toConstructor(null)
     }
     
 }
