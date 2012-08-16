@@ -14,7 +14,9 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 /**
- *
+ * Realms que optiene los permisos el Usuario y haciendo uso de JPA.
+ * //TODO podemos cambiar el nombre a CoreRealm y mandar todo lo de JPA
+ * a SecurityService
  * @author csrinaldi
  */
 public class JpaRealm extends AuthorizingRealm{
