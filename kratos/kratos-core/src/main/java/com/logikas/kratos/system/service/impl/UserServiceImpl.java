@@ -21,10 +21,11 @@ public class UserServiceImpl implements UserService {
   }
   
   public void save(User user) {
+    repository.save(user);    
   }
 
   @Override
   public boolean isAdmin(User user) {
-    return false;
+    return true;
   }
 }
