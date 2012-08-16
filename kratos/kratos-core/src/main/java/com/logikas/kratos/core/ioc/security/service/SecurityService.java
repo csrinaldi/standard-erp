@@ -10,4 +10,6 @@ package com.logikas.kratos.core.ioc.security.service;
  */
 public interface SecurityService {
     
+    
+    
 }
