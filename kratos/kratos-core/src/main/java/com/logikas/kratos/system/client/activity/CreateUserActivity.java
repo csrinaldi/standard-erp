@@ -33,7 +33,7 @@ public class CreateUserActivity extends AbstractActivity implements CreateUserVi
     this.view = view;
     this.driver = view.createEditor(rf);
   }
-
+  
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
 

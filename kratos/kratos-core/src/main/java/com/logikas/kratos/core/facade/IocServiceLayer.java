@@ -9,14 +9,17 @@ import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;
 import com.google.web.bindery.requestfactory.shared.Locator;
 import com.google.web.bindery.requestfactory.shared.ServiceLocator;
 
+import java.util.Set;
+
 import javax.inject.Inject;
+import javax.validation.ConstraintViolation;
 
 class IocServiceLayer extends ServiceLayerDecorator {
 
   private final Injector injector;
 
   private final EntityAccessorFactory accessorFactory;
-
+  
   @Inject
   IocServiceLayer(Injector injector, EntityAccessorFactory accessorFactory) {
     this.injector = injector;
@@ -33,7 +36,7 @@ class IocServiceLayer extends ServiceLayerDecorator {
       final GenericEntityLocator genericLocator = (GenericEntityLocator) locator;
 
       @SuppressWarnings("rawtypes")
-      final EntityFinder finder = injector.getInstance(genericLocator.getFinderType());
+      final EntityFinder finder = (EntityFinder)injector.getInstance(genericLocator.getFinderType());
       genericLocator.setFinder(finder);
 
       @SuppressWarnings("rawtypes")
@@ -50,5 +53,10 @@ class IocServiceLayer extends ServiceLayerDecorator {
   @Override
   public <T extends ServiceLocator> T createServiceLocator(Class<T> clazz) {
     return injector.getInstance(clazz);
+  }
+  
+  @Override
+  public <T> Set<ConstraintViolation<T>> validate(T domainObject) {
+    return super.validate(domainObject);
   }
 }

@@ -22,4 +22,9 @@ public class UserServiceImpl implements UserService {
   
   public void save(User user) {
   }
+
+  @Override
+  public boolean isAdmin(User user) {
+    return false;
+  }
 }

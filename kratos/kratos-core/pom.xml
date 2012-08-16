@@ -25,6 +25,7 @@
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 		<jpa.configurationFile>src/main/resources/META-INF/persistence.xml</jpa.configurationFile>
 		<jpa.persistenceUnit>Kratos</jpa.persistenceUnit>
+		<spring.version>3.1.2.RELEASE</spring.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -102,7 +103,13 @@
 			<artifactId>requestfactory-apt</artifactId>
 			<version>${gwt.version}</version>
 		</dependency>
-
+		
+		<!-- Requerido por su AnnotationUtils -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
