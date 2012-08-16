@@ -4,46 +4,19 @@
  */
 package com.logikas.kratos.core.ioc.security;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
-import javax.inject.Singleton;
-import javax.servlet.ServletContext;
-import org.apache.shiro.mgt.DefaultSecurityManager;
-import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.guice.ShiroModule;
 
 /**
  *
  * @author csrinaldi
  */
-public class SecurityModule extends AbstractModule {
-
-    ServletContext context = null;
-    
-    public SecurityModule(ServletContext context) {
-        this.context = context;
-    }
-
-    /**
-     * Crea de manera programática el SecurityManager
-     * //TODO ver la carga de Reamls
-     * @return 
-     */
-    @Provides
-    @Singleton
-    SecurityManager getSecurityManager(){
-        SecurityManager manager = new DefaultSecurityManager();
-        return manager;
-    }
+public class SecurityModule extends ShiroModule{
 
     @Override
-    protected void configure() {
-        SecurityWebModule webModule = new SecurityWebModule(context);
-        SecurityAOPModule aopModule = new SecurityAOPModule();
+    protected void configureShiro() {
         
-        install(webModule);
-        install(aopModule);
+        //TODO bind realms
         
     }
-    
     
 }

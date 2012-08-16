@@ -10,9 +10,7 @@ import com.google.inject.Singleton;
 import com.google.inject.servlet.ServletModule;
 import com.google.web.bindery.requestfactory.server.DefaultExceptionHandler;
 import com.google.web.bindery.requestfactory.server.ExceptionHandler;
-import com.logikas.kratos.core.ioc.security.SecurityAOPModule;
-import com.logikas.kratos.core.ioc.security.SecurityModule;
-import com.logikas.kratos.core.ioc.security.SecurityWebModule;
+import com.logikas.kratos.core.ioc.security.SecurityMainModule;
 
 public class KratosServletModule extends ServletModule {
   
@@ -27,7 +25,7 @@ public class KratosServletModule extends ServletModule {
     install(new SystemModule());
     install(new ValidationModule());
     
-    install(new SecurityModule(this.getServletContext()));
+    install(new SecurityMainModule(this.getServletContext()));
 
   }
 }

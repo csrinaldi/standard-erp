@@ -4,6 +4,8 @@
  */
 package com.logikas.kratos.core.ioc.security.realms;
 
+import com.logikas.kratos.core.ioc.security.service.SecurityService;
+import javax.inject.Inject;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -17,7 +19,11 @@ import org.apache.shiro.subject.PrincipalCollection;
  */
 public class JpaRealm extends AuthorizingRealm{
 
-    public JpaRealm() {
+    SecurityService service;
+    
+    @Inject
+    public JpaRealm(SecurityService service) {
+        this.service = service;
     }
 
     @Override
@@ -26,7 +32,12 @@ public class JpaRealm extends AuthorizingRealm{
     }
 
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken at) throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+
+        
+                
+        
+        
         return null;
     }
     

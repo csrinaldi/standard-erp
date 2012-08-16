@@ -20,6 +20,9 @@ public class SecurityWebModule extends ShiroWebModule{
     
     @Override
     protected void configureShiroWeb() {
+        
+        
+        
         //bindRealm().toConstructor(null)
     }
     
