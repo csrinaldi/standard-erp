@@ -13,5 +13,4 @@ public interface MenuNodeBuilder {
   MenuNodeBuilder priority(int priority);
   
   MenuNodeBuilder child(String name);
-  
 }
