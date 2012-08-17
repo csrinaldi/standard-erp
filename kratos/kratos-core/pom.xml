@@ -28,6 +28,7 @@
         <jpa.persistenceUnit>Kratos</jpa.persistenceUnit>
         <hsqldb.version>2.2.8</hsqldb.version>
         <spring.version>3.1.2.RELEASE</spring.version>
+        <slf4j.version>1.6.6</slf4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -106,19 +107,22 @@
             <version>${hibernate.validator.version}</version>
         </dependency>
 
+        <!-- Hibernate uses slf4j for logging, for our purposes here use the simple 
+     			backend -->
+        <!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-simple</artifactId> 
+     			<version>${slf4j.version}</version> </dependency> -->
+
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
-            <version>2.2.8</version>
+            <version>${hsqldb.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>com.google.web.bindery</groupId>
             <artifactId>requestfactory-apt</artifactId>
             <version>${gwt.version}</version>
         </dependency>
-
 
 
         <!-- Requerido por su AnnotationUtils -->
@@ -150,12 +154,6 @@
             <version>${shiro.version}</version>
         </dependency>
         
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.21</version>
-            <scope>runtime</scope>
-        </dependency>
             
 		
     </dependencies>
