@@ -7,6 +7,7 @@ import com.logikas.kratos.core.repository.Repository;
 import com.google.inject.TypeLiteral;
 import com.google.web.bindery.requestfactory.shared.Locator;
 
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
@@ -53,8 +54,10 @@ public class GenericEntityLocator<F extends EntityFinder<?, ?>> extends Locator<
     final Type actualIdType = actualFinderGeneric.getActualTypeArguments()[1];
 
     assert actualIdType instanceof Class : "Wrong id type parameter in " + finderType.getName();
-
+    
     idType = (Class<?>) actualIdType;
+    
+    assert Serializable.class.isAssignableFrom(idType) : "ID type must implement java.io.Serializable in " + finderType.getName();
   }
 
   public void setFinder(EntityFinder<?, ?> finder) {
@@ -77,7 +80,7 @@ public class GenericEntityLocator<F extends EntityFinder<?, ?>> extends Locator<
   @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
   public Object find(Class<? extends Object> clazz, Object id) {
-    return ((EntityFinder) finder).find(id);
+    return ((EntityFinder) finder).findOne((Serializable)id);
   }
 
   @SuppressWarnings({"unchecked", "rawtypes"})

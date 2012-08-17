@@ -109,13 +109,8 @@
 
 		<!-- Hibernate uses slf4j for logging, for our purposes here use the simple 
 			backend -->
-			<!-- 
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		-->
+		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-simple</artifactId> 
+			<version>${slf4j.version}</version> </dependency> -->
 
 		<dependency>
 			<groupId>org.hsqldb</groupId>
@@ -130,7 +125,7 @@
 		</dependency>
 
 
-		<!-- Requerido por su AnnotationUtils -->
+		<!-- TODO: Requerido por su AnnotationUtils, eliminar cuando sea posible -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -143,6 +138,14 @@
 			<artifactId>shiro-all</artifactId>
 			<version>${shiro.version}</version>
 		</dependency>
+
+		<!-- 
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
+		-->
 
 		<!-- ¿Para qué se incluye esto? -->
 		<!-- Server Dependences -->
