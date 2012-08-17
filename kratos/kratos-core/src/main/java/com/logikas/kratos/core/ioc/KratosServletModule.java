@@ -33,8 +33,10 @@ public class KratosServletModule extends ServletModule {
     install(new SystemModule());
     install(new ValidationModule());
     
+
     //TODO ver si esta dependencia la podemos sacar de aca
     install(new SecurityMainModule(this.getServletContext()));
+
 
     install(new JpaPersistModule("Kratos"));
     filter("/*").through(PersistFilter.class);
