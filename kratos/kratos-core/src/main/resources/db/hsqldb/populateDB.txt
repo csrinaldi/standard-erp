@@ -1,3 +1,0 @@
-INSERT INTO system.user VALUES (1, 'admin');
-INSERT INTO system.user VALUES (2, 'crinaldi');
-INSERT INTO system.user VALUES (3, 'atesti');

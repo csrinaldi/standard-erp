@@ -1,6 +1,0 @@
-CREATE schema system;
-
-CREATE TABLE system.user (
-	id INTEGER NOT NULL IDENTITY PRIMARY KEY,
-	name VARCHAR(30),
-);

@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "user") //, schema = "system")
+@Table(name = "user") //, schema = "juanca")
 public class User implements Serializable, GenericEntity, HasName {
 
   private Long id;

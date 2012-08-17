@@ -32,7 +32,7 @@ public class KratosServletModule extends ServletModule {
     install(new SystemModule());
     install(new ValidationModule());
     
-    install(new SecurityMainModule(this.getServletContext()));
+    //install(new SecurityMainModule(this.getServletContext()));
 
     install(new JpaPersistModule("Kratos"));
     filter("/*").through(PersistFilter.class);
