@@ -19,13 +19,36 @@ public class UserRepositoryImpl implements UserRepository {
   }
 
   @Override
-  public User find(Long id) {
+  public User findOne(Long id) {
     return em.get().find(User.class, id);
   }
   
   @Transactional
   @Override
-  public void save(User user) {
+  public User save(User user) {
     em.get().persist(user);
+    return user;
+  }
+  
+  @SuppressWarnings("unchecked")
+  @Override
+  public Iterable<User> findAll() {
+    return em.get().createNamedQuery("FROM User").getResultList();
+  }
+
+  @Override
+  public Long count() {
+    return (Long) em.get().createNamedQuery("SELECT COUNT(*) FROM User").getSingleResult();
+  }
+
+  @Transactional
+  @Override
+  public void delete(User entity) {
+    em.get().remove(entity);    
+  }
+
+  @Override
+  public boolean exists(Long primaryKey) {
+    return findOne(primaryKey) != null;
   }
 }

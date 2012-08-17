@@ -1,6 +1,8 @@
 package com.logikas.kratos.core.repository;
 
-public interface EntityFinder<T, I> {
+import java.io.Serializable;
+
+public interface EntityFinder<T, ID extends Serializable> {
   
-  T find(I id);
+  T findOne(ID primaryKey);
 }
