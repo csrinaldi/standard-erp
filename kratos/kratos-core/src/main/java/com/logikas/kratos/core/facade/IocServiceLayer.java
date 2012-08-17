@@ -13,16 +13,21 @@ import java.util.Set;
 
 import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
+import javax.validation.GroupSequence;
+import javax.validation.ValidatorFactory;
 
 class IocServiceLayer extends ServiceLayerDecorator {
 
   private final Injector injector;
 
+  private final ValidatorFactory validatorFactory;
+  
   private final EntityAccessorFactory accessorFactory;
   
   @Inject
-  IocServiceLayer(Injector injector, EntityAccessorFactory accessorFactory) {
+  IocServiceLayer(Injector injector, ValidatorFactory validatorFactory, EntityAccessorFactory accessorFactory) {
     this.injector = injector;
+    this.validatorFactory = validatorFactory;
     this.accessorFactory = accessorFactory;
   }
 
@@ -56,7 +61,7 @@ class IocServiceLayer extends ServiceLayerDecorator {
   }
   
   @Override
-  public <T> Set<ConstraintViolation<T>> validate(T domainObject) {
-    return super.validate(domainObject);
+  public <T> Set<ConstraintViolation<T>> validate(T domainObject) {    
+    return validatorFactory.getValidator().validate(domainObject);
   }
 }

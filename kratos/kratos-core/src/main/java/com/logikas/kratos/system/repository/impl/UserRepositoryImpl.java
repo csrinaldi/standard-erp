@@ -1,9 +1,12 @@
 package com.logikas.kratos.system.repository.impl;
 
 import com.logikas.kratos.system.domain.User;
+import com.logikas.kratos.system.domain.User_;
 import com.logikas.kratos.system.repository.UserRepository;
 
 import com.google.inject.persist.Transactional;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -35,10 +38,10 @@ public class UserRepositoryImpl implements UserRepository {
   public Iterable<User> findAll() {
     return em.get().createNamedQuery("FROM User").getResultList();
   }
-
+  
   @Override
   public Long count() {
-    return (Long) em.get().createNamedQuery("SELECT COUNT(*) FROM User").getSingleResult();
+    return (Long) em.get().createQuery("SELECT COUNT(*) FROM User").getSingleResult();
   }
 
   @Transactional
@@ -50,5 +53,11 @@ public class UserRepositoryImpl implements UserRepository {
   @Override
   public boolean exists(Long primaryKey) {
     return findOne(primaryKey) != null;
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public Iterable<User> findByName(String name) {
+    return em.get().createQuery("FROM User u WHERE u.name = :name").setParameter("name", name).getResultList();
   }
 }
