@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.logikas.kratos.core.ioc.security;
+package com.logikas.kratos.security.ioc;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
@@ -37,13 +37,13 @@ public class SecurityMainModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        SecurityModule module = new SecurityModule();
-        SecurityWebModule webModule = new SecurityWebModule(context);
-        SecurityAOPModule aopModule = new SecurityAOPModule();
+        //SecurityModule module = new SecurityModule();
+        //SecurityWebModule webModule = new SecurityWebModule(context);
+        //SecurityAopModule aopModule = new SecurityAopModule();
         
-        install(module);
-        install(webModule);
-        install(aopModule);
+        //install(module);
+        //install(webModule);
+        //install(aopModule);
         
     }
     

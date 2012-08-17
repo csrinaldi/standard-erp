@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.logikas.kratos.core.ioc.security;
+package com.logikas.kratos.security.ioc;
 
 import org.apache.shiro.guice.aop.ShiroAopModule;
 
@@ -10,7 +10,7 @@ import org.apache.shiro.guice.aop.ShiroAopModule;
  *
  * @author csrinaldi
  */
-public class SecurityAOPModule extends ShiroAopModule{
+public class SecurityAopModule extends ShiroAopModule{
     
     
 }

@@ -12,7 +12,8 @@ import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.ServletModule;
 import com.google.web.bindery.requestfactory.server.DefaultExceptionHandler;
 import com.google.web.bindery.requestfactory.server.ExceptionHandler;
-import com.logikas.kratos.core.ioc.security.SecurityMainModule;
+import com.logikas.kratos.security.ioc.SecurityMainModule;
+
 
 import javax.inject.Singleton;
 import javax.persistence.EntityManagerFactory;
@@ -32,6 +33,7 @@ public class KratosServletModule extends ServletModule {
     install(new SystemModule());
     install(new ValidationModule());
     
+    //TODO ver si esta dependencia la podemos sacar de aca
     install(new SecurityMainModule(this.getServletContext()));
 
     install(new JpaPersistModule("Kratos"));

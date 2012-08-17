@@ -9,7 +9,10 @@ public class KratosMain implements EntryPoint {
 
   public void onModuleLoad() {
     final MainInjector injector = GWT.create(MainInjector.class);
+    //final Bootstrap2 bootstrap = injector.getBootstrap();
+    //bootstrap.init();
+    
     final Bootstrap bootstrap = injector.getBootstrap();
-    bootstrap.init();
+    bootstrap.start();
   }
 }
