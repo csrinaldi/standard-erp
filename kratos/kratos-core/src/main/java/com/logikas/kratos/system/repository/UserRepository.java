@@ -3,8 +3,10 @@ package com.logikas.kratos.system.repository;
 import com.logikas.kratos.core.repository.Repository;
 import com.logikas.kratos.system.domain.User;
 
+import java.util.List;
+
 public interface UserRepository extends Repository<User, Long> {
   
-  Iterable<User> findByName(String name);
+  List<User> findByName(String name, int start, int rows);
 
 }

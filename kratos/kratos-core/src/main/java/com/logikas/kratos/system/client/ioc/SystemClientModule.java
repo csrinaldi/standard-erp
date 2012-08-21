@@ -1,7 +1,9 @@
 package com.logikas.kratos.system.client.ioc;
 
 import com.logikas.kratos.system.client.view.CreateUserView;
+import com.logikas.kratos.system.client.view.SearchUserView;
 import com.logikas.kratos.system.client.widget.CreateUserWidget;
+import com.logikas.kratos.system.client.widget.SearchUserWidget;
 import com.logikas.kratos.system.shared.request.SystemRequestFactory;
 
 import com.google.gwt.core.shared.GWT;
@@ -16,6 +18,7 @@ public class SystemClientModule extends AbstractGinModule {
   @Override
   protected void configure() {
     bind(CreateUserView.class).to(CreateUserWidget.class).in(Singleton.class);
+    bind(SearchUserView.class).to(SearchUserWidget.class).in(Singleton.class);
   }
   
   @Provides

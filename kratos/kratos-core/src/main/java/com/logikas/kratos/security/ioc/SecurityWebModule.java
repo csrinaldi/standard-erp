@@ -1,7 +1,7 @@
 /*
  * To change this template, choose Tools | Templates and open the template in the editor.
  */
-package com.logikas.kratos.core.ioc.security;
+package com.logikas.kratos.security.ioc;
 
 import org.apache.shiro.guice.web.ShiroWebModule;
 
@@ -20,7 +20,8 @@ public class SecurityWebModule extends ShiroWebModule {
   @Override
   protected void configureShiroWeb() {
 
-    // bindRealm().toConstructor(null)
+    //bindRealm().toConstructor(null);
+    
   }
 
 }
