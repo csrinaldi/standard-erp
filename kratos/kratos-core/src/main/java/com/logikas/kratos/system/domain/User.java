@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
@@ -22,9 +23,11 @@ public class User implements Serializable, HasName {
 
   private Long id;
 
-  private Long version;
+  private long version;
 
   private String name;
+  
+  private byte[] avatar;
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,11 +40,11 @@ public class User implements Serializable, HasName {
   }
 
   @Version
-  public Long getVersion() {
+  public long getVersion() {
     return version;
   }
 
-  public void setVersion(Long version) {
+  public void setVersion(long version) {
     this.version = version;
   }
 
@@ -56,6 +59,16 @@ public class User implements Serializable, HasName {
   @Override
   public void setName(String name) {
     this.name = name;
+  }
+  
+  @Lob
+  @Column(name = "avatar")
+  public byte[] getAvatar() {
+    return avatar;
+  }
+  
+  public void setAvatar(byte[] avatar) {
+    this.avatar = avatar;
   }
 
   @Override

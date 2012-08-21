@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-<<<<<<< HEAD
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<!-- POM file generated with GWT webAppCreator -->
@@ -146,8 +145,11 @@
 			<version>1.2.0.Final</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.springframework.data</groupId> <artifactId>spring-data-jpa</artifactId> 
-			<version>1.1.0.RELEASE</version> </dependency> -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
 		<!-- ¿Para qué se incluye esto? -->
 		<!-- Server Dependences -->
 		<!-- <dependency> <groupId>javax</groupId> <artifactId>javaee-web-api</artifactId> 
@@ -231,259 +233,10 @@
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
-				<!-- 
-					<compilerArguments>
-						<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
-					</compilerArguments>
-				-->
+					<!-- <compilerArguments> <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor> 
+						</compilerArguments> -->
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
-	<organization>
-		<name>Logikas</name>
-		<url>www.logikas.com</url>
-	</organization>
-	<name>Kratos</name>
-	<url>https://github.com/csrinaldi/standard-erp/wiki</url>
-=======
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-    <!-- POM file generated with GWT webAppCreator -->
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.logikas.kratos</groupId>
-    <artifactId>kratos-core</artifactId>
-    <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
-
-    <properties>
-        <!-- Convenience property to set the GWT version -->
-        <java.version>1.6</java.version>
-        <junit.version>4.7</junit.version>
-        <gwt.version>2.5.0-rc1</gwt.version>
-        <guice.version>3.0</guice.version>
-        <guava.version>13.0</guava.version>
-        <gin.version>1.5.0</gin.version>
-        <shiro.version>1.2.1</shiro.version>
-        <hibernate.entityManager.version>4.1.5.Final</hibernate.entityManager.version>
-        <hibernate.validator.version>4.3.0.Final</hibernate.validator.version>
-        <validation.version>1.0.0.GA</validation.version>
-        <!-- GWT needs at least java 1.5 -->
-        <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
-        <jpa.configurationFile>src/main/resources/META-INF/persistence.xml</jpa.configurationFile>
-        <jpa.persistenceUnit>Kratos</jpa.persistenceUnit>
-        <hsqldb.version>2.2.8</hsqldb.version>
-        <spring.version>3.1.2.RELEASE</spring.version>
-        <slf4j.version>1.6.6</slf4j.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-servlet</artifactId>
-            <version>${gwt.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-user</artifactId>
-            <version>${gwt.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>${validation.version}</version>
-            <!-- <scope>test</scope> -->
-        </dependency>
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>${validation.version}</version>
-            <classifier>sources</classifier>
-            <!-- <scope>test</scope> -->
-        </dependency>
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>${guice.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-servlet</artifactId>
-            <version>${guice.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-multibindings</artifactId>
-            <version>${guice.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-persist</artifactId>
-            <version>3.0-rc2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava-gwt</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt.inject</groupId>
-            <artifactId>gin</artifactId>
-            <version>${gin.version}</version>
-        </dependency>
-                
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate.entityManager.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${hibernate.validator.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>${hsqldb.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.web.bindery</groupId>
-            <artifactId>requestfactory-apt</artifactId>
-            <version>${gwt.version}</version>
-        </dependency>
-
-        <!-- Requerido por su AnnotationUtils -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-                
-        <!-- Soporte de Seguridad -->
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-web</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-aspectj</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-guice</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-		
-    </dependencies>
-
-    <build>
-        <!-- Generate compiled stuff in the folder used for developing mode -->
-        <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
-
-        <plugins>
-
-            <plugin>
-                <!-- run "mvn hibernate3:hbm2ddl" to generate a schema -->
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>hibernate3-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <components>
-                        <component>
-                            <name>hbm2ddl</name>
-                            <implementation>jpaconfiguration</implementation>
-                        </component>
-                    </components>
-                    <componentProperties>
-                        <persistenceunit>Kratos</persistenceunit>
-                        <outputfilename>kratos.ddl</outputfilename>
-                        <drop>false</drop>
-                        <create>true</create>
-                        <export>false</export>
-                        <format>true</format>
-                    </componentProperties>
-                </configuration>
-            </plugin>
-
-            <!-- GWT Maven Plugin -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>gwt-maven-plugin</artifactId>
-                <version>${gwt.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>test</goal>
-                            <!-- <goal>i18n</goal> <goal>generateAsync</goal> -->
-                        </goals>
-                    </execution>
-                </executions>
-                <!-- Plugin configuration. There are many available options, see gwt-maven-plugin 
-           					documentation at codehaus.org -->
-                <configuration>
-                    <runTarget>kratoscore.html</runTarget>
-                    <!--hostedWebapp>${webappDirectory}</hostedWebapp-->
-                    <i18nMessagesBundle>com.logikas.kratos.main.client.Messages</i18nMessagesBundle>
-                </configuration>
-            </plugin>
-
-            <!-- Copy static web files before executing gwt:run -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>exploded</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <webappDirectory>${webappDirectory}</webappDirectory>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-    <organization>
-        <name>Logikas</name>
-        <url>www.logikas.com</url>
-    </organization>
-    <name>Kratos</name>
-    <url>https://github.com/csrinaldi/standard-erp/wiki</url>
->>>>>>> 07487beda52ef0711b29e36689ee91e3df49ba22
 </project>

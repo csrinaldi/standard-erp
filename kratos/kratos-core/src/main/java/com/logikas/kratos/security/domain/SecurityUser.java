@@ -4,11 +4,13 @@
  */
 package com.logikas.kratos.security.domain;
 
-import com.google.common.base.Objects;
-import com.logikas.kratos.core.domain.GenericEntity;
 import com.logikas.kratos.core.domain.HasName;
 import com.logikas.kratos.system.domain.User;
+
+import com.google.common.base.Objects;
+
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +27,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "securityUser") //, schema = "system")
-public class SecurityUser implements Serializable, GenericEntity, HasName {
+public class SecurityUser implements Serializable, HasName {
 
     private Long id;
     private Long version;

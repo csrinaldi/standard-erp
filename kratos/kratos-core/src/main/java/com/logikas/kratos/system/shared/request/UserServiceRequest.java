@@ -18,4 +18,6 @@ public interface UserServiceRequest extends RequestContext {
   Request<Void> save(UserProxy proxy);
 
   Request<List<UserProxy>> findByName(String name, int start, int rows);
+
+  Request<List<UserProxy>> findAll(int start, int length);
 }

@@ -9,4 +9,6 @@ public interface UserRepository extends Repository<User, Long> {
   
   List<User> findByName(String name, int start, int rows);
 
+  List<User> findAll(int start, int rows);
+
 }

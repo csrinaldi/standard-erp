@@ -13,7 +13,6 @@ import java.util.Set;
 
 import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
-import javax.validation.GroupSequence;
 import javax.validation.ValidatorFactory;
 
 class IocServiceLayer extends ServiceLayerDecorator {

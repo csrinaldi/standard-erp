@@ -14,6 +14,8 @@ public interface UserService {
   void save(@Admin User user);
   
   List<User> findByName(String name, int start, int rows);
+  
+  List<User> findAll(int start, int rows);
 
   boolean isAdmin(User user);
 }
