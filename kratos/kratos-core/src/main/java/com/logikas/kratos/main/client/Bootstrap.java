@@ -8,10 +8,8 @@ package com.logikas.kratos.main.client;
  *
  * @author csrinaldi
  */
-public interface Bootstrap {
+public interface Bootstrap{
  
     void start();
-    
-    void loadModules();
     
 }

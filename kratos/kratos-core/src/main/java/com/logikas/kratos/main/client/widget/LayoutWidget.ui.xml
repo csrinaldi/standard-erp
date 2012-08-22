@@ -6,10 +6,20 @@
     
     <g:LayoutPanel>
         <g:layer>
+            <g:Button ui:field="save">Save</g:Button>
+        </g:layer>
+        <g:layer>
             <g:ScrollPanel ui:field="west"/>
         </g:layer>
         <g:layer>
             <g:ScrollPanel ui:field="center"/>
         </g:layer>
+        <g:layer>
+            <g:ScrollPanel ui:field="east"/>
+        </g:layer>
+        <g:layer>
+            <g:ScrollPanel ui:field="south"/>
+        </g:layer>
+        
     </g:LayoutPanel>
 </ui:UiBinder> 

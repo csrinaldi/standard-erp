@@ -5,52 +5,59 @@
 package com.logikas.kratos.main.client.widget;
 
 import com.google.gwt.core.shared.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.logikas.kratos.main.client.view.LayoutView;
+import com.logikas.kratos.main.shared.place.DefaultPlace;
+import javax.inject.Inject;
 
 /**
  *
  * @author csrinaldi
  */
-public class LayoutWidget implements LayoutView{
+public class LayoutWidget implements LayoutView {
 
     private static LayoutWidgetUiBinder uiBinder = GWT.create(LayoutWidgetUiBinder.class);
 
     interface LayoutWidgetUiBinder extends UiBinder<LayoutPanel, LayoutWidget> {
     }
-
     @UiField
     ScrollPanel west;
-   
     @UiField
     ScrollPanel center;
 
     /*@UiField
-    ClientResource res;
+     ClientResource res;
 
-    private static ClientResource DEFAULT_RESOURCES;
+     private static ClientResource DEFAULT_RESOURCES;
 
-    private static ClientResource getDefaultResources() {
-        if (DEFAULT_RESOURCES == null) {
-            DEFAULT_RESOURCES = GWT.create(ClientResource.class);
+     private static ClientResource getDefaultResources() {
+     if (DEFAULT_RESOURCES == null) {
+     DEFAULT_RESOURCES = GWT.create(ClientResource.class);
 
-        }
-        return DEFAULT_RESOURCES;
-    }*/
-
+     }
+     return DEFAULT_RESOURCES;
+     }*/
     private final LayoutPanel root;
+    
+    private PlaceController controller;
 
-    public LayoutWidget() {
+    @Inject
+    public LayoutWidget(PlaceController controller) {
         //getDefaultResources().erpLgkStyle().ensureInjected();
         root = uiBinder.createAndBindUi(this);
+        
+        this.controller = controller;
     }
-    
+
     @Override
     public Widget asWidget() {
         return root;
@@ -59,27 +66,29 @@ public class LayoutWidget implements LayoutView{
     @Override
     public AcceptsOneWidget getCenterRegion() {
         return new AcceptsOneWidget() {
-
             @Override
             public void setWidget(IsWidget w) {
                 Widget widget = Widget.asWidgetOrNull(w);
                 center.setWidget(widget);
             }
-
         };
     }
-    
+
     @Override
     public AcceptsOneWidget getWestRegion() {
         return new AcceptsOneWidget() {
-
             @Override
             public void setWidget(IsWidget w) {
                 Widget widget = Widget.asWidgetOrNull(w);
                 west.setWidget(widget);
             }
-
         };
+    }
+
+    @UiHandler("save")
+    void onSaveClick(ClickEvent event) {
+        GWT.log("onSaveClick");
+        this.controller.goTo(new DefaultPlace());
     }
 
     

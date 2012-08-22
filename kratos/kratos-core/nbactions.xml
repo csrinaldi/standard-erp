@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-devmode</actionName>
+            <displayName>devmode</displayName>
+            <goals>
+                <goal>gwt:run</goal>
+            </goals>
+            <properties>
+                <war>/home/cristian/Logikas/proyectos/standard-erp/kratos/kratos-core/target/kratos-core-1.0-SNAPSHOT</war>
+            </properties>
+        </action>
+    </actions>

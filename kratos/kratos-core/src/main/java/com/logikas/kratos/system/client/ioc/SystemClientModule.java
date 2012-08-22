@@ -18,6 +18,8 @@ public class SystemClientModule extends AbstractGinModule {
     bind(CreateUserView.class).to(CreateUserWidget.class).in(Singleton.class);
   }
   
+  
+  //TODO utilizar el request factory global definido en main
   @Provides
   @Singleton
   SystemRequestFactory getRequestFactory(EventBus eventBus) {

@@ -19,6 +19,8 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.logikas.kratos.main.client.Bootstrap;
 import com.logikas.kratos.main.client.BootstrapImpl;
+import com.logikas.kratos.main.client.manager.ViewManager;
+import com.logikas.kratos.main.client.manager.ViewManagerImpl;
 import com.logikas.kratos.main.client.mvp.CenterActivityMapper;
 import com.logikas.kratos.main.client.mvp.WestActivityMapper;
 import com.logikas.kratos.main.client.view.LayoutView;
@@ -37,6 +39,8 @@ public class MainClientModule extends AbstractGinModule {
     //bind(ActivityMapper.class).to(SystemActivityMapper.class).in(Singleton.class);
     bind(PlaceHistoryMapper.class).to(CorePlaceHistoryMapper.class).in(Singleton.class);
     
+    bind(ViewManager.class).to(ViewManagerImpl.class).in(Singleton.class);
+    
     bind(LayoutView.class).to(LayoutWidget.class).in(Singleton.class);
     
   }
@@ -54,6 +58,8 @@ public class MainClientModule extends AbstractGinModule {
     @Singleton
     public PlaceHistoryHandler getHistoryHandler(PlaceController placeController,
             PlaceHistoryMapper historyMapper, EventBus eventBus) {
+        
+        GWT.log("getHistoryHandler");
 
         PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
         historyHandler.register(placeController, eventBus, new DefaultPlace());

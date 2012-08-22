@@ -5,6 +5,8 @@
 package com.logikas.kratos.main.client.mvp;
 
 import com.google.gwt.activity.shared.ActivityManager;
+import com.google.gwt.core.shared.GWT;
+import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.logikas.kratos.main.client.view.LayoutView;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,7 +15,7 @@ import javax.inject.Named;
  *
  * @author csrinaldi
  */
-public class ActivityManagerInitializer {
+public class ActivityManagerInitializer implements PlaceChangeEvent.Handler{
 
     @Inject
     public ActivityManagerInitializer(
@@ -24,5 +26,10 @@ public class ActivityManagerInitializer {
         centerActivityManager.setDisplay(layout.getCenterRegion());
         westActivityManager.setDisplay(layout.getWestRegion());
        
+    }
+    
+    @Override
+    public void onPlaceChange(PlaceChangeEvent event) {
+        GWT.log("onPlaceChange");
     }
 }
