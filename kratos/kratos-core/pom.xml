@@ -16,6 +16,7 @@
         <junit.version>4.7</junit.version>
         <gwt.version>2.5.0-rc1</gwt.version>
         <guice.version>3.0</guice.version>
+        <guice-repository.version>1.0.0</guice-repository.version>
         <guava.version>13.0</guava.version>
         <gin.version>1.5.0</gin.version>
         <shiro.version>1.2.0</shiro.version>
@@ -33,6 +34,13 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>
@@ -78,10 +86,12 @@
             <artifactId>guice-multibindings</artifactId>
             <version>${guice.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-persist</artifactId>
-            <version>3.0-rc2</version>
+            <!-- <version>3.0-rc2</version> -->
+            <version>${guice.version}</version>
         </dependency>
 
         <dependency>
@@ -99,7 +109,6 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate.entityManager.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
@@ -135,25 +144,7 @@
         <!-- Security Dependences -->
         <dependency>
             <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-web</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-                
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-                
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-guice</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-                
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-aspectj</artifactId>
+            <artifactId>shiro-all</artifactId>
             <version>${shiro.version}</version>
         </dependency>
 
@@ -162,16 +153,15 @@
             <artifactId>hibernate-jpamodelgen</artifactId>
             <version>1.2.0.Final</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <version>1.1.0.RELEASE</version>
-        </dependency>
+        <!-- <dependency> <groupId>com.google.code.guice-repository</groupId> <artifactId>guice-repository</artifactId> 
+     			<version>${guice-repository.version}</version> </dependency> -->
+        <!-- <dependency> <groupId>org.springframework.data</groupId> <artifactId>spring-data-jpa</artifactId> 
+     			<version>1.1.0.RELEASE</version> </dependency> -->
         <!-- ¿Para qué se incluye esto? -->
         <!-- Server Dependences -->
         <!-- <dependency> <groupId>javax</groupId> <artifactId>javaee-web-api</artifactId> 
      			<version>6.0</version> <scope>provided</scope> </dependency> -->
+
 
     </dependencies>
 
@@ -257,4 +247,3 @@
             </plugin>
         </plugins>
     </build>
-</project>
