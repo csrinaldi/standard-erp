@@ -1,7 +1,9 @@
 package com.logikas.kratos.system.client.mvp;
 
 import com.logikas.kratos.system.client.activity.CreateUserActivity;
+import com.logikas.kratos.system.client.activity.SearchUserActivity;
 import com.logikas.kratos.system.shared.place.CreateUserPlace;
+import com.logikas.kratos.system.shared.place.SearchUserPlace;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -13,24 +15,20 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 
 public class SystemActivityMapper implements ActivityMapper {
-  
-  private final Provider<CreateUserActivity> createUser;
-  
+
   @Inject
-  SystemActivityMapper(Provider<CreateUserActivity> createUser) {
-    this.createUser = createUser;  
-  }
-  
+  private Provider<CreateUserActivity> createUser;
+
+  @Inject
+  private Provider<SearchUserActivity> searchUser;
+
   @Override
   public Activity getActivity(Place place) {
-      
-      GWT.log("System.getActivity");
-      
-      
-    if(place instanceof CreateUserPlace) {
-      return createUser.get();      
-    }else if ( place instanceof DefaultPlace ) {
-      return createUser.get();  
+    if (place instanceof CreateUserPlace) {
+      return createUser.get();
+    }
+    if (place instanceof SearchUserPlace) {
+      return searchUser.get();
     }
     return null;
   }

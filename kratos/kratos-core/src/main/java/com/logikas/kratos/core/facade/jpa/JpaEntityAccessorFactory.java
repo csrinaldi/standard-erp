@@ -81,7 +81,7 @@ public class JpaEntityAccessorFactory implements EntityAccessorFactory {
         createGetter(metamodel.entity(domainType).getId(idType).getJavaMember());
 
     final MemberGetter<Object> versionGetter =
-        createGetter(metamodel.entity(domainType).getVersion(Long.class).getJavaMember());
+        createGetter(metamodel.entity(domainType).getVersion(long.class).getJavaMember());
 
     return (EntityAccessor<T, I>) new EntityAccessor<T, I>() {
       public I getId(T entity) {
