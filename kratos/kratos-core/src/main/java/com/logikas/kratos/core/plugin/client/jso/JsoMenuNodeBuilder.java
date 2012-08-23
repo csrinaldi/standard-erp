@@ -2,19 +2,16 @@ package com.logikas.kratos.core.plugin.client.jso;
 
 import com.logikas.kratos.core.plugin.shared.config.MenuNodeBuilder;
 
-import com.google.gwt.core.client.JavaScriptObject;
+class JsoMenuNodeBuilder implements MenuNodeBuilder {
 
-class JsoMenuNodeBuilder extends JavaScriptObject implements MenuNodeBuilder {
+  private final JsoMenuNode menuNode;
 
-  protected JsoMenuNodeBuilder() {
-  }
-
-  private static final JsoMenuNodeBuilder create() {
-    return JsoMenuNode.create().cast();
+  JsoMenuNodeBuilder(JsoMenuNode menuNode) {
+    this.menuNode = menuNode;
   }
 
   protected final JsoMenuNode getMenuNode() {
-    return cast();
+    return menuNode;
   }
 
   @Override
@@ -49,7 +46,7 @@ class JsoMenuNodeBuilder extends JavaScriptObject implements MenuNodeBuilder {
 
   @Override
   public final MenuNodeBuilder child(String name) {
-    final JsoMenuNodeBuilder child = create();
+    final JsoMenuNodeBuilder child = new JsoMenuNodeBuilder(JsoMenuNode.create());
     getMenuNode().addChild(name, child.getMenuNode());
     return child;
   }
