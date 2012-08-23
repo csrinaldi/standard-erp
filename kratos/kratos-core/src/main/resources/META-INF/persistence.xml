@@ -4,6 +4,7 @@
 	version="2.0">
 
 	<persistence-unit name="Kratos" transaction-type="RESOURCE_LOCAL">
+	
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
 

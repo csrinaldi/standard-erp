@@ -29,7 +29,7 @@ public class KratosServletModule extends ServletModule {
 
     
     serve("/gwtRequest").with(KratosRequestFactoryServlet.class);
-    
+        
     install(new SystemModule());
     install(new ValidationModule());
     

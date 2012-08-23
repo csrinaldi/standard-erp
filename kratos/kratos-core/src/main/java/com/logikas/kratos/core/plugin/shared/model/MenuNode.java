@@ -14,7 +14,7 @@ public interface MenuNode {
   
   public static interface Visitor {
     
-    void onChild(MenuNode node);
+    void visit(String name, MenuNode node);
   }
   
   void visitChildren(Visitor visitor);

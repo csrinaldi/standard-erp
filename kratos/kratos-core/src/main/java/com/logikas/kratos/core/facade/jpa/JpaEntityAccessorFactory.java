@@ -8,15 +8,16 @@ import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 
 import javax.inject.Inject;
-import javax.persistence.metamodel.Metamodel;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnitUtil;
 
 public class JpaEntityAccessorFactory implements EntityAccessorFactory {
 
-  private Metamodel metamodel;
+  private final EntityManagerFactory emf;
 
   @Inject
-  JpaEntityAccessorFactory(Metamodel metamodel) {
-    this.metamodel = metamodel;
+  JpaEntityAccessorFactory(EntityManagerFactory emf) {
+    this.emf = emf;
   }
 
   static interface MemberGetter<T> {
@@ -63,7 +64,7 @@ public class JpaEntityAccessorFactory implements EntityAccessorFactory {
       }
     }
   }
-
+  
   static <T> MemberGetter<T> createGetter(Member m) {
     if (m instanceof Method) {
       return new MethodMemberGetter<T>((Method) m);
@@ -77,15 +78,16 @@ public class JpaEntityAccessorFactory implements EntityAccessorFactory {
   @Override
   public <T, I> EntityAccessor<T, I> createAccessor(Class<T> domainType, Class<I> idType) {
 
-    final MemberGetter<I> idGetter =
-        createGetter(metamodel.entity(domainType).getId(idType).getJavaMember());
-
     final MemberGetter<Object> versionGetter =
-        createGetter(metamodel.entity(domainType).getVersion(long.class).getJavaMember());
+        createGetter(emf.getMetamodel().entity(domainType).getVersion(long.class).getJavaMember());
+    
+    final PersistenceUnitUtil util = emf.getPersistenceUnitUtil();
 
     return (EntityAccessor<T, I>) new EntityAccessor<T, I>() {
+      
+      @SuppressWarnings("unchecked")
       public I getId(T entity) {
-        return idGetter.getValue(entity);
+        return (I) util.getIdentifier(entity);
       }
 
       public Object getVersion(T entity) {

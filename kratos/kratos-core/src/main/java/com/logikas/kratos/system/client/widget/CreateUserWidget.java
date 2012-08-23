@@ -5,12 +5,12 @@ import com.logikas.kratos.system.shared.proxy.UserProxy;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.editor.client.Editor;
+import com.google.gwt.editor.ui.client.ValueBoxEditorDecorator;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
 import com.google.web.bindery.requestfactory.shared.RequestFactory;
@@ -35,7 +35,7 @@ public class CreateUserWidget extends Composite implements CreateUserView, Edito
   } 
   
   @UiField
-  TextBox name;
+  ValueBoxEditorDecorator<String> name;
   
   @UiHandler("save")
   void save(ClickEvent event) {
