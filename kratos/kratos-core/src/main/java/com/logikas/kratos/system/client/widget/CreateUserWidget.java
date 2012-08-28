@@ -17,12 +17,14 @@ import com.google.web.bindery.requestfactory.shared.RequestFactory;
 
 public class CreateUserWidget extends Composite implements CreateUserView, Editor<UserProxy> {
 
-  static interface SearchUserBinder extends UiBinder<VerticalPanel, CreateUserWidget> {}
-  
-  static interface Driver extends RequestFactoryEditorDriver<UserProxy, CreateUserWidget> {}
-  
+  static interface SearchUserBinder extends UiBinder<VerticalPanel, CreateUserWidget> {
+  }
+
+  static interface Driver extends RequestFactoryEditorDriver<UserProxy, CreateUserWidget> {
+  }
+
   private static final SearchUserBinder BINDER = GWT.create(SearchUserBinder.class);
-  
+
   private Presenter presenter;
 
   public CreateUserWidget() {
@@ -31,21 +33,36 @@ public class CreateUserWidget extends Composite implements CreateUserView, Edito
 
   @Override
   public void setPresenter(Presenter presenter) {
-    this.presenter = presenter;    
-  } 
-  
+    this.presenter = presenter;
+  }
+
   @UiField
   ValueBoxEditorDecorator<String> name;
+/*
+  @UiField
+  @Ignore
+  ValueImage avatarView;
   
+  @Path("avatar")
+  LeafValueEditor<String> avatarView() {
+    return DefaultValueEditor
+        .of(avatarView.asEditor(),
+            "http://www.perfil.com/export/sites/diarioperfil/img/2012/08/sociedad/0828_muro_quilmes_g.jpg_1121220956.jpg");
+  }
+
+  @UiField
+  ValueFileUpload avatar;
+*/
   @UiHandler("save")
   void save(ClickEvent event) {
     presenter.save();
   }
 
   @Override
-  public RequestFactoryEditorDriver<UserProxy, ? extends Editor<UserProxy>> createEditor(RequestFactory rf) {
+  public RequestFactoryEditorDriver<UserProxy, ? extends Editor<UserProxy>> createEditor(
+      RequestFactory rf) {
     final RequestFactoryEditorDriver<UserProxy, CreateUserWidget> driver = GWT.create(Driver.class);
     driver.initialize(rf, this);
     return driver;
-  } 
+  }
 }

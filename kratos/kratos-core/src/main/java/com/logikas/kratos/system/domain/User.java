@@ -27,7 +27,7 @@ public class User implements Serializable, HasName {
 
   private String name;
   
-  private byte[] avatar;
+  private String avatar;
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -63,11 +63,11 @@ public class User implements Serializable, HasName {
   
   @Lob
   @Column(name = "avatar")
-  public byte[] getAvatar() {
+  public String getAvatar() {
     return avatar;
   }
   
-  public void setAvatar(byte[] avatar) {
+  public void setAvatar(String avatar) {
     this.avatar = avatar;
   }
 
