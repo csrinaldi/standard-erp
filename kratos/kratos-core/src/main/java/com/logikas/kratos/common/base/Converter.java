@@ -1,4 +1,4 @@
-package com.logikas.kratos.commons.base;
+package com.logikas.kratos.common.base;
 
 import com.google.common.base.Function;
 

@@ -1,6 +1,6 @@
 package com.logikas.kratos.core.ui.client.adapters;
 
-import com.logikas.kratos.commons.base.Converter;
+import com.logikas.kratos.common.base.Converter;
 
 import com.google.gwt.editor.client.LeafValueEditor;
 
