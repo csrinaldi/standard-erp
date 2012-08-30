@@ -1,18 +1,9 @@
 package com.logikas.kratos.common.base;
 
-public class Pair<A, B> implements Product {
-  
-  private final A a;
-  private final B b;
+public class Pair<A, B> extends AbstractProduct implements Product {
 
-  public Pair(A a, B b) {
-    this.a = a;
-    this.b = b;
-  }
-  
-  @Override
-  public int getArity() {
-    return 2;
+  Pair(A a, B b) {
+    super(a, b);
   }
 
   @Override
@@ -21,24 +12,14 @@ public class Pair<A, B> implements Product {
       return false;
     }
     Pair<?, ?> other = (Pair<?, ?>) o;
-    return a.equals(other.a) && b.equals(other.b);
+    return equalMembers(other);
   }
 
   public A getA() {
-    return a;
+    return getMember(0);
   }
 
   public B getB() {
-    return b;
-  }
-
-  @Override
-  public int hashCode() {
-    return a.hashCode() * 13 + b.hashCode() * 7;
-  }
-  
-  @Override
-  public Object get(int index) {
-    return index == 0? a: b;
+    return getMember(1);
   }
 }

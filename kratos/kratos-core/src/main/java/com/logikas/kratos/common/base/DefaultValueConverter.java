@@ -1,6 +1,6 @@
 package com.logikas.kratos.common.base;
 
-public class DefaultValueConverter<T> implements Converter<T, T> {
+public class DefaultValueConverter<T> extends AbstractConverter<T, T> {
   
   private final T defaultValue;
   

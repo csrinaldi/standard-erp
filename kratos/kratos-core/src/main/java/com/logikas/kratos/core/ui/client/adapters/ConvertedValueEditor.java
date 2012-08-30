@@ -25,6 +25,6 @@ public class ConvertedValueEditor<T, F> implements LeafValueEditor<T> {
   }
   
   public void setValue(T value) {
-    peer.setValue(converter.unapply(value));    
+    peer.setValue(converter.inverse().apply(value));    
   }
 }

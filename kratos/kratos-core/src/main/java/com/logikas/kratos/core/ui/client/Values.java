@@ -82,7 +82,7 @@ public class Values {
       }
 
       public void setValue(T value) {
-        wrap.setValue(converter.unapply(value));
+        wrap.setValue(converter.inverse().apply(value));
       }
     };
   }
