@@ -15,10 +15,9 @@ public interface UserProxy extends EntityProxy {
   
   Long getId();
   
-  String getName();
-  
+  String getName();  
   void setName(String name);
   
-  String getAvatar();
-  void setAvatar(String name);
+  UserAvatarProxy getAvatar();
+  void setAvatar(UserAvatarProxy avatar);
 }

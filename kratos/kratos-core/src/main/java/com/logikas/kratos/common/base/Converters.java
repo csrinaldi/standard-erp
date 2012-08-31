@@ -92,32 +92,49 @@ public class Converters {
     return forDefault(Suppliers.ofInstance(defaultValue));
   }
 
+  public static <E extends Enum<E>> Converter<String, E> stringToEnum(final Class<E> enumType) {
+        
+    return new AbstractConverter<String, E>() {
+      
+      public E apply(String name) {
+        return Enum.valueOf(enumType, name);
+      }
+      
+      @Override
+      protected String unapply(E output) {
+        return output.name();
+      }      
+    };
+  }
+  
+  public static <E extends Enum<E>> Converter<Integer, E> integerToEnum(final Class<E> enumType) {
+        
+    return new AbstractConverter<Integer, E>() {
+      
+      public E apply(Integer index) {
+        return enumType.getEnumConstants()[index];
+      }
+      
+      @Override
+      protected Integer unapply(E output) {
+        return output.ordinal();
+      }      
+    };
+  }
+  
   public static <F, T> Converter<F, T> assemble(final Function<F, T> function,
       final Function<T, F> inverse) {
 
-    return new Converter<F, T>() {
+    return new AbstractConverter<F, T>() {
 
+      @Override
       public T apply(F input) {
         return function.apply(input);
       }
-
+      
       @Override
-      public Function<T, F> inverse() {
-        return inverse;
-      }
-    };
-  }
-
-  public static <F, T> Converter<T, F> inverse(final Converter<F, T> converter) {
-
-    return new AbstractConverter<T, F>() {
-
-      public F apply(T input) {
-        return converter.inverse().apply(input);
-      }
-
-      public T unapply(F output) {
-        return converter.apply(output);
+      protected F unapply(T output) {
+        return inverse.apply(output);
       }
     };
   }

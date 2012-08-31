@@ -1,18 +1,22 @@
 package com.logikas.kratos.common.base;
 
-import com.google.common.base.Function;
 
 public abstract class AbstractConverter<F, T> implements Converter<F, T> {
   
-  private final Function<T, F> inverse = new Function<T, F>() {
+  private final Converter<T, F> inverse = new Converter<T, F>() {
     
     public F apply(T input) {
       return unapply(input);      
     }   
+    
+    @Override
+    public Converter<F, T> inverse() {     
+      return AbstractConverter.this;
+    }
   };
   
   @Override
-  public Function<T, F> inverse() {
+  public Converter<T, F> inverse() {
     return inverse;
   }
 

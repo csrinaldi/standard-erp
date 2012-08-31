@@ -12,7 +12,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class TemporalResource {
+public class UserAvatar {
 
   private Long id;
   private User owner;

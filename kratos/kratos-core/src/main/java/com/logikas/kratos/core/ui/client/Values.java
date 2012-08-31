@@ -8,6 +8,7 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.TakesValue;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Frame;
+import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasVisibility;
 import com.google.gwt.user.client.ui.Image;
@@ -36,6 +37,36 @@ public class Values {
       @Override
       public String getValue() {
         return wrap.getUrl();
+      }
+    };
+  }
+
+  public static TakesValue<Boolean> not(final TakesValue<Boolean> wrap) {
+        
+    return new TakesValue<Boolean>() {
+      @Override
+      public Boolean getValue() {
+        return wrap.getValue() == null? true: !wrap.getValue();
+      }
+      
+      @Override
+      public void setValue(Boolean value) {
+        wrap.setValue(value == null? true: !value);        
+      }
+    };
+  }
+  
+  public static TakesValue<Boolean> enabled(final HasEnabled wrap) {
+    return new TakesValue<Boolean>() {
+      
+      @Override
+      public Boolean getValue() {
+        return wrap.isEnabled();
+      }
+      
+      @Override
+      public void setValue(Boolean value) {
+        wrap.setEnabled(value == null? false: value);
       }
     };
   }
@@ -71,7 +102,7 @@ public class Values {
     };
   }
 
-  public static <F, T> TakesValue<T> convertion(final TakesValue<F> wrap,
+  public static <F, T> TakesValue<T> converted(final TakesValue<F> wrap,
       final Converter<F, T> converter) {
 
     return new TakesValue<T>() {
