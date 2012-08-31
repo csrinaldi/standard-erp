@@ -1,28 +1,28 @@
 package com.logikas.kratos.common.base;
 
-public class Quintuple<A, B, C, D, E> extends AbstractProduct implements Product {
+public class Quintuple<M0, M1, M2, M3, M4> extends AbstractProduct implements Product {
 
-  Quintuple(A a, B b, C c, D d, E e) {
-    super(a, b, c, d, e);
+  Quintuple(M0 m0, M1 m1, M2 m2, M3 m3, M4 m4) {
+    super(m0, m1, m2, m3, m4);
   }
 
-  public A getA() {
+  public M0 getM0() {
     return getMember(0);
   }
 
-  public B getB() {
+  public M1 getM1() {
     return getMember(1);
   }
 
-  public C getC() {
+  public M2 getM2() {
     return getMember(2);
   }
 
-  public D getD() {
+  public M3 getM3() {
     return getMember(3);
   }
 
-  public E getE() {
+  public M4 getM4() {
     return getMember(4);
   }
 

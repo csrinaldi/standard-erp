@@ -2,6 +2,7 @@ package com.logikas.kratos.core.ioc;
 
 import com.logikas.kratos.core.facade.EntityAccessorFactory;
 import com.logikas.kratos.core.facade.KratosRequestFactoryServlet;
+import com.logikas.kratos.core.facade.UserAvatarServlet;
 import com.logikas.kratos.core.facade.jpa.JpaEntityAccessorFactory;
 import com.logikas.kratos.core.ioc.validation.ValidationModule;
 import com.logikas.kratos.system.ioc.SystemModule;
@@ -26,7 +27,6 @@ public class KratosServletModule extends ServletModule {
     
     bind(ExceptionHandler.class).to(DefaultExceptionHandler.class).in(Singleton.class);
     bind(EntityAccessorFactory.class).to(JpaEntityAccessorFactory.class).in(Singleton.class);    
-
     
     serve("/gwtRequest").with(KratosRequestFactoryServlet.class);
         
@@ -40,6 +40,8 @@ public class KratosServletModule extends ServletModule {
 
     install(new JpaPersistModule("Kratos"));
     filter("/*").through(PersistFilter.class);
+    
+    serve("/resources").with(UserAvatarServlet.class);
   }
   
   @Provides

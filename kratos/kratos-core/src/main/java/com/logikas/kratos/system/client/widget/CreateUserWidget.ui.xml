@@ -1,19 +1,19 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:e="urn:import:com.google.gwt.editor.ui.client"
-	><!-- 
-	xmlns:k="urn:import:com.logikas.kratos.core.ui.client"
-	>
-	-->
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:e="urn:import:com.google.gwt.editor.ui.client"><!-- xmlns:k="urn:import:com.logikas.kratos.core.ui.client" 
+		> -->
 	<ui:style>
 		
 	</ui:style>
-	<g:VerticalPanel>		
-	<!-- 	  
-		<k:ValueImage width="100px" height="100px" ui:field="avatarView"></k:ValueImage>
+	<g:VerticalPanel>
+		<g:Image width="100px" height="100px" ui:field="avatarView"></g:Image>
+
+		<g:FormPanel ui:field="formPanel">
+			<g:FileUpload name="avatar" ui:field="avatarUploader"></g:FileUpload>
+		</g:FormPanel>
 		
-		<k:ValueFileUpload ui:field="avatar"></k:ValueFileUpload>
--->
+		<g:Button ui:field="upload">Upload</g:Button>
+
 		<e:ValueBoxEditorDecorator ui:field="name">
 			<e:valuebox>
 				<g:TextBox></g:TextBox>

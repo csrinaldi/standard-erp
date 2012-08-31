@@ -1,32 +1,32 @@
 package com.logikas.kratos.common.base;
 
-public class Sextuple<A, B, C, D, E, F> extends AbstractProduct implements Product {
+public class Sextuple<M0, M1, M2, M3, M4, M5> extends AbstractProduct implements Product {
 
-  Sextuple(A a, B b, C c, D d, E e, F f) {
-    super(a, b, c, d, e, f);
+  Sextuple(M0 m0, M1 m1, M2 m2, M3 m3, M4 m4, M5 m5) {
+    super(m0, m1, m2, m3, m4, m5);
   }
 
-  public A getA() {
+  public M0 getM0() {
     return getMember(0);
   }
 
-  public B getB() {
+  public M1 getM1() {
     return getMember(1);
   }
 
-  public C getC() {
+  public M2 getM2() {
     return getMember(2);
   }
 
-  public D getD() {
+  public M3 getM3() {
     return getMember(3);
   }
 
-  public E getE() {
+  public M4 getM4() {
     return getMember(4);
   }
   
-  public E getF() {
+  public M5 getM5() {
     return getMember(5);
   }
 

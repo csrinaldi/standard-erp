@@ -1,10 +1,10 @@
 package com.logikas.kratos.common.base;
 
 
-public class Quadruple<A, B, C, D> extends AbstractProduct implements Product {
+public class Quadruple<M0, M1, M2, M3> extends AbstractProduct implements Product {
 
-  Quadruple(A a, B b, C c, D d) {
-    super(a, b, c, d);
+  Quadruple(M0 m0, M1 m1, M2 m2, M3 m3) {
+    super(m0, m1, m2, m3);
   }
 
   @Override
@@ -16,19 +16,19 @@ public class Quadruple<A, B, C, D> extends AbstractProduct implements Product {
     return equalMembers(other);
   }
 
-  public A getA() {
+  public M0 getM0() {
     return getMember(0);
   }
 
-  public B getB() {
+  public M1 getM1() {
     return getMember(1);
   }
 
-  public C getC() {
+  public M2 getM2() {
     return getMember(2);
   }
 
-  public D getD() {
+  public M3 getM3() {
     return getMember(3);
   }
 }

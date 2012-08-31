@@ -1,9 +1,9 @@
 package com.logikas.kratos.common.base;
 
-public class Triple<A, B, C> extends AbstractProduct implements Product {
+public class Triple<M0, M1, M2> extends AbstractProduct implements Product {
 
-  Triple(A a, B b, C c) {
-    super(a, b, c);
+  Triple(M0 m0, M1 m1, M2 m2) {
+    super(m0, m1, m2);
   }
 
   @Override
@@ -15,15 +15,15 @@ public class Triple<A, B, C> extends AbstractProduct implements Product {
     return equalMembers(other);
   }
 
-  public A getA() {
+  public M0 getM0() {
     return getMember(0);
   }
 
-  public B getB() {
+  public M1 getM1() {
     return getMember(1);
   }
 
-  public C getC() {
+  public M2 getM2() {
     return getMember(2);
   }
 }

@@ -1,9 +1,9 @@
 package com.logikas.kratos.common.base;
 
-public class Simple<A> extends AbstractProduct implements Product {
+public class Simple<M0> extends AbstractProduct implements Product {
 
-  Simple(A a) {
-    super(a);
+  Simple(M0 m0) {
+    super(m0);
   }
 
   @Override
@@ -15,7 +15,7 @@ public class Simple<A> extends AbstractProduct implements Product {
     return equalMembers(other);
   }
 
-  public A getA() {
+  public M0 getM0() {
     return getMember(0);
   }
 }

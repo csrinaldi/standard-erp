@@ -1,9 +1,9 @@
 package com.logikas.kratos.common.base;
 
-public class Pair<A, B> extends AbstractProduct implements Product {
+public class Pair<M0, M1> extends AbstractProduct implements Product {
 
-  Pair(A a, B b) {
-    super(a, b);
+  Pair(M0 m0, M1 m1) {
+    super(m0, m1);
   }
 
   @Override
@@ -15,11 +15,11 @@ public class Pair<A, B> extends AbstractProduct implements Product {
     return equalMembers(other);
   }
 
-  public A getA() {
+  public M0 getM0() {
     return getMember(0);
   }
 
-  public B getB() {
+  public M1 getM1() {
     return getMember(1);
   }
 }

@@ -28,4 +28,7 @@ public class EventBusEntityListenerImpl {
   public void preRemove(Object entity) {
     
   }
+
+  public void postRemove(Object entity) {
+  }
 }
