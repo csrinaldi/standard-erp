@@ -9,70 +9,69 @@ import com.logikas.kratos.core.plugin.shared.model.MenuNode;
  */
 class JsoMenuNode extends JavaScriptObject implements MenuNode {
 
-  native static final JsoMenuNode create() /*-{
-		return {};
-  }-*/;
+    native static final JsoMenuNode create() /*-{
+     return {};
+     }-*/;
 
-  protected JsoMenuNode() {
-  }
+    protected JsoMenuNode() {
+    }
 
-  @Override
-  public native final String getToken() /*-{
-		return this.token || null;
-  }-*/;
+    @Override
+    public native final String getToken() /*-{
+     return this.token || null;
+     }-*/;
 
-  native final void setToken(String token) /*-{
-		this.token = token;
-  }-*/;
+    native final void setToken(String token) /*-{
+     this.token = token;
+     }-*/;
 
     @Override
     public native final String getIcon() /*-{
      return this.icon || null;
      }-*/;
 
-  native final void setIcon(String icon) /*-{
-		this.icon = icon;
-  }-*/;
+    native final void setIcon(String icon) /*-{
+     this.icon = icon;
+     }-*/;
 
     @Override
     public native final String getTitle() /*-{
      return this.title || null;
      }-*/;
 
-  native final void setTitle(String title) /*-{
-		this.title = title;
-  }-*/;
+    native final void setTitle(String title) /*-{
+     this.title = title;
+     }-*/;
 
-  native final void addChild(String name, JsoMenuNode child) /*-{
-		this.children[name] = child;
-  }-*/;
+    native final void addChild(String name, JsoMenuNode child) /*-{
+     this.children[name] = child;
+     }-*/;
 
-  @Override
-  public native final String getTooltip() /*-{
-		return this.tooltip || null;
-  }-*/;
+    @Override
+    public native final String getTooltip() /*-{
+     return this.tooltip || null;
+     }-*/;
 
-  native final void setTooltip(String tooltip) /*-{
-		this.tooltip = tooltip;
-  }-*/;
+    native final void setTooltip(String tooltip) /*-{
+     this.tooltip = tooltip;
+     }-*/;
 
-  @Override
-  public native final int getPriority() /*-{
-		return this.priority || 0;
-  }-*/;
+    @Override
+    public native final int getPriority() /*-{
+     return this.priority || 0;
+     }-*/;
 
-  native final void setPriority(int priority) /*-{
-		this.priority = priority;
-  }-*/;
+    native final void setPriority(int priority) /*-{
+     this.priority = priority;
+     }-*/;
 
-
-  @Override
-  public native final void visitChildren(Visitor visitor) /*-{
-		if (this.children) {
-			var name, children = this.children;
-			for (name in children) {
-				visitor.@com.logikas.kratos.core.plugin.shared.model.MenuNode.Visitor::visit(Ljava/lang/String;Lcom/logikas/kratos/core/plugin/shared/model/MenuNode;)(name, children[name]);
-			}
-		}
-  }-*/;
+    @Override
+    public native final void visitChildren(Visitor visitor) /*-{
+     if (this.children) {
+     var name, children = this.children;
+     for (name in children) {
+     visitor.@com.logikas.kratos.core.plugin.shared.model.MenuNode.Visitor::visit(Ljava/lang/String;Lcom/logikas/kratos/core/plugin/shared/model/MenuNode;)(name, children[name]);
+     }
+     }
+     }-*/;
 }
