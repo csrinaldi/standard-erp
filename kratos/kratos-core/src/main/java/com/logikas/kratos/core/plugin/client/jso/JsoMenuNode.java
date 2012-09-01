@@ -65,13 +65,14 @@ class JsoMenuNode extends JavaScriptObject implements MenuNode {
 		this.priority = priority;
   }-*/;
 
-    @Override
-    public native final void visitChildren(Visitor visitor) /*-{
-     if (this.children) {
-     var name, children = this.children;
-     for (name in children) {
-     visitor.@com.logikas.kratos.core.plugin.shared.model.MenuNode.Visitor::visit(Ljava/lang/String;Lcom/logikas/kratos/core/plugin/shared/model/MenuNode;)(name, children[name]);
-     }
-     }
-     }-*/;
+
+  @Override
+  public native final void visitChildren(Visitor visitor) /*-{
+		if (this.children) {
+			var name, children = this.children;
+			for (name in children) {
+				visitor.@com.logikas.kratos.core.plugin.shared.model.MenuNode.Visitor::visit(Ljava/lang/String;Lcom/logikas/kratos/core/plugin/shared/model/MenuNode;)(name, children[name]);
+			}
+		}
+  }-*/;
 }
