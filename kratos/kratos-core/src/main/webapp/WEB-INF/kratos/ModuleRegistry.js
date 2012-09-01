@@ -9,12 +9,14 @@ var ModuleRegistry = (function(){
     
     return {
         subscribe: function(moduleInfo) {
+            
+            window.alert(moduleInfo.name);
+            
             if(modules[moduleInfo.name]) {
                 return false;
             }
             modules[moduleInfo.name] = moduleInfo;
-
-            for( var i=0;  i < handlers.length; i++){
+            for( var i=0;  i < modules.length; i++){
                 handlers[i](moduleInfo);
             }
             return true;

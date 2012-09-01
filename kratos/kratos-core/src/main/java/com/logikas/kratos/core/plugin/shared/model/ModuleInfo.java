@@ -10,7 +10,10 @@ package com.logikas.kratos.core.plugin.shared.model;
  */
 public interface ModuleInfo {
     
-    MenuNode getMenuNode();
+    String getName();
     
+    String getVersion();
+    
+    MenuNode getMenuNode();
     
 }

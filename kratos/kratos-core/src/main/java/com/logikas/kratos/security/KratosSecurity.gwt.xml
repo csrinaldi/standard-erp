@@ -19,9 +19,7 @@
 	<inherits name='com.google.gwt.inject.Inject' />
         <inherits name='com.logikas.kratos.main.KratosMain' />
 
-	<!-- Specify the app entry point class. -->
-	<entry-point class='com.logikas.kratos.security.KratosSecurity' />
-
+	
 	<!-- Specify the paths for translatable code -->
 	<source path='client' />
 	<source path='shared' />

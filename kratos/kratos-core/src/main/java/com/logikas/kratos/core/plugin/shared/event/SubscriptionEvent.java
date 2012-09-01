@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.logikas.kratos.core.plugin.event;
+package com.logikas.kratos.core.plugin.shared.event;
 
 import com.google.gwt.event.shared.GwtEvent;
 import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;

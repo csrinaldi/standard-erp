@@ -22,7 +22,6 @@ class JsoModuleRegistry extends JavaScriptObject {
         
     }
     
-    
     public native static JsoModuleRegistry get()/*-{
      return $wnd.ModuleRegistry;
      }-*/;
@@ -32,9 +31,10 @@ class JsoModuleRegistry extends JavaScriptObject {
      }-*/;
 
     public native final int addHandler(Handler handler)/*-{
-     return this.addHandler(function(info){ 
-       handler.@com.logikas.kratos.core.plugin.client.JsoModuleRegistry.Handler::onSubscribe(Lcom/logikas/kratos/core/plugin/client/jso/JsoModuleInfo;)(info);}); 
-     }-*/;
+      return this.addHandler(function(info){ 
+        handler.@com.logikas.kratos.core.plugin.client.JsoModuleRegistry.Handler::onSubscribe(Lcom/logikas/kratos/core/plugin/client/jso/JsoModuleInfo;)(info);
+      }); 
+    }-*/;
 
     public native final void removeHandler(int n)/*-{
      this.removeHandler(n); 

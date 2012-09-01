@@ -6,8 +6,6 @@ import com.logikas.kratos.system.validation.Admin;
 
 import java.util.List;
 
-import java.util.List;
-
 public interface UserService {
   
   User find(Long id);  

@@ -4,15 +4,17 @@
  */
 package com.logikas.kratos.core.plugin.client;
 
-import com.logikas.kratos.core.plugin.shared.event.HasSubscriptionHandlers;
 import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
 
 /**
  *
  * @author cristian
  */
-public interface ModuleRegistry extends HasSubscriptionHandlers{
+public interface Plugin {
     
-    void subscribe(ModuleInfo moduleInfo);
+    void boot();
     
+    void shutdown();
+    
+    ModuleInfo getDescription();
 }

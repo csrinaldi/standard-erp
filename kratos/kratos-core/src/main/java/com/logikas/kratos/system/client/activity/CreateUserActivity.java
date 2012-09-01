@@ -1,7 +1,7 @@
 package com.logikas.kratos.system.client.activity;
 
 import com.logikas.kratos.system.client.view.CreateUserView;
-import com.logikas.kratos.system.shared.place.SearchUserPlace;
+//import com.logikas.kratos.system.shared.place.SearchUserPlace;
 import com.logikas.kratos.system.shared.proxy.UserProxy;
 import com.logikas.kratos.system.shared.request.SystemRequestFactory;
 import com.logikas.kratos.system.shared.request.UserServiceRequest;
@@ -56,7 +56,7 @@ public class CreateUserActivity extends AbstractActivity implements CreateUserVi
       
       @Override
       public void onSuccess(Void response) {
-        placeController.goTo(new SearchUserPlace());
+        //placeController.goTo(new SearchUserPlace());
       }
       
       @Override

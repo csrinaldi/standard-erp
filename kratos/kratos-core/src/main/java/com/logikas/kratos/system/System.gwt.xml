@@ -8,6 +8,8 @@
     <inherits name='com.google.gwt.inject.Inject' />
     <inherits name='com.google.gwt.activity.Activity' />
     <inherits name='com.google.web.bindery.requestfactory.RequestFactory' />
+    
+    <inherits name='com.logikas.kratos.core.plugin.Plugin' />
 
     <!-- Specify the paths for translatable code                    -->
     <source path='client' />

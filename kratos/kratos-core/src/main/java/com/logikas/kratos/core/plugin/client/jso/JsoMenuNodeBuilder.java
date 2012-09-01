@@ -1,8 +1,9 @@
 package com.logikas.kratos.core.plugin.client.jso;
 
 import com.logikas.kratos.core.plugin.shared.config.MenuNodeBuilder;
+import com.logikas.kratos.core.plugin.shared.model.MenuNode;
 
-class JsoMenuNodeBuilder implements MenuNodeBuilder {
+public class JsoMenuNodeBuilder implements MenuNodeBuilder {
 
   private final JsoMenuNode menuNode;
 
@@ -12,6 +13,14 @@ class JsoMenuNodeBuilder implements MenuNodeBuilder {
 
   protected final JsoMenuNode getMenuNode() {
     return menuNode;
+  }
+  
+  public MenuNode menuNode(){
+      return menuNode;
+  }
+  
+  public JsoMenuNodeBuilder(){
+      this(JsoMenuNode.create());
   }
 
   @Override

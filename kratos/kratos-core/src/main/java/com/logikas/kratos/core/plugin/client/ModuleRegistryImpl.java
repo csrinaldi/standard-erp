@@ -9,8 +9,8 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.logikas.kratos.core.plugin.client.jso.JsoModuleInfo;
-import com.logikas.kratos.core.plugin.event.SubscriptionEvent;
-import com.logikas.kratos.core.plugin.event.SubscriptionHandler;
+import com.logikas.kratos.core.plugin.shared.event.SubscriptionEvent;
+import com.logikas.kratos.core.plugin.shared.event.SubscriptionHandler;
 import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
 
 /**
@@ -22,10 +22,11 @@ public class ModuleRegistryImpl implements ModuleRegistry{
     private final JsoModuleRegistry jsoRegistry;
     
     private final EventBus eventBus;
-
+    
     public ModuleRegistryImpl(EventBus eventBus, JsoModuleRegistry registry) {
         this.jsoRegistry = registry;
         this.eventBus = eventBus;
+        
         this.jsoRegistry.addHandler(new JsoModuleRegistry.Handler() {
             @Override
             public void onSubscribe(JsoModuleInfo info) {

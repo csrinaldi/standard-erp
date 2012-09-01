@@ -8,10 +8,11 @@ import com.google.gwt.core.shared.GWT;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceChangeRequestEvent;
+import com.google.gwt.user.client.Window;
 import com.google.web.bindery.event.shared.EventBus;
 import com.logikas.kratos.core.plugin.client.ModuleRegistry;
-import com.logikas.kratos.core.plugin.event.SubscriptionEvent;
-import com.logikas.kratos.core.plugin.event.SubscriptionHandler;
+import com.logikas.kratos.core.plugin.shared.event.SubscriptionEvent;
+import com.logikas.kratos.core.plugin.shared.event.SubscriptionHandler;
 import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
 import java.util.Map;
 import javax.inject.Inject;
@@ -21,12 +22,6 @@ import javax.inject.Inject;
  * @author cristian
  */
 public class ViewManagerImpl implements ViewManager{
-
-    private Map<String, Place> moduleMapper;
-    
-    private ModuleRegistry moduleRegistry;
-    
-    
     
     @Inject
     public ViewManagerImpl(EventBus eventBus, ModuleRegistry moduleRegistry ) {
@@ -43,7 +38,7 @@ public class ViewManagerImpl implements ViewManager{
     }
     
     protected void processMenu(ModuleInfo info){
-        
+        Window.alert("Estamos procesando el puto menu " + info.getMenuNode().getTitle() );
     }
 
     @Override
