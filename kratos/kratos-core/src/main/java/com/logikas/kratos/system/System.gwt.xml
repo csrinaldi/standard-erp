@@ -11,8 +11,11 @@
     
     <inherits name='com.logikas.kratos.core.plugin.Plugin' />
 
-    <!-- Specify the paths for translatable code                    -->
-    <source path='client' />
-    <source path='shared' />
+<inherits name='elemental.Elemental' />   
+  <!--  <inherits name='com.logikas.kratos.core.ui.CoreUi' /> -->
+
+  <!-- Specify the paths for translatable code                    -->
+  <source path='client' />
+  <source path='shared' />
 
 </module>

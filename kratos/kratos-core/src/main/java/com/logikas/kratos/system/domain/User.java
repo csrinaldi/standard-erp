@@ -11,7 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
@@ -27,7 +29,7 @@ public class User implements Serializable, HasName {
 
   private String name;
   
-  private byte[] avatar;
+  private UserAvatar avatar;
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -61,13 +63,13 @@ public class User implements Serializable, HasName {
     this.name = name;
   }
   
-  @Lob
-  @Column(name = "avatar")
-  public byte[] getAvatar() {
+  @OneToOne
+  @JoinColumn(name = "avatar_id")
+  public UserAvatar getAvatar() {
     return avatar;
   }
   
-  public void setAvatar(byte[] avatar) {
+  public void setAvatar(UserAvatar avatar) {
     this.avatar = avatar;
   }
 

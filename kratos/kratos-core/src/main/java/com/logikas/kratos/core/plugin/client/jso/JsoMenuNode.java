@@ -1,8 +1,7 @@
 package com.logikas.kratos.core.plugin.client.jso;
 
-import com.logikas.kratos.core.plugin.shared.model.MenuNode;
-
 import com.google.gwt.core.client.JavaScriptObject;
+import com.logikas.kratos.core.plugin.shared.model.MenuNode;
 
 /**
  *
