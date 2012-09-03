@@ -5,7 +5,7 @@
     
     <inherits name='com.google.web.bindery.event.Event' />
 
-    <script src="ModuleRegistry.js"/>
+    <!--script src="ModuleRegistry.js"-->
         
     <source path="client"/>
     <source path="shared"/>
