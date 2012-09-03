@@ -20,11 +20,12 @@ class IocServiceLayer extends ServiceLayerDecorator {
   private final Injector injector;
 
   private final ValidatorFactory validatorFactory;
-  
+
   private final EntityAccessorFactory accessorFactory;
-  
+
   @Inject
-  IocServiceLayer(Injector injector, ValidatorFactory validatorFactory, EntityAccessorFactory accessorFactory) {
+  IocServiceLayer(Injector injector, ValidatorFactory validatorFactory,
+      EntityAccessorFactory accessorFactory) {
     this.injector = injector;
     this.validatorFactory = validatorFactory;
     this.accessorFactory = accessorFactory;
@@ -40,14 +41,15 @@ class IocServiceLayer extends ServiceLayerDecorator {
       final GenericEntityLocator genericLocator = (GenericEntityLocator) locator;
 
       @SuppressWarnings("rawtypes")
-      final EntityFinder finder = (EntityFinder)injector.getInstance(genericLocator.getFinderType());
+      final EntityFinder finder =
+          (EntityFinder) injector.getInstance(genericLocator.getFinderType());
       genericLocator.setFinder(finder);
 
       @SuppressWarnings("rawtypes")
       final EntityAccessor accessor =
           accessorFactory
               .createAccessor(genericLocator.getDomainType(), genericLocator.getIdType());
-      
+
       genericLocator.setAccessor(accessor);
     }
 
@@ -58,9 +60,9 @@ class IocServiceLayer extends ServiceLayerDecorator {
   public <T extends ServiceLocator> T createServiceLocator(Class<T> clazz) {
     return injector.getInstance(clazz);
   }
-  
+
   @Override
-  public <T> Set<ConstraintViolation<T>> validate(T domainObject) {    
+  public <T> Set<ConstraintViolation<T>> validate(T domainObject) {
     return validatorFactory.getValidator().validate(domainObject);
   }
 }

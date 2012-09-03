@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 package com.logikas.kratos.main.client.mvp;
 
@@ -12,24 +11,22 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- *
+ * 
  * @author csrinaldi
  */
-public class ActivityManagerInitializer implements PlaceChangeEvent.Handler{
+public class ActivityManagerInitializer implements PlaceChangeEvent.Handler {
 
-    @Inject
-    public ActivityManagerInitializer(
-            LayoutView layout,
-            @Named("center") ActivityManager centerActivityManager,
-            @Named("west") ActivityManager westActivityManager
-            ) {
-        centerActivityManager.setDisplay(layout.getCenterRegion());
-        westActivityManager.setDisplay(layout.getWestRegion());
-       
-    }
-    
-    @Override
-    public void onPlaceChange(PlaceChangeEvent event) {
-        GWT.log("onPlaceChange");
-    }
+  @Inject
+  public ActivityManagerInitializer(LayoutView layout,
+      @Named("center") ActivityManager centerActivityManager,
+      @Named("west") ActivityManager westActivityManager) {
+    centerActivityManager.setDisplay(layout.getCenterRegion());
+    westActivityManager.setDisplay(layout.getWestRegion());
+
+  }
+
+  @Override
+  public void onPlaceChange(PlaceChangeEvent event) {
+    GWT.log("onPlaceChange");
+  }
 }

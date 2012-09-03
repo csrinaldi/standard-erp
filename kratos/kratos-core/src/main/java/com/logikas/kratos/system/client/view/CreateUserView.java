@@ -1,6 +1,5 @@
 package com.logikas.kratos.system.client.view;
 
-
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
@@ -13,7 +12,7 @@ public interface CreateUserView extends IsWidget {
 
     void save();
   }
-  
+
   RequestFactoryEditorDriver<UserProxy, ? extends Editor<UserProxy>> createEditor(RequestFactory rf);
 
   void setPresenter(Presenter presenter);

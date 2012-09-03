@@ -9,8 +9,8 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
 @ProxyFor(value = UserAvatar.class, locator = UserAvatarLocator.class)
 public interface UserAvatarProxy extends EntityProxy {
-  
+
   EntityProxyId<UserAvatarProxy> stableId();
-  
+
   Long getId();
 }

@@ -19,7 +19,7 @@ import javax.validation.Payload;
 @Documented
 @Constraint(validatedBy = {AdminConstraintValidator.class})
 public @interface Admin {
-  
+
   String message() default "el usuario no es admin!";
 
   Class<?>[] groups() default {};

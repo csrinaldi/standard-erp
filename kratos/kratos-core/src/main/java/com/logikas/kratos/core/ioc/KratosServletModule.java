@@ -15,35 +15,32 @@ import com.google.web.bindery.requestfactory.server.DefaultExceptionHandler;
 import com.google.web.bindery.requestfactory.server.ExceptionHandler;
 import com.logikas.kratos.security.ioc.SecurityMainModule;
 
-
 import javax.inject.Singleton;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.metamodel.Metamodel;
 
 public class KratosServletModule extends ServletModule {
-  
+
   @Override
   protected void configureServlets() {
-    
+
     bind(ExceptionHandler.class).to(DefaultExceptionHandler.class).in(Singleton.class);
-    bind(EntityAccessorFactory.class).to(JpaEntityAccessorFactory.class).in(Singleton.class);    
-    
+    bind(EntityAccessorFactory.class).to(JpaEntityAccessorFactory.class).in(Singleton.class);
+
     serve("/gwtRequest").with(KratosRequestFactoryServlet.class);
-        
+
     install(new SystemModule());
     install(new ValidationModule());
-    
 
-    //TODO ver si esta dependencia la podemos sacar de aca
+    // TODO ver si esta dependencia la podemos sacar de aca
     install(new SecurityMainModule(this.getServletContext()));
-
 
     install(new JpaPersistModule("Kratos"));
     filter("/*").through(PersistFilter.class);
-    
+
     serve("/resources").with(UserAvatarServlet.class);
   }
-  
+
   @Provides
   @Singleton
   Metamodel getMetamodel(EntityManagerFactory factory) {

@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
   public List<User> findByName(String name, int start, int rows) {
     return repository.findByName(name, start, rows);
   }
-  
+
   @Override
   public List<User> findAll(int start, int rows) {
     return repository.findAll(start, rows);

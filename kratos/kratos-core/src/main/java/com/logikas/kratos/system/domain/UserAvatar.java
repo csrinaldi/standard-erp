@@ -58,11 +58,11 @@ public class UserAvatar {
   public void setContentType(String contentType) {
     this.contentType = contentType;
   }
-    
+
   public String getFilename() {
     return filename;
   }
-  
+
   public void setFilename(String filename) {
     this.filename = filename;
   }

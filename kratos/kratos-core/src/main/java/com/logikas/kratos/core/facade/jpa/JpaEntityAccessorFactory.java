@@ -64,7 +64,7 @@ public class JpaEntityAccessorFactory implements EntityAccessorFactory {
       }
     }
   }
-  
+
   static <T> MemberGetter<T> createGetter(Member m) {
     if (m instanceof Method) {
       return new MethodMemberGetter<T>((Method) m);
@@ -80,11 +80,11 @@ public class JpaEntityAccessorFactory implements EntityAccessorFactory {
 
     final MemberGetter<Object> versionGetter =
         createGetter(emf.getMetamodel().entity(domainType).getVersion(long.class).getJavaMember());
-    
+
     final PersistenceUnitUtil util = emf.getPersistenceUnitUtil();
 
     return (EntityAccessor<T, I>) new EntityAccessor<T, I>() {
-      
+
       @SuppressWarnings("unchecked")
       public I getId(T entity) {
         return (I) util.getIdentifier(entity);

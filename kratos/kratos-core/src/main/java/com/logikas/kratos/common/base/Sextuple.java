@@ -25,7 +25,7 @@ public class Sextuple<M0, M1, M2, M3, M4, M5> extends AbstractProduct implements
   public M4 getM4() {
     return getMember(4);
   }
-  
+
   public M5 getM5() {
     return getMember(5);
   }

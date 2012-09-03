@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +28,7 @@ public class UserAvatarServlet extends HttpServlet {
 
   private final UserAvatarService service;
 
+  @Inject
   UserAvatarServlet(UserAvatarService service) {
     this.service = service;
   }
@@ -60,31 +62,35 @@ public class UserAvatarServlet extends HttpServlet {
         final InputStream content = part.getInputStream();
         final UserAvatar avatar = service.create(filename, contentType, content);
         final String result = String.format("{'id': %d, 'code': 'OK'}", avatar.getId());
-        
+
         resp.setStatus(HttpServletResponse.SC_OK);
         resp.setContentType("text/html");
         resp.getOutputStream().print(result);
-        
-      } else {        
+
+      } else {
         // Usado por Google cuando se requieren parametros
         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         resp.setContentType("text/html");
-        final String result = String.format("{'code': 'PARAMETER', 'message': '%s'}", "Parameter avatar is required.");
+        final String result =
+            String
+                .format("{'code': 'PARAMETER', 'message': '%s'}", "Parameter avatar is required.");
         resp.getOutputStream().print(result);
       }
-    } catch (ValidationException e) {      
-      
+    } catch (ValidationException e) {
+
       resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
       resp.setContentType("text/html");
-      final String result = String.format("{'code': 'VALIDATION', 'message': '%s'}", e.getMessage());
+      final String result =
+          String.format("{'code': 'VALIDATION', 'message': '%s'}", e.getMessage());
       resp.getOutputStream().print(result);
-      
+
     } catch (ServletException e) {
-      
+
       // Usado por Google cuando se requieren parametros
       resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
       resp.setContentType("text/html");
-      final String result = String.format("{'code': 'MULTIPART', 'message': '%s'}", "Multipart is required.");
+      final String result =
+          String.format("{'code': 'MULTIPART', 'message': '%s'}", "Multipart is required.");
       resp.getOutputStream().print(result);
 
     }
@@ -100,33 +106,33 @@ public class UserAvatarServlet extends HttpServlet {
       final Integer id = Ints.tryParse(idStr);
       if (id != null) {
         final UserAvatar avatar = service.findOne(id.longValue());
-        
-        if(avatar != null) {
-        
-        try {
-          
-          resp.setStatus(HttpServletResponse.SC_OK);
-          resp.setContentType(avatar.getContentType());
-          resp.setHeader(CONTENT_DISPOSITION, "attachment;  filename=" + avatar.getFilename());
 
-          ByteStreams.copy(avatar.getContent().getBinaryStream(), resp.getOutputStream());                  
-        } catch (SQLException e) {
-                   
-          resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-          resp.setContentType("text/html");
-          resp.getOutputStream().print("File Database Exception: " + e.getMessage());
-        }
+        if (avatar != null) {
+
+          try {
+
+            resp.setStatus(HttpServletResponse.SC_OK);
+            resp.setContentType(avatar.getContentType());
+            resp.setHeader(CONTENT_DISPOSITION, "attachment;  filename=" + avatar.getFilename());
+
+            ByteStreams.copy(avatar.getContent().getBinaryStream(), resp.getOutputStream());
+          } catch (SQLException e) {
+
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.setContentType("text/html");
+            resp.getOutputStream().print("File Database Exception: " + e.getMessage());
+          }
         } else {
 
           resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
           resp.setContentType("text/html");
           resp.getOutputStream().print("Unable to find resource with id " + id);
-          
+
         }
       } else {
         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         resp.setContentType("text/html");
-        resp.getOutputStream().print("Unable to find resource with id " + id);                
+        resp.getOutputStream().print("Unable to find resource with id " + id);
       }
     }
   }

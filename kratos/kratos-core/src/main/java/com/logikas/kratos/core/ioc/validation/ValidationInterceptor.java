@@ -30,8 +30,8 @@ class ValidationInterceptor implements MethodInterceptor {
 
     final Validated validated =
         AnnotationUtils.findAnnotation(invocation.getMethod(), Validated.class);
-    
-    final Class<?>[] groups = validated != null? validated.value(): new Class<?>[]{};
+
+    final Class<?>[] groups = validated != null ? validated.value() : new Class<?>[] {};
 
     final Set<MethodConstraintViolation<Object>> paramViolatons =
         validator.validateAllParameters(invocation.getThis(), invocation.getMethod(), invocation

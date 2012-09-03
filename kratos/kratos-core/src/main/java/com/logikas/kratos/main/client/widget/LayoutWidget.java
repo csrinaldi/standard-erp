@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 package com.logikas.kratos.main.client.widget;
 
@@ -20,76 +19,74 @@ import com.logikas.kratos.main.shared.place.DefaultPlace;
 import javax.inject.Inject;
 
 /**
- *
+ * 
  * @author csrinaldi
  */
 public class LayoutWidget implements LayoutView {
 
-    private static LayoutWidgetUiBinder uiBinder = GWT.create(LayoutWidgetUiBinder.class);
+  private static LayoutWidgetUiBinder uiBinder = GWT.create(LayoutWidgetUiBinder.class);
 
-    interface LayoutWidgetUiBinder extends UiBinder<LayoutPanel, LayoutWidget> {
-    }
-    @UiField
-    ScrollPanel west;
-    @UiField
-    ScrollPanel center;
+  interface LayoutWidgetUiBinder extends UiBinder<LayoutPanel, LayoutWidget> {
+  }
 
-    /*@UiField
-     ClientResource res;
+  @UiField
+  ScrollPanel west;
+  @UiField
+  ScrollPanel center;
 
-     private static ClientResource DEFAULT_RESOURCES;
+  /*
+   * @UiField ClientResource res;
+   * 
+   * private static ClientResource DEFAULT_RESOURCES;
+   * 
+   * private static ClientResource getDefaultResources() { if (DEFAULT_RESOURCES == null) {
+   * DEFAULT_RESOURCES = GWT.create(ClientResource.class);
+   * 
+   * } return DEFAULT_RESOURCES; }
+   */
+  private final LayoutPanel root;
 
-     private static ClientResource getDefaultResources() {
-     if (DEFAULT_RESOURCES == null) {
-     DEFAULT_RESOURCES = GWT.create(ClientResource.class);
+  private PlaceController controller;
 
-     }
-     return DEFAULT_RESOURCES;
-     }*/
-    private final LayoutPanel root;
-    
-    private PlaceController controller;
+  @Inject
+  public LayoutWidget(PlaceController controller) {
+    // getDefaultResources().erpLgkStyle().ensureInjected();
+    root = uiBinder.createAndBindUi(this);
 
-    @Inject
-    public LayoutWidget(PlaceController controller) {
-        //getDefaultResources().erpLgkStyle().ensureInjected();
-        root = uiBinder.createAndBindUi(this);
-        
-        this.controller = controller;
-    }
+    this.controller = controller;
+  }
 
-    @Override
-    public Widget asWidget() {
-        return root;
-    }
+  @Override
+  public Widget asWidget() {
+    return root;
+  }
 
-    @Override
-    public AcceptsOneWidget getCenterRegion() {
-        return new AcceptsOneWidget() {
-            @Override
-            public void setWidget(IsWidget w) {
-                Widget widget = Widget.asWidgetOrNull(w);
-                center.setWidget(widget);
-            }
-        };
-    }
+  @Override
+  public AcceptsOneWidget getCenterRegion() {
+    return new AcceptsOneWidget() {
+      @Override
+      public void setWidget(IsWidget w) {
+        Widget widget = Widget.asWidgetOrNull(w);
+        center.setWidget(widget);
+      }
+    };
+  }
 
-    @Override
-    public AcceptsOneWidget getWestRegion() {
-        return new AcceptsOneWidget() {
-            @Override
-            public void setWidget(IsWidget w) {
-                Widget widget = Widget.asWidgetOrNull(w);
-                west.setWidget(widget);
-            }
-        };
-    }
+  @Override
+  public AcceptsOneWidget getWestRegion() {
+    return new AcceptsOneWidget() {
+      @Override
+      public void setWidget(IsWidget w) {
+        Widget widget = Widget.asWidgetOrNull(w);
+        west.setWidget(widget);
+      }
+    };
+  }
 
-    @UiHandler("save")
-    void onSaveClick(ClickEvent event) {
-        GWT.log("onSaveClick");
-        this.controller.goTo(new DefaultPlace());
-    }
+  @UiHandler("save")
+  void onSaveClick(ClickEvent event) {
+    GWT.log("onSaveClick");
+    this.controller.goTo(new DefaultPlace());
+  }
 
-    
 }

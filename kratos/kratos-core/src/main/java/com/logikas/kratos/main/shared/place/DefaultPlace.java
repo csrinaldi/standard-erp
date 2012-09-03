@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 package com.logikas.kratos.main.shared.place;
 
@@ -8,10 +7,10 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
 /**
- *
+ * 
  * @author csrinaldi
  */
-public class DefaultPlace extends Place{
+public class DefaultPlace extends Place {
 
   public static class Tokenizer implements PlaceTokenizer<DefaultPlace> {
 
@@ -25,5 +24,5 @@ public class DefaultPlace extends Place{
       return "home";
     }
   }
-	
+
 }

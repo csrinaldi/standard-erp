@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 package com.logikas.kratos.security.domain;
 
@@ -22,60 +21,61 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- *
+ * 
  * @author csrinaldi
  */
 @Entity
-@Table(name = "securityUser") //, schema = "system")
+@Table(name = "securityUser")
+// , schema = "system")
 public class SecurityUser implements Serializable, HasName {
 
-    private Long id;
-    private Long version;
-    private String name;
+  private Long id;
+  private Long version;
+  private String name;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    @Version
-    public Long getVersion() {
-        return version;
-    }
+  @Version
+  public Long getVersion() {
+    return version;
+  }
 
-    public void setVersion(Long version) {
-        this.version = version;
-    }
+  public void setVersion(Long version) {
+    this.version = version;
+  }
 
-    @NotNull
-    @Size(min = 5, max = 20)
-    @Column(name = "name", unique = true)
-    @Override
-    public String getName() {
-        return name;
-    }
+  @NotNull
+  @Size(min = 5, max = 20)
+  @Column(name = "name", unique = true)
+  @Override
+  public String getName() {
+    return name;
+  }
 
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
+  @Override
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof User)) {
-            return false;
-        }
-        final User user = (User) other;
-        return Objects.equal(this.getId(), user.getId());
+  @Override
+  public boolean equals(Object other) {
+    if (!(other instanceof User)) {
+      return false;
     }
+    final User user = (User) other;
+    return Objects.equal(this.getId(), user.getId());
+  }
 
-    @Override
-    public String toString() {
-        return Objects.toStringHelper(User.class).add("id", getId()).add("name", getName()).toString();
-    }
+  @Override
+  public String toString() {
+    return Objects.toStringHelper(User.class).add("id", getId()).add("name", getName()).toString();
+  }
 }

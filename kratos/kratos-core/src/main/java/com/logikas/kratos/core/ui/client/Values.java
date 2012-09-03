@@ -42,31 +42,31 @@ public class Values {
   }
 
   public static TakesValue<Boolean> not(final TakesValue<Boolean> wrap) {
-        
+
     return new TakesValue<Boolean>() {
       @Override
       public Boolean getValue() {
-        return wrap.getValue() == null? true: !wrap.getValue();
+        return wrap.getValue() == null ? true : !wrap.getValue();
       }
-      
+
       @Override
       public void setValue(Boolean value) {
-        wrap.setValue(value == null? true: !value);        
+        wrap.setValue(value == null ? true : !value);
       }
     };
   }
-  
+
   public static TakesValue<Boolean> enabled(final HasEnabled wrap) {
     return new TakesValue<Boolean>() {
-      
+
       @Override
       public Boolean getValue() {
         return wrap.isEnabled();
       }
-      
+
       @Override
       public void setValue(Boolean value) {
-        wrap.setEnabled(value == null? false: value);
+        wrap.setEnabled(value == null ? false : value);
       }
     };
   }
@@ -147,7 +147,7 @@ public class Values {
       }
     };
   }
-  
+
   public static HasUrl hasUrl(final Frame frame) {
     return new HasUrl() {
 

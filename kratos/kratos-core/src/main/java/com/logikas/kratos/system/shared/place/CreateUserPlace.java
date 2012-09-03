@@ -6,7 +6,7 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 public class CreateUserPlace extends Place {
 
   public static class Tokenizer implements PlaceTokenizer<CreateUserPlace> {
-    
+
     @Override
     public CreateUserPlace getPlace(String token) {
       return new CreateUserPlace();

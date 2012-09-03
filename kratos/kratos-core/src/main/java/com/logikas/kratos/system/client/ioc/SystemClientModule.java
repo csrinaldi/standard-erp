@@ -20,14 +20,13 @@ public class SystemClientModule extends AbstractGinModule {
     bind(CreateUserView.class).to(CreateUserWidget.class).in(Singleton.class);
     bind(SearchUserView.class).to(SearchUserWidget.class).in(Singleton.class);
   }
-  
-  
-  //TODO utilizar el request factory global definido en main
+
+  // TODO utilizar el request factory global definido en main
   @Provides
   @Singleton
   SystemRequestFactory getRequestFactory(EventBus eventBus) {
     final SystemRequestFactory rf = GWT.create(SystemRequestFactory.class);
     rf.initialize(eventBus);
     return rf;
-  }  
+  }
 }
