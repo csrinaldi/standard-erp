@@ -7,32 +7,32 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public abstract class AbstractProduct implements Product {
-  
+
   private static final Joiner JOINER = Joiner.on(", ");
-  
+
   protected final Object[] members;
-  
-  protected AbstractProduct(Object...members) {
+
+  protected AbstractProduct(Object... members) {
     this.members = members;
   }
-  
+
   @Override
   public int getArity() {
     return members.length;
   }
-  
+
   @SuppressWarnings("unchecked")
   protected <T> T getMember(int index) {
     return (T) get(index);
   }
-  
+
   @Override
   public Object get(int index) {
     return members[index];
   }
 
   @Override
-  public Iterator<Object> iterator() {    
+  public Iterator<Object> iterator() {
     return Arrays.asList(members).iterator();
   }
 
@@ -44,17 +44,17 @@ public abstract class AbstractProduct implements Product {
     }
     return true;
   }
-  
-  protected Object get(int index, Object...members) {
+
+  protected Object get(int index, Object... members) {
     return members[index];
   }
-  
+
   @Override
   public int hashCode() {
     return Objects.hashCode(members);
   }
 
   public String toString() {
-    return "(" + JOINER.join(members) + ")";    
+    return "(" + JOINER.join(members) + ")";
   }
 }

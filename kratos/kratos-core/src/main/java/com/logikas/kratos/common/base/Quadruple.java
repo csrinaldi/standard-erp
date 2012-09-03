@@ -1,6 +1,5 @@
 package com.logikas.kratos.common.base;
 
-
 public class Quadruple<M0, M1, M2, M3> extends AbstractProduct implements Product {
 
   Quadruple(M0 m0, M1 m1, M2 m2, M3 m3) {

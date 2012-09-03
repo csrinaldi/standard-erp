@@ -9,12 +9,12 @@ import javax.validation.ConstraintValidatorFactory;
 class IocConstraintValidatorFactory implements ConstraintValidatorFactory {
 
   private final Injector injector;
-  
+
   @Inject
   IocConstraintValidatorFactory(Injector injector) {
     this.injector = injector;
-  }  
-  
+  }
+
   @Override
   public <T extends ConstraintValidator<?, ?>> T getInstance(Class<T> key) {
     return injector.getInstance(key);

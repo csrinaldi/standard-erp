@@ -14,13 +14,13 @@ public class JsoMenuNodeBuilder implements MenuNodeBuilder {
   protected final JsoMenuNode getMenuNode() {
     return menuNode;
   }
-  
-  public MenuNode menuNode(){
-      return menuNode;
+
+  public MenuNode menuNode() {
+    return menuNode;
   }
-  
-  public JsoMenuNodeBuilder(){
-      this(JsoMenuNode.create());
+
+  public JsoMenuNodeBuilder() {
+    this(JsoMenuNode.create());
   }
 
   @Override

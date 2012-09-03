@@ -42,7 +42,7 @@ public class Tuples {
   public static <T> Iterable<T> lowerBound(Simple<T> simple) {
     return (Iterable<T>) simple;
   }
-  
+
   @SuppressWarnings({"unchecked"})
   public static <T, A extends T, B extends T> Iterable<T> lowerBound(Pair<A, B> pair) {
     return (Iterable<T>) pair;

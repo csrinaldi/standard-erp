@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 package com.logikas.kratos.security.ioc;
 
@@ -12,40 +11,39 @@ import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
 
 /**
- *
+ * 
  * @author csrinaldi
  */
 public class SecurityMainModule extends AbstractModule {
 
-    ServletContext context = null;
-    
-    public SecurityMainModule(ServletContext context) {
-        this.context = context;
-    }
+  ServletContext context = null;
 
-    /**
-     * Crea de manera programática el SecurityManager
-     * //TODO ver la carga de Reamls
-     * @return 
-     */
-    @Provides
-    @Singleton
-    SecurityManager getSecurityManager(){
-        SecurityManager manager = new DefaultSecurityManager();
-        return manager;
-    }
+  public SecurityMainModule(ServletContext context) {
+    this.context = context;
+  }
 
-    @Override
-    protected void configure() {
-        //SecurityModule module = new SecurityModule();
-        //SecurityWebModule webModule = new SecurityWebModule(context);
-        //SecurityAopModule aopModule = new SecurityAopModule();
-        
-        //install(module);
-        //install(webModule);
-        //install(aopModule);
-        
-    }
-    
-    
+  /**
+   * Crea de manera programática el SecurityManager //TODO ver la carga de Reamls
+   * 
+   * @return
+   */
+  @Provides
+  @Singleton
+  SecurityManager getSecurityManager() {
+    SecurityManager manager = new DefaultSecurityManager();
+    return manager;
+  }
+
+  @Override
+  protected void configure() {
+    // SecurityModule module = new SecurityModule();
+    // SecurityWebModule webModule = new SecurityWebModule(context);
+    // SecurityAopModule aopModule = new SecurityAopModule();
+
+    // install(module);
+    // install(webModule);
+    // install(aopModule);
+
+  }
+
 }

@@ -60,10 +60,11 @@ public class UserRepositoryImpl implements UserRepository {
     return em.get().createQuery("FROM User u WHERE u.name = :name").setParameter("name", name)
         .setFirstResult(start).setMaxResults(rows).getResultList();
   }
-  
+
   @SuppressWarnings("unchecked")
   @Override
   public List<User> findAll(int start, int rows) {
-    return em.get().createQuery("FROM User").setFirstResult(start).setMaxResults(rows).getResultList();
+    return em.get().createQuery("FROM User").setFirstResult(start).setMaxResults(rows)
+        .getResultList();
   }
 }

@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 package com.logikas.kratos.core.plugin.client;
 
@@ -14,47 +13,47 @@ import com.logikas.kratos.core.plugin.shared.event.SubscriptionHandler;
 import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
 
 /**
- *
+ * 
  * @author cristian
  */
-public class ModuleRegistryImpl implements ModuleRegistry{
+public class ModuleRegistryImpl implements ModuleRegistry {
 
-    private final JsoModuleRegistry jsoRegistry;
-    
-    private final EventBus eventBus;
-    
-    public ModuleRegistryImpl(EventBus eventBus, JsoModuleRegistry registry) {
-        this.jsoRegistry = registry;
-        this.eventBus = eventBus;
-        
-        this.jsoRegistry.addHandler(new JsoModuleRegistry.Handler() {
-            @Override
-            public void onSubscribe(JsoModuleInfo info) {
-                SubscriptionEvent.fire(ModuleRegistryImpl.this, info);
-            }
-        });
-    }
+  private final JsoModuleRegistry jsoRegistry;
 
-    public ModuleRegistryImpl(EventBus eventBus) {
-        this(eventBus, JsoModuleRegistry.get());
-    }
-    
-    public ModuleRegistryImpl(){
-        this(new SimpleEventBus());
-    }
-        
-    @Override
-    public void subscribe(ModuleInfo moduleInfo) {
-        jsoRegistry.subscribe(moduleInfo);
-    }
+  private final EventBus eventBus;
 
-    @Override
-    public HandlerRegistration addSubscriptionHandler(SubscriptionHandler handler) {
-       return eventBus.addHandler(SubscriptionEvent.getType(), handler);
-    }
+  public ModuleRegistryImpl(EventBus eventBus, JsoModuleRegistry registry) {
+    this.jsoRegistry = registry;
+    this.eventBus = eventBus;
 
-    @Override
-    public void fireEvent(GwtEvent<?> event) {
-        eventBus.fireEvent(event);
-    }    
+    this.jsoRegistry.addHandler(new JsoModuleRegistry.Handler() {
+      @Override
+      public void onSubscribe(JsoModuleInfo info) {
+        SubscriptionEvent.fire(ModuleRegistryImpl.this, info);
+      }
+    });
+  }
+
+  public ModuleRegistryImpl(EventBus eventBus) {
+    this(eventBus, JsoModuleRegistry.get());
+  }
+
+  public ModuleRegistryImpl() {
+    this(new SimpleEventBus());
+  }
+
+  @Override
+  public void subscribe(ModuleInfo moduleInfo) {
+    jsoRegistry.subscribe(moduleInfo);
+  }
+
+  @Override
+  public HandlerRegistration addSubscriptionHandler(SubscriptionHandler handler) {
+    return eventBus.addHandler(SubscriptionEvent.getType(), handler);
+  }
+
+  @Override
+  public void fireEvent(GwtEvent<?> event) {
+    eventBus.fireEvent(event);
+  }
 }

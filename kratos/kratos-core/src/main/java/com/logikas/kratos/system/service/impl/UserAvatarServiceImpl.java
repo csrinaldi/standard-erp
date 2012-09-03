@@ -2,24 +2,25 @@ package com.logikas.kratos.system.service.impl;
 
 import com.logikas.kratos.system.domain.User;
 import com.logikas.kratos.system.domain.UserAvatar;
-import com.logikas.kratos.system.repository.DocumentRepository;
+import com.logikas.kratos.system.repository.UserAvatarRepository;
 import com.logikas.kratos.system.service.UserAvatarService;
 
 import java.io.InputStream;
 import java.util.Date;
 
+import javax.inject.Inject;
 import javax.inject.Provider;
 
-public class TemporalResourceServiceImpl implements UserAvatarService {
+public class UserAvatarServiceImpl implements UserAvatarService {
 
-  private final DocumentRepository repository;
+  private final UserAvatarRepository repository;
 
   private final Provider<Date> now;
 
   private final Provider<User> user;
 
-  public TemporalResourceServiceImpl(DocumentRepository repository, Provider<Date> now,
-      Provider<User> user) {
+  @Inject
+  UserAvatarServiceImpl(UserAvatarRepository repository, Provider<Date> now, Provider<User> user) {
     this.repository = repository;
     this.now = now;
     this.user = user;

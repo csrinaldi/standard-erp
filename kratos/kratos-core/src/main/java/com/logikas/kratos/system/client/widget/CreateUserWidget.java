@@ -63,11 +63,10 @@ public class CreateUserWidget extends Composite implements CreateUserView, Edito
   FileUpload avatarUploader;
 
   /*
-  @Path("avatar")
-  LeafValueEditor<String> avatarView() {
-
-  }
-  */
+   * @Path("avatar") LeafValueEditor<String> avatarView() {
+   * 
+   * }
+   */
 
   @UiHandler("save")
   void onSave(ClickEvent event) {
@@ -96,7 +95,7 @@ public class CreateUserWidget extends Composite implements CreateUserView, Edito
 
         if (object != null) {
           final JSONValue idValue = object.get("id");
-          final JSONNumber id = object.isNumber();
+          final JSONNumber id = idValue.isNumber();
           if (id != null) {
             avatarView.setUrl("/resources?id=" + id.doubleValue());
             jsonError = false;

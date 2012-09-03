@@ -21,15 +21,15 @@ import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 
 public class CreateUserActivity extends AbstractActivity implements CreateUserView.Presenter {
-  
+
   private final SystemRequestFactory rf;
-  
+
   private final CreateUserView view;
-  
+
   private final RequestFactoryEditorDriver<UserProxy, ? extends Editor<UserProxy>> driver;
-    
+
   private final PlaceController placeController;
-  
+
   @Inject
   CreateUserActivity(SystemRequestFactory rf, CreateUserView view, PlaceController placeController) {
     this.rf = rf;
@@ -37,7 +37,7 @@ public class CreateUserActivity extends AbstractActivity implements CreateUserVi
     this.driver = view.createEditor(rf);
     this.placeController = placeController;
   }
-  
+
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
 
@@ -48,21 +48,21 @@ public class CreateUserActivity extends AbstractActivity implements CreateUserVi
     driver.edit(user, request);
     request.save(user);
   }
-  
+
   @Override
   public void save() {
     final RequestContext request = driver.flush();
     request.fire(new Receiver<Void>() {
-      
+
       @Override
       public void onSuccess(Void response) {
         placeController.goTo(new SearchUserPlace());
       }
-      
+
       @Override
       public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
         driver.setConstraintViolations(violations);
       }
-    });    
+    });
   }
 }

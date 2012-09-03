@@ -93,35 +93,35 @@ public class Converters {
   }
 
   public static <E extends Enum<E>> Converter<String, E> stringToEnum(final Class<E> enumType) {
-        
+
     return new AbstractConverter<String, E>() {
-      
+
       public E apply(String name) {
         return Enum.valueOf(enumType, name);
       }
-      
+
       @Override
       protected String unapply(E output) {
         return output.name();
-      }      
+      }
     };
   }
-  
+
   public static <E extends Enum<E>> Converter<Integer, E> integerToEnum(final Class<E> enumType) {
-        
+
     return new AbstractConverter<Integer, E>() {
-      
+
       public E apply(Integer index) {
         return enumType.getEnumConstants()[index];
       }
-      
+
       @Override
       protected Integer unapply(E output) {
         return output.ordinal();
-      }      
+      }
     };
   }
-  
+
   public static <F, T> Converter<F, T> assemble(final Function<F, T> function,
       final Function<T, F> inverse) {
 
@@ -131,7 +131,7 @@ public class Converters {
       public T apply(F input) {
         return function.apply(input);
       }
-      
+
       @Override
       protected F unapply(T output) {
         return inverse.apply(output);
