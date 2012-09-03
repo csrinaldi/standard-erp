@@ -3,10 +3,10 @@
  */
 package com.logikas.kratos.main.client.manager;
 
-import com.logikas.kratos.core.plugin.client.ModuleRegistry;
+import com.logikas.kratos.core.plugin.shared.PluginRegistry;
 import com.logikas.kratos.core.plugin.shared.event.SubscriptionEvent;
 import com.logikas.kratos.core.plugin.shared.event.SubscriptionHandler;
-import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
+import com.logikas.kratos.core.plugin.shared.model.PluginDescription;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.place.shared.PlaceChangeEvent;
@@ -31,7 +31,7 @@ public class ViewManagerImpl implements ViewManager {
   private VerticalPanel menuPanel;
     
   @Inject
-  public ViewManagerImpl(LayoutView view, EventBus eventBus, ModuleRegistry moduleRegistry) {
+  public ViewManagerImpl(LayoutView view, EventBus eventBus, PluginRegistry moduleRegistry) {
     eventBus.addHandler(PlaceChangeEvent.TYPE, this);
     eventBus.addHandler(PlaceChangeRequestEvent.TYPE, this);
     
@@ -44,16 +44,15 @@ public class ViewManagerImpl implements ViewManager {
 
       @Override
       public void onSubscription(SubscriptionEvent event) {
-        processMenu(event.getModuleInfo());
+        processMenu(event.getDescription());
       }
     });
     
     
   }
 
-  protected void processMenu(ModuleInfo info) {
-      Hyperlink widget = new Hyperlink(info.getMenuNode().getTitle(), "Home");
-      menuPanel.add(widget);
+  protected void processMenu(PluginDescription info) {
+
   }
 
   @Override
