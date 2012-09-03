@@ -1,49 +1,49 @@
 /*
  * To change this template, choose Tools | Templates and open the template in the editor.
  */
-package com.logikas.kratos.core.plugin.client;
+package com.logikas.kratos.core.plugin.client.jso;
 
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 import com.google.web.bindery.event.shared.SimpleEventBus;
-import com.logikas.kratos.core.plugin.client.jso.JsoModuleInfo;
+import com.logikas.kratos.core.plugin.shared.PluginRegistry;
 import com.logikas.kratos.core.plugin.shared.event.SubscriptionEvent;
 import com.logikas.kratos.core.plugin.shared.event.SubscriptionHandler;
-import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
+import com.logikas.kratos.core.plugin.shared.model.PluginDescription;
 
 /**
  * 
  * @author cristian
  */
-public class ModuleRegistryImpl implements ModuleRegistry {
+public class PluginRegistryImpl implements PluginRegistry {
 
-  private final JsoModuleRegistry jsoRegistry;
+  private final JsoPluginRegistry jsoRegistry;
 
   private final EventBus eventBus;
 
-  public ModuleRegistryImpl(EventBus eventBus, JsoModuleRegistry registry) {
+  public PluginRegistryImpl(EventBus eventBus, JsoPluginRegistry registry) {
     this.jsoRegistry = registry;
     this.eventBus = eventBus;
 
-    this.jsoRegistry.addHandler(new JsoModuleRegistry.Handler() {
+    this.jsoRegistry.addHandler(new JsoPluginRegistry.Handler() {
       @Override
-      public void onSubscribe(JsoModuleInfo info) {
-        SubscriptionEvent.fire(ModuleRegistryImpl.this, info);
+      public void onSubscribe(JsoPluginDescription info) {
+        SubscriptionEvent.fire(PluginRegistryImpl.this, info);
       }
     });
   }
 
-  public ModuleRegistryImpl(EventBus eventBus) {
-    this(eventBus, JsoModuleRegistry.get());
+  public PluginRegistryImpl(EventBus eventBus) {
+    this(eventBus, JsoPluginRegistry.get("ModuleRegistry"));
   }
 
-  public ModuleRegistryImpl() {
+  public PluginRegistryImpl() {
     this(new SimpleEventBus());
   }
 
   @Override
-  public void subscribe(ModuleInfo moduleInfo) {
+  public void subscribe(PluginDescription moduleInfo) {
     jsoRegistry.subscribe(moduleInfo);
   }
 

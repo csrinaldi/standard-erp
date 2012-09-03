@@ -3,8 +3,9 @@
  */
 package com.logikas.kratos.core.plugin.shared.event;
 
+import com.logikas.kratos.core.plugin.shared.model.PluginDescription;
+
 import com.google.gwt.event.shared.GwtEvent;
-import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
 
 /**
  * 
@@ -14,14 +15,14 @@ public class SubscriptionEvent extends GwtEvent<SubscriptionHandler> {
 
   private static Type<SubscriptionHandler> TYPE = null;
 
-  private final ModuleInfo moduleInfo;
+  private final PluginDescription description;
 
-  public static void fire(HasSubscriptionHandlers source, ModuleInfo info) {
+  public static void fire(HasSubscriptionHandlers source, PluginDescription info) {
     source.fireEvent(new SubscriptionEvent(info));
   }
 
-  protected SubscriptionEvent(ModuleInfo moduleInfo) {
-    this.moduleInfo = moduleInfo;
+  protected SubscriptionEvent(PluginDescription description) {
+    this.description = description;
   }
 
   @Override
@@ -41,8 +42,7 @@ public class SubscriptionEvent extends GwtEvent<SubscriptionHandler> {
     return TYPE;
   }
 
-  public ModuleInfo getModuleInfo() {
-    return moduleInfo;
+  public PluginDescription getDescription() {
+    return description;
   }
-
 }

@@ -7,7 +7,7 @@ package com.logikas.kratos.core.plugin.shared.model;
  * 
  * @author cristian
  */
-public interface ModuleInfo {
+public interface PluginDescription {
 
   String getName();
 

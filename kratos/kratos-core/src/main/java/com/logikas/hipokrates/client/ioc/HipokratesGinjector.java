@@ -5,7 +5,8 @@ package com.logikas.hipokrates.client.ioc;
 
 import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
-import com.logikas.kratos.core.plugin.client.Distribution;
+
+import com.logikas.kratos.core.plugin.shared.Distribution;
 
 /**
  * 

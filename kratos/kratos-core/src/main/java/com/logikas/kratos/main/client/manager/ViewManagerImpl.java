@@ -3,10 +3,10 @@
  */
 package com.logikas.kratos.main.client.manager;
 
-import com.logikas.kratos.core.plugin.client.ModuleRegistry;
+import com.logikas.kratos.core.plugin.shared.PluginRegistry;
 import com.logikas.kratos.core.plugin.shared.event.SubscriptionEvent;
 import com.logikas.kratos.core.plugin.shared.event.SubscriptionHandler;
-import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
+import com.logikas.kratos.core.plugin.shared.model.PluginDescription;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.place.shared.PlaceChangeEvent;
@@ -22,12 +22,12 @@ import javax.inject.Inject;
 public class ViewManagerImpl implements ViewManager {
 
   @Inject
-  public ViewManagerImpl(EventBus eventBus, ModuleRegistry moduleRegistry) {
+  public ViewManagerImpl(EventBus eventBus, PluginRegistry moduleRegistry) {
     moduleRegistry.addSubscriptionHandler(new SubscriptionHandler() {
 
       @Override
       public void onSubscription(SubscriptionEvent event) {
-        processMenu(event.getModuleInfo());
+        processMenu(event.getDescription());
       }
     });
 
@@ -35,7 +35,7 @@ public class ViewManagerImpl implements ViewManager {
     eventBus.addHandler(PlaceChangeRequestEvent.TYPE, this);
   }
 
-  protected void processMenu(ModuleInfo info) {
+  protected void processMenu(PluginDescription info) {
 
   }
 
@@ -54,7 +54,7 @@ public class ViewManagerImpl implements ViewManager {
   }
 
   @Override
-  public void registerModule(ModuleInfo info) {
+  public void registerModule(PluginDescription info) {
 
   }
 

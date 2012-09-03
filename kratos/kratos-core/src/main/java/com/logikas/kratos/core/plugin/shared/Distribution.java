@@ -1,7 +1,7 @@
 /*
  * To change this template, choose Tools | Templates and open the template in the editor.
  */
-package com.logikas.kratos.core.plugin.client;
+package com.logikas.kratos.core.plugin.shared;
 
 /**
  * 
@@ -9,11 +9,11 @@ package com.logikas.kratos.core.plugin.client;
  */
 public class Distribution {
 
-  private Plugin[] plugins;
+  private final Plugin[] plugins;
 
-  private ModuleRegistry registry;
+  private final PluginRegistry registry;
 
-  public Distribution(ModuleRegistry registry, Plugin... plugins) {
+  public Distribution(PluginRegistry registry, Plugin... plugins) {
     this.registry = registry;
     this.plugins = plugins;
   }

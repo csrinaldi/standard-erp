@@ -1,5 +1,6 @@
 package com.logikas.kratos.system.domain;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Date;
 
@@ -10,9 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class UserAvatar {
+@Table(name = "user_avatar")
+public class UserAvatar implements Serializable {
 
   private Long id;
   private User owner;

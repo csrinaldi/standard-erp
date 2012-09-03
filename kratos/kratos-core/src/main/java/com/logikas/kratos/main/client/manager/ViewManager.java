@@ -5,7 +5,7 @@ package com.logikas.kratos.main.client.manager;
 
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceChangeRequestEvent;
-import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
+import com.logikas.kratos.core.plugin.shared.model.PluginDescription;
 
 /**
  * 
@@ -13,6 +13,6 @@ import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
  */
 public interface ViewManager extends PlaceChangeEvent.Handler, PlaceChangeRequestEvent.Handler {
 
-  void registerModule(ModuleInfo info);
+  void registerModule(PluginDescription info);
 
 }

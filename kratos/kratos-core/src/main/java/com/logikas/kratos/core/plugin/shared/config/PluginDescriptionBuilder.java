@@ -9,12 +9,12 @@ import com.logikas.kratos.core.plugin.shared.model.MenuNode;
  * 
  * @author cristian
  */
-public interface ModuleInfoBuilder {
+public interface PluginDescriptionBuilder {
 
-  ModuleInfoBuilder name(String name);
+  PluginDescriptionBuilder name(String name);
 
-  ModuleInfoBuilder version(String version);
+  PluginDescriptionBuilder version(String version);
 
-  ModuleInfoBuilder menu(MenuNode menu);
+  PluginDescriptionBuilder menu(MenuNode menu);
 
 }
