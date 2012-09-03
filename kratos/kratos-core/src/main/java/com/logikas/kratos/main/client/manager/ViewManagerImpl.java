@@ -11,7 +11,13 @@ import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceChangeRequestEvent;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.user.client.ui.Hyperlink;
+import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.web.bindery.event.shared.EventBus;
+import com.logikas.kratos.main.client.view.LayoutView;
 
 import javax.inject.Inject;
 
@@ -21,8 +27,19 @@ import javax.inject.Inject;
  */
 public class ViewManagerImpl implements ViewManager {
 
+  private LayoutView layout;
+  private VerticalPanel menuPanel;
+    
   @Inject
-  public ViewManagerImpl(EventBus eventBus, ModuleRegistry moduleRegistry) {
+  public ViewManagerImpl(LayoutView view, EventBus eventBus, ModuleRegistry moduleRegistry) {
+    eventBus.addHandler(PlaceChangeEvent.TYPE, this);
+    eventBus.addHandler(PlaceChangeRequestEvent.TYPE, this);
+    
+    this.layout = view;
+
+    menuPanel = new VerticalPanel();
+    view.getWestRegion().setWidget(menuPanel);
+    
     moduleRegistry.addSubscriptionHandler(new SubscriptionHandler() {
 
       @Override
@@ -30,18 +47,19 @@ public class ViewManagerImpl implements ViewManager {
         processMenu(event.getModuleInfo());
       }
     });
-
-    eventBus.addHandler(PlaceChangeEvent.TYPE, this);
-    eventBus.addHandler(PlaceChangeRequestEvent.TYPE, this);
+    
+    
   }
 
   protected void processMenu(ModuleInfo info) {
-
+      Hyperlink widget = new Hyperlink(info.getMenuNode().getTitle(), "Home");
+      menuPanel.add(widget);
   }
 
   @Override
   public void onPlaceChange(PlaceChangeEvent event) {
-    GWT.log("onPlaceChange");
+      //TODO ver otras condiciones graficas
+      this.layout.setDefaultLayout();
   }
 
   @Override
@@ -51,11 +69,6 @@ public class ViewManagerImpl implements ViewManager {
 
     GWT.log("onPlaceChangeRequest");
     GWT.log(event.getNewPlace().toString());
-  }
-
-  @Override
-  public void registerModule(ModuleInfo info) {
-
   }
 
 }

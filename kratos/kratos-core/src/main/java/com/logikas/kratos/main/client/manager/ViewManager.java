@@ -13,6 +13,6 @@ import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
  */
 public interface ViewManager extends PlaceChangeEvent.Handler, PlaceChangeRequestEvent.Handler {
 
-  void registerModule(ModuleInfo info);
+  
 
 }

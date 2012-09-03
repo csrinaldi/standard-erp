@@ -15,5 +15,9 @@ public interface LayoutView extends IsWidget {
   AcceptsOneWidget getCenterRegion();
 
   AcceptsOneWidget getWestRegion();
+  
+  AcceptsOneWidget getSouthRegion();
+  
+  void setDefaultLayout();
 
 }
