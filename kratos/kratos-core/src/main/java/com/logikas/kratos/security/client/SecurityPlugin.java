@@ -3,8 +3,8 @@
  */
 package com.logikas.kratos.security.client;
 
-import com.logikas.kratos.core.plugin.client.Plugin;
-import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
+import com.logikas.kratos.core.plugin.shared.Plugin;
+import com.logikas.kratos.core.plugin.shared.model.PluginDescription;
 
 /**
  * 
@@ -20,7 +20,7 @@ public class SecurityPlugin implements Plugin {
 
   }
 
-  public ModuleInfo getDescription() {
+  public PluginDescription getDescription() {
     return null;
   }
 

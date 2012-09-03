@@ -1,9 +1,9 @@
 /*
  * To change this template, choose Tools | Templates and open the template in the editor.
  */
-package com.logikas.kratos.core.plugin.client;
+package com.logikas.kratos.core.plugin.shared;
 
-import com.logikas.kratos.core.plugin.shared.model.ModuleInfo;
+import com.logikas.kratos.core.plugin.shared.model.PluginDescription;
 
 /**
  * 
@@ -15,5 +15,5 @@ public interface Plugin {
 
   void shutdown();
 
-  ModuleInfo getDescription();
+  PluginDescription getDescription();
 }
