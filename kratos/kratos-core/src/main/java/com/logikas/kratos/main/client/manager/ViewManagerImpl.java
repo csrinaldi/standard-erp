@@ -70,9 +70,6 @@ public class ViewManagerImpl implements ViewManager {
     GWT.log(event.getNewPlace().toString());
   }
 
-  @Override
-  public void registerModule(PluginDescription info) {
-
-  }
+  
 
 }
