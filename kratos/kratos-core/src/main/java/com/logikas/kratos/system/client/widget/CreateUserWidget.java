@@ -1,17 +1,16 @@
 package com.logikas.kratos.system.client.widget;
 
+import com.logikas.kratos.core.document.client.UploadResultJso;
+import com.logikas.kratos.core.document.shared.UploadResult;
 import com.logikas.kratos.system.client.view.CreateUserView;
 import com.logikas.kratos.system.shared.proxy.UserProxy;
 
+import com.google.gwt.core.client.JsonUtils;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.editor.client.Editor;
-import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.editor.ui.client.ValueBoxEditorDecorator;
+import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.json.client.JSONNumber;
-import com.google.gwt.json.client.JSONObject;
-import com.google.gwt.json.client.JSONParser;
-import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -73,37 +72,41 @@ public class CreateUserWidget extends Composite implements CreateUserView, Edito
     presenter.save();
   }
 
-  @UiHandler("upload")
-  void onUpload(ClickEvent event) {
+  @UiHandler("avatarUploader")
+  void onAvatarChange(ChangeEvent event) {
     avatarUploader.setEnabled(false);
     formPanel.submit();
   }
 
-  @UiHandler("upload")
+  @UiHandler("formPanel")
   void onSubmitComplete(SubmitCompleteEvent event) {
+
     avatarUploader.setEnabled(true);
+    
     final String result = event.getResults();
+
     if (result != null) {
 
-      boolean jsonError = true;
+      try {
+        
+        final UploadResult uploadResult = JsonUtils.<UploadResultJso> safeEval(result);
 
-      final JSONValue jsonResult = JSONParser.parseLenient(result);
+        switch (uploadResult.getStatus()) {
+          
+          case OK:
+            avatarView.setUrl("/resources?id=" + uploadResult.getDocumentId());
+            break;
 
-      if (jsonResult != null) {
+          case VALIDATION_ERROR:
+            Window.alert("Error de validacion : " + uploadResult.getMessage());
+            break;
 
-        final JSONObject object = jsonResult.isObject();
-
-        if (object != null) {
-          final JSONValue idValue = object.get("id");
-          final JSONNumber id = idValue.isNumber();
-          if (id != null) {
-            avatarView.setUrl("/resources?id=" + id.doubleValue());
-            jsonError = false;
-          }
+          case INTERNAL_ERROR:
+            Window.alert(uploadResult.getMessage());
+            break;
         }
-      }
-      if (jsonError) {
-        Window.alert("JSON mal formado");
+      } catch (IllegalArgumentException e) {
+        Window.alert("JSON Malformado");
       }
     } else {
       Window.alert("Error al transferir archivo");

@@ -3,8 +3,8 @@
 <module>
  
   <inherits name="com.google.gwt.core.Core"/>
-  <inherits name="com.google.common.base.Base"/>
    
-  <source path=""/>
+  <source path="client"/>
+  <source path="shared"/>
 
 </module>

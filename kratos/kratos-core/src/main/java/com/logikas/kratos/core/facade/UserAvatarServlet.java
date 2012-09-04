@@ -1,5 +1,7 @@
 package com.logikas.kratos.core.facade;
 
+import com.logikas.kratos.core.document.impl.UploadResultImpl;
+import com.logikas.kratos.core.document.shared.UploadResult;
 import com.logikas.kratos.system.domain.UserAvatar;
 import com.logikas.kratos.system.service.UserAvatarService;
 
@@ -61,7 +63,9 @@ public class UserAvatarServlet extends HttpServlet {
         final String filename = getFileName(part);
         final InputStream content = part.getInputStream();
         final UserAvatar avatar = service.create(filename, contentType, content);
-        final String result = String.format("{'id': %d, 'code': 'OK'}", avatar.getId());
+
+        final UploadResult r = UploadResultImpl.createValid(avatar.getId().toString());
+        final String result = UploadResultImpl.serialize(r);
 
         resp.setStatus(HttpServletResponse.SC_OK);
         resp.setContentType("text/html");
@@ -71,17 +75,20 @@ public class UserAvatarServlet extends HttpServlet {
         // Usado por Google cuando se requieren parametros
         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         resp.setContentType("text/html");
-        final String result =
-            String
-                .format("{'code': 'PARAMETER', 'message': '%s'}", "Parameter avatar is required.");
+
+        final UploadResult r = UploadResultImpl.createInternalError("Parameter \"avatar\" is required");
+        final String result = UploadResultImpl.serialize(r);
+
         resp.getOutputStream().print(result);
       }
     } catch (ValidationException e) {
 
       resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
       resp.setContentType("text/html");
-      final String result =
-          String.format("{'code': 'VALIDATION', 'message': '%s'}", e.getMessage());
+
+      final UploadResult r = UploadResultImpl.createValidationError(e.getMessage());
+      final String result = UploadResultImpl.serialize(r);
+
       resp.getOutputStream().print(result);
 
     } catch (ServletException e) {
@@ -89,10 +96,11 @@ public class UserAvatarServlet extends HttpServlet {
       // Usado por Google cuando se requieren parametros
       resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
       resp.setContentType("text/html");
-      final String result =
-          String.format("{'code': 'MULTIPART', 'message': '%s'}", "Multipart is required.");
-      resp.getOutputStream().print(result);
 
+      final UploadResult r = UploadResultImpl.createInternalError("Multipart request is required");
+      final String result = UploadResultImpl.serialize(r);
+
+      resp.getOutputStream().print(result);
     }
   }
 
