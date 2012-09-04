@@ -11,6 +11,8 @@ import com.logikas.kratos.core.plugin.shared.Distribution;
 import com.logikas.kratos.core.plugin.shared.PluginRegistry;
 import com.logikas.kratos.main.client.MainPlugin;
 import com.logikas.kratos.main.client.ioc.MainClientModule;
+import com.logikas.kratos.system.client.SystemPlugin;
+import com.logikas.kratos.system.client.ioc.SystemClientModule;
 import javax.inject.Singleton;
 
 /**
@@ -24,13 +26,13 @@ public class HipokratesModule extends AbstractGinModule {
 
     bind(PluginRegistry.class).to(PluginRegistryImpl.class).in(Singleton.class);
     install(new MainClientModule());
-    // install(new SystemClientModule());
+    install(new SystemClientModule());
 
   }
 
   @Provides
   @Singleton
-  Distribution getDistribution(PluginRegistry registry, MainPlugin main) {
-    return new Distribution(registry, main);
+  Distribution getDistribution(PluginRegistry registry, MainPlugin main, SystemPlugin system) {
+    return new Distribution(registry, main, system);
   }
 }

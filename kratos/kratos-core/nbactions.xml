@@ -10,4 +10,11 @@
                 <war>/home/cristian/Logikas/proyectos/standard-erp/kratos/kratos-core/target/kratos-core-1.0-SNAPSHOT</war>
             </properties>
         </action>
+        <action>
+            <actionName>CUSTOM-superDevMode</actionName>
+            <displayName>superDevMode</displayName>
+            <goals>
+                <goal>gwt:run-codeserver</goal>
+            </goals>
+        </action>
     </actions>

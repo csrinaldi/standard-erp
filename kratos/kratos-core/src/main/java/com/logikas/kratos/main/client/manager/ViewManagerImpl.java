@@ -9,67 +9,77 @@ import com.logikas.kratos.core.plugin.shared.event.SubscriptionHandler;
 import com.logikas.kratos.core.plugin.shared.model.PluginDescription;
 
 import com.google.gwt.core.shared.GWT;
+import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceChangeRequestEvent;
+import com.google.gwt.safehtml.shared.SafeHtml;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.gwt.user.client.ui.Hyperlink;
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.*;
 import com.google.web.bindery.event.shared.EventBus;
 import com.logikas.kratos.main.client.view.LayoutView;
+import com.logikas.kratos.main.shared.place.DefaultPlace;
+import com.logikas.kratos.main.shared.place.MainPlaceHistoryMapper;
 
 import javax.inject.Inject;
 
 /**
- * 
+ *
  * @author cristian
  */
 public class ViewManagerImpl implements ViewManager {
 
-  private LayoutView layout;
-  private VerticalPanel menuPanel;
-    
-  @Inject
-  public ViewManagerImpl(LayoutView view, EventBus eventBus, PluginRegistry moduleRegistry) {
-    eventBus.addHandler(PlaceChangeEvent.TYPE, this);
-    eventBus.addHandler(PlaceChangeRequestEvent.TYPE, this);
-    
-    this.layout = view;
+    private LayoutView layout;
+    private VerticalPanel menuPanel;
+    private final MainPlaceHistoryMapper historyMapper;
 
-    menuPanel = new VerticalPanel();
-    view.getWestRegion().setWidget(menuPanel);
-    
-    moduleRegistry.addSubscriptionHandler(new SubscriptionHandler() {
+    @Inject
+    public ViewManagerImpl(MainPlaceHistoryMapper historyMapper, LayoutView view, EventBus eventBus, PluginRegistry moduleRegistry) {
+        this.historyMapper = historyMapper;
 
-      @Override
-      public void onSubscription(SubscriptionEvent event) {
-        processMenu(event.getDescription());
-      }
-    });
-    
-    
-  }
+        eventBus.addHandler(PlaceChangeEvent.TYPE, this);
+        eventBus.addHandler(PlaceChangeRequestEvent.TYPE, this);
 
-  protected void processMenu(PluginDescription info) {
+        this.layout = view;
 
-  }
+        //TODO hacer un panel de Widgets de Menu
+        menuPanel = new VerticalPanel();
+        this.layout.getWestRegion().setWidget(menuPanel);
 
-  @Override
-  public void onPlaceChange(PlaceChangeEvent event) {
-      //TODO ver otras condiciones graficas
-      this.layout.setDefaultLayout();
-  }
 
-  @Override
-  public void onPlaceChangeRequest(PlaceChangeRequestEvent event) {
+        moduleRegistry.addSubscriptionHandler(new SubscriptionHandler() {
 
-    // Evaluar el place
+            @Override
+            public void onSubscription(SubscriptionEvent event) {
+                processMenu(event.getDescription());
+            }
+        });
+    }
 
-    GWT.log("onPlaceChangeRequest");
-    GWT.log(event.getNewPlace().toString());
-  }
+    protected void processMenu(PluginDescription info) {
+        SafeHtmlBuilder htmlBuilder = new SafeHtmlBuilder();
+        htmlBuilder.appendEscaped(info.getMenuNode().getTitle());
 
-  
+        String token = info.getMenuNode().getToken();
+        if (token == null) {
+            token = this.historyMapper.getToken(new DefaultPlace());
+        }
 
+        Hyperlink link = new Hyperlink(htmlBuilder.toSafeHtml(), token);
+        menuPanel.add(link);
+    }
+
+    @Override
+    public void onPlaceChange(PlaceChangeEvent event) {
+        //TODO ver otras condiciones graficas
+      /*
+         * if ( event.getNewPlace() instanceof DefaultPlace )
+        this.layout.setDefaultLayout();
+         */
+    }
+
+    @Override
+    public void onPlaceChangeRequest(PlaceChangeRequestEvent event) {
+        this.layout.setDefaultLayout();
+    }
 }

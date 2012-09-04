@@ -19,8 +19,8 @@
 
     <entry-point class="com.logikas.hipokrates.client.Hipokrates"/>
         
-    <!--add-linker name="xsiframe"/>
-    <set-configuration-property name="devModeRedirectEnabled" value="true"/-->
+    <add-linker name="xsiframe"/>
+    <set-configuration-property name="devModeRedirectEnabled" value="true"/>
         
 	<!-- Specify the app entry point class.                         -->
 

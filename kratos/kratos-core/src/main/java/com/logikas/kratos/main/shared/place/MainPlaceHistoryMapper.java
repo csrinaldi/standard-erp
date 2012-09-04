@@ -11,5 +11,5 @@ import com.google.gwt.place.shared.WithTokenizers;
  * @author csrinaldi
  */
 @WithTokenizers({DefaultPlace.Tokenizer.class})
-public interface CorePlaceHistoryMapper extends PlaceHistoryMapper {
+public interface MainPlaceHistoryMapper extends PlaceHistoryMapper {
 }

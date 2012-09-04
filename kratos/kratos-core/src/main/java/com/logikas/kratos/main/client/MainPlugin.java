@@ -3,8 +3,8 @@
  */
 package com.logikas.kratos.main.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.logikas.kratos.core.plugin.client.jso.JsoMenuNodeBuilder;
 import com.logikas.kratos.core.plugin.client.jso.JsoPluginDescriptionBuilder;
@@ -12,6 +12,7 @@ import com.logikas.kratos.core.plugin.shared.Plugin;
 import com.logikas.kratos.core.plugin.shared.model.PluginDescription;
 import com.logikas.kratos.main.client.manager.ViewManager;
 import com.logikas.kratos.main.client.mvp.ActivityManagerInitializer;
+import com.logikas.kratos.main.client.view.LayoutView;
 import com.logikas.kratos.main.client.widget.LayoutWidget;
 import javax.inject.Inject;
 
@@ -21,13 +22,13 @@ import javax.inject.Inject;
  */
 public class MainPlugin implements Plugin {
 
-  private final LayoutWidget layoutWidget;
+  private final LayoutView layoutWidget;
   private final PlaceHistoryHandler historyHandler;
   private final ViewManager viewManager;
 
   @Inject
   MainPlugin(PlaceHistoryHandler historyHandler, ViewManager viewManager,
-      LayoutWidget layoutWidget, ActivityManagerInitializer initializer) {
+      LayoutView layoutWidget, ActivityManagerInitializer initializer) {
     this.historyHandler = historyHandler;
     this.layoutWidget = layoutWidget;
     this.viewManager = viewManager;

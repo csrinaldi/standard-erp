@@ -11,6 +11,8 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.*;
 import com.logikas.kratos.main.client.view.LayoutView;
 import static com.google.gwt.dom.client.Style.Unit.PCT;
+import com.google.gwt.user.client.Window;
+import com.logikas.kratos.main.client.resource.MainResourceBundle;
 import javax.inject.Inject;
 
 /**
@@ -19,6 +21,8 @@ import javax.inject.Inject;
  */
 public class LayoutWidget implements LayoutView {
 
+    private final int MENU_WITH = 100;
+    private final int MENU_MARGIN = 5;
     private static LayoutWidgetUiBinder uiBinder = GWT.create(LayoutWidgetUiBinder.class);
 
     interface LayoutWidgetUiBinder extends UiBinder<LayoutPanel, LayoutWidget> {
@@ -31,26 +35,25 @@ public class LayoutWidget implements LayoutView {
     SimplePanel south;
     @UiField
     SimplePanel east;
+    @UiField
+    MainResourceBundle res;
+    private static MainResourceBundle DEFAULT_RESOURCES;
 
-    /*
-     * @UiField ClientResource res;
-     *
-     * private static ClientResource DEFAULT_RESOURCES;
-     *
-     * private static ClientResource getDefaultResources() { if
-     * (DEFAULT_RESOURCES == null) { DEFAULT_RESOURCES =
-     * GWT.create(ClientResource.class);
-     *
-     * } return DEFAULT_RESOURCES; }
-     */
-    private final LayoutPanel root;
+    private static MainResourceBundle getDefaultResources() {
+        if (DEFAULT_RESOURCES == null) {
+            DEFAULT_RESOURCES =
+                    GWT.create(MainResourceBundle.class);
+
+        }
+        return DEFAULT_RESOURCES;
+    }
+    private LayoutPanel root;
     private PlaceController controller;
 
     @Inject
     public LayoutWidget(PlaceController controller) {
-        // getDefaultResources().erpLgkStyle().ensureInjected();
+        getDefaultResources().layoutStyle().ensureInjected();
         root = uiBinder.createAndBindUi(this);
-
         this.controller = controller;
     }
 
@@ -73,14 +76,15 @@ public class LayoutWidget implements LayoutView {
 
     @Override
     public AcceptsOneWidget getWestRegion() {
-        return new AcceptsOneWidget() {
-
-            @Override
-            public void setWidget(IsWidget w) {
-                Widget widget = Widget.asWidgetOrNull(w);
-                west.setWidget(widget);
-            }
+        /*
+         * return new AcceptsOneWidget() {
+         *
+         * @Override public void setWidget(IsWidget w) { Widget widget =
+         * Widget.asWidgetOrNull(w); west.setWidget(widget); }
         };
+         */
+        GWT.log("getWestRegion");
+        return west;
     }
 
     @Override
@@ -97,22 +101,19 @@ public class LayoutWidget implements LayoutView {
 
     @Override
     public void setDefaultLayout() {
-        
-        GWT.log("setDefaultLayout");
-        
-        root.setWidgetLeftWidth(west, 0, PCT, 50, Style.Unit.PX);
+
+        root.setWidgetLeftWidth(west, 0, PCT, MENU_WITH, Style.Unit.PX);
         root.setWidgetTopHeight(west, 0, PCT, 100, PCT);
-        
-        root.setWidgetTopHeight(center, 0, PCT, 0, PCT);
-        root.setWidgetLeftWidth(center, 0, Style.Unit.PX, 0, PCT);
-        
+
+        root.setWidgetLeftWidth(center, MENU_WITH + MENU_MARGIN, Style.Unit.PX, (Window.getClientWidth() - (MENU_WITH + MENU_MARGIN)), Style.Unit.PX);
+        root.setWidgetTopHeight(center, 0, Style.Unit.PX, 100, PCT);
+
         root.setWidgetLeftWidth(south, 0, PCT, 0, PCT);
         root.setWidgetTopHeight(south, 0, PCT, 0, PCT);
-        
+
         root.setWidgetLeftWidth(east, 0, PCT, 0, PCT);
         root.setWidgetTopHeight(east, 0, PCT, 0, PCT);
-        
+
         root.animate(500);
-        
     }
 }

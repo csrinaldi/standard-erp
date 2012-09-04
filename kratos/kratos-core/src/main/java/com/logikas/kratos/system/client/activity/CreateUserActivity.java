@@ -40,7 +40,6 @@ public class CreateUserActivity extends AbstractActivity implements CreateUserVi
 
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
-
     final UserServiceRequest request = rf.createUserService();
     view.setPresenter(this);
     panel.setWidget(view);

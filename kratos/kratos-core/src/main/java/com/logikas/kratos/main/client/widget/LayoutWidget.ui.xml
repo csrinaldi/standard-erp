@@ -9,19 +9,10 @@
     
     <g:LayoutPanel>
         <g:layer>
-            <g:SimplePanel ui:field="west" stylePrimaryName="{res.layoutStyle.borderSideMenu}">
-                <g:HTMLPanel>
-                    <div>HOLA</div>
-                </g:HTMLPanel>
-            </g:SimplePanel>
-
+            <g:SimplePanel ui:field="west" stylePrimaryName="{res.layoutStyle.borderSideMenu}"/>
         </g:layer>
         <g:layer>
-            <g:ScrollPanel ui:field="center" stylePrimaryName="{res.layoutStyle.backgroundCenter}">
-                <g:HTMLPanel>
-                    <div>CHAU</div>
-                </g:HTMLPanel>
-            </g:ScrollPanel>
+            <g:ScrollPanel ui:field="center" stylePrimaryName="{res.layoutStyle.backgroundCenter}"/>
         </g:layer>
         <g:layer>
             <g:SimplePanel ui:field="east"/>

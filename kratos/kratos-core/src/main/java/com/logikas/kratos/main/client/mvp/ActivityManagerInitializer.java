@@ -18,15 +18,13 @@ public class ActivityManagerInitializer implements PlaceChangeEvent.Handler {
 
   @Inject
   public ActivityManagerInitializer(LayoutView layout,
-      @Named("center") ActivityManager centerActivityManager,
-      @Named("west") ActivityManager westActivityManager) {
+      @Named("center") ActivityManager centerActivityManager
+      /*@Named("west") ActivityManager westActivityManager*/) {
     centerActivityManager.setDisplay(layout.getCenterRegion());
-    westActivityManager.setDisplay(layout.getWestRegion());
-
+    //westActivityManager.setDisplay(layout.getWestRegion());
   }
 
   @Override
   public void onPlaceChange(PlaceChangeEvent event) {
-    GWT.log("onPlaceChange");
   }
 }
