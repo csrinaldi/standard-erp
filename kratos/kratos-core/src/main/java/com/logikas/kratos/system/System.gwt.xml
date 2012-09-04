@@ -9,6 +9,8 @@
 	<inherits name='com.google.gwt.activity.Activity' />
 	<inherits name='com.google.web.bindery.requestfactory.RequestFactory' />
 
+	<inherits name='com.logikas.kratos.core.document.Document' />
+
 	<inherits name='com.logikas.kratos.core.plugin.Plugin' />
 
 	<!-- <inherits name='com.logikas.kratos.core.ui.CoreUi' /> -->
