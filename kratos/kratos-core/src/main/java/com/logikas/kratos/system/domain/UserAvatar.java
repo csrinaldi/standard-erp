@@ -22,7 +22,9 @@ public class UserAvatar implements Serializable {
   private Date created;
   private String contentType;
   private String filename;
-  private Blob content;
+  
+  // TODO esto deberia ser un Blob
+  private byte[] content;
 
   @Id
   @GeneratedValue
@@ -71,11 +73,11 @@ public class UserAvatar implements Serializable {
   }
 
   @Lob
-  public Blob getContent() {
+  public byte[] getContent() {
     return content;
   }
 
-  public void setContent(Blob content) {
+  public void setContent(byte[] content) {
     this.content = content;
   }
 }

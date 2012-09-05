@@ -9,13 +9,16 @@ import com.google.common.base.Strings;
 import com.google.common.io.ByteStreams;
 import com.google.common.primitives.Ints;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
 import javax.inject.Singleton;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,17 +26,14 @@ import javax.servlet.http.Part;
 import javax.validation.ValidationException;
 
 @Singleton
+@MultipartConfig
 public class UserAvatarServlet extends HttpServlet {
 
   private static final String CONTENT_DISPOSITION = "Content-Disposition";
   private static final String FILENAME = "filename";
 
-  private final UserAvatarService service;
-
   @Inject
-  UserAvatarServlet(UserAvatarService service) {
-    this.service = service;
-  }
+  private UserAvatarService service;
 
   private String getFileName(Part part) {
 
@@ -117,19 +117,23 @@ public class UserAvatarServlet extends HttpServlet {
 
         if (avatar != null) {
 
-          try {
+      //    try {
 
             resp.setStatus(HttpServletResponse.SC_OK);
             resp.setContentType(avatar.getContentType());
             resp.setHeader(CONTENT_DISPOSITION, "attachment;  filename=" + avatar.getFilename());
 
-            ByteStreams.copy(avatar.getContent().getBinaryStream(), resp.getOutputStream());
+            // TODO deberian enviarse streams a la base de datos
+            final InputStream content = new ByteArrayInputStream(avatar.getContent());  
+            ByteStreams.copy(content, resp.getOutputStream());
+/*            
           } catch (SQLException e) {
 
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             resp.setContentType("text/html");
             resp.getOutputStream().print("File Database Exception: " + e.getMessage());
           }
+  */
         } else {
 
           resp.setStatus(HttpServletResponse.SC_NOT_FOUND);

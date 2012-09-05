@@ -5,6 +5,7 @@ import com.logikas.kratos.core.facade.KratosRequestFactoryServlet;
 import com.logikas.kratos.core.facade.UserAvatarServlet;
 import com.logikas.kratos.core.facade.jpa.JpaEntityAccessorFactory;
 import com.logikas.kratos.core.ioc.validation.ValidationModule;
+import com.logikas.kratos.core.repository.jpa.EventBusEntityListener;
 import com.logikas.kratos.system.ioc.SystemModule;
 
 import com.google.inject.Provides;
@@ -18,6 +19,8 @@ import com.logikas.kratos.security.ioc.SecurityMainModule;
 import javax.inject.Singleton;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.metamodel.Metamodel;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
 
 public class KratosServletModule extends ServletModule {
 
@@ -38,7 +41,19 @@ public class KratosServletModule extends ServletModule {
     install(new JpaPersistModule("Kratos"));
     filter("/*").through(PersistFilter.class);
 
-    serve("/resources").with(UserAvatarServlet.class);
+    final UserAvatarServlet userAvatarServlet = new UserAvatarServlet();
+
+    requestInjection(userAvatarServlet);
+
+    final ServletRegistration.Dynamic registration =
+        getServletContext().addServlet("userAvatarServlet", userAvatarServlet);
+
+    registration.addMapping("/resources");
+    registration.setMultipartConfig(new MultipartConfigElement(""));
+  
+    requestStaticInjection(EventBusEntityListener.class);
+    
+    //serve("/resources").with(UserAvatarServlet.class);
   }
 
   @Provides
