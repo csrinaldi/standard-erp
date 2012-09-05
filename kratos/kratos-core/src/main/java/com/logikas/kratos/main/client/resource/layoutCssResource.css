@@ -10,11 +10,27 @@ root {
     display: block;
 }
 
-.border-side-menu{
-    border: 1px solid rgba(0, 0, 0, .2);
+.north-panel , .side-menu{
+    background-color: #F1F1F1;
+    border-color: rgba(0, 0, 0, .2);
+    border-width: 1px;
+    border-style: solid;
+    
+    /*background-clip: padding-box;
+    border: solid transparent;
+    /*border-width: 1px 1px 1px 6px;*/
+    min-height: 28px;
+    /*padding: 100px 0 0;*/
+    /*box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1),inset 0 -1px 0 rgba(0, 0, 0, .07);*/
 }
 
+.side-menu{
+    border-top: none;
+}
+
+
+
 .background-center{
-    background: blue;
+    background: aliceblue;
 }
 

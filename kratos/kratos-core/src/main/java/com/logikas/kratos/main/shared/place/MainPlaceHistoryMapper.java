@@ -10,6 +10,6 @@ import com.google.gwt.place.shared.WithTokenizers;
  * 
  * @author csrinaldi
  */
-@WithTokenizers({DefaultPlace.Tokenizer.class})
+@WithTokenizers({DefaultPlace.Tokenizer.class, ConfigurePlace.Tokenizer.class})
 public interface MainPlaceHistoryMapper extends PlaceHistoryMapper {
 }

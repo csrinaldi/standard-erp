@@ -3,7 +3,6 @@
  */
 package com.logikas.kratos.main.client;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.logikas.kratos.core.plugin.client.jso.JsoMenuNodeBuilder;
@@ -11,47 +10,59 @@ import com.logikas.kratos.core.plugin.client.jso.JsoPluginDescriptionBuilder;
 import com.logikas.kratos.core.plugin.shared.Plugin;
 import com.logikas.kratos.core.plugin.shared.model.PluginDescription;
 import com.logikas.kratos.main.client.manager.ViewManager;
-import com.logikas.kratos.main.client.mvp.ActivityManagerInitializer;
+import com.logikas.kratos.main.client.mvp.MainCenterActivityManager;
 import com.logikas.kratos.main.client.view.LayoutView;
-import com.logikas.kratos.main.client.widget.LayoutWidget;
+import com.logikas.kratos.main.shared.place.ConfigurePlace;
+import com.logikas.kratos.main.shared.place.MainPlaceHistoryMapper;
 import javax.inject.Inject;
 
 /**
- * 
+ *
  * @author cristian
  */
 public class MainPlugin implements Plugin {
 
-  private final LayoutView layoutWidget;
-  private final PlaceHistoryHandler historyHandler;
-  private final ViewManager viewManager;
+    private final LayoutView layoutWidget;
+    private final PlaceHistoryHandler historyHandler;
+    private final ViewManager viewManager;
+    private final MainPlaceHistoryMapper historyMapper;
+    private final MainCenterActivityManager centerActivityManager;
 
-  @Inject
-  MainPlugin(PlaceHistoryHandler historyHandler, ViewManager viewManager,
-      LayoutView layoutWidget, ActivityManagerInitializer initializer) {
-    this.historyHandler = historyHandler;
-    this.layoutWidget = layoutWidget;
-    this.viewManager = viewManager;
-  }
+    @Inject
+    MainPlugin(MainCenterActivityManager centerActivityManager, MainPlaceHistoryMapper historyMapper, PlaceHistoryHandler historyHandler, ViewManager viewManager,
+            LayoutView layoutWidget) {
+        this.historyHandler = historyHandler;
+        this.layoutWidget = layoutWidget;
+        this.viewManager = viewManager;
+        this.historyMapper = historyMapper;
+        this.centerActivityManager = centerActivityManager;
+    }
 
-  public void boot() {
-    RootLayoutPanel.get().add(layoutWidget.asWidget());
-    this.historyHandler.handleCurrentHistory();
+    @Override
+    public void boot() {
+        RootLayoutPanel.get().add(layoutWidget.asWidget());
+        centerActivityManager.setDisplay(layoutWidget.getCenterRegion());
+        this.historyHandler.handleCurrentHistory();
 
-  }
+    }
 
-  public void shutdown() {
-  }
+    @Override
+    public void shutdown() {
+    }
 
-  public PluginDescription getDescription() {
+    @Override
+    public PluginDescription getDescription() {
+        
+        String token = historyMapper.getToken(new ConfigurePlace());
 
-    final JsoMenuNodeBuilder nodeBuilder = new JsoMenuNodeBuilder();
-    nodeBuilder.title("Main");
+        final JsoMenuNodeBuilder nodeBuilder = new JsoMenuNodeBuilder();
+        nodeBuilder.title("Main");
+        nodeBuilder.token(token);
 
-    final JsoPluginDescriptionBuilder builder = new JsoPluginDescriptionBuilder();
-    builder.name("main");
-    builder.version("1.0");
-    builder.menu(nodeBuilder.menuNode());
-    return builder.getDescription();
-  }
+        final JsoPluginDescriptionBuilder builder = new JsoPluginDescriptionBuilder();
+        builder.name("main");
+        builder.version("1.0");
+        builder.menu(nodeBuilder.menuNode());
+        return builder.getDescription();
+    }
 }

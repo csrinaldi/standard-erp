@@ -17,16 +17,30 @@ import javax.inject.Inject;
 
 /**
  *
- * @author csrinaldi
+ * @author Cristian Rinaldi
  */
 public class LayoutWidget implements LayoutView {
 
+    /**
+     * Representa el ancho de la region oeste de la pantalla
+     */
     private final int MENU_WITH = 100;
+    /**
+     * Representa el margen entre la region oeste y la region central
+     */
     private final int MENU_MARGIN = 5;
+    /**
+     * Representa el alto de la region del norte de la pantalla
+     */
+    private final int NORTH_HEIGHT = 80;
+    
+    
     private static LayoutWidgetUiBinder uiBinder = GWT.create(LayoutWidgetUiBinder.class);
 
     interface LayoutWidgetUiBinder extends UiBinder<LayoutPanel, LayoutWidget> {
     }
+    @UiField
+    SimplePanel north;
     @UiField
     SimplePanel west;
     @UiField
@@ -65,7 +79,6 @@ public class LayoutWidget implements LayoutView {
     @Override
     public AcceptsOneWidget getCenterRegion() {
         return new AcceptsOneWidget() {
-
             @Override
             public void setWidget(IsWidget w) {
                 Widget widget = Widget.asWidgetOrNull(w);
@@ -76,21 +89,31 @@ public class LayoutWidget implements LayoutView {
 
     @Override
     public AcceptsOneWidget getWestRegion() {
-        /*
-         * return new AcceptsOneWidget() {
-         *
-         * @Override public void setWidget(IsWidget w) { Widget widget =
-         * Widget.asWidgetOrNull(w); west.setWidget(widget); }
+        return new AcceptsOneWidget() {
+            @Override
+            public void setWidget(IsWidget w) {
+                Widget widget =
+                        Widget.asWidgetOrNull(w);
+                west.setWidget(widget);
+            }
         };
-         */
-        GWT.log("getWestRegion");
-        return west;
+    }
+
+    @Override
+    public AcceptsOneWidget getNorthRegion() {
+        return new AcceptsOneWidget() {
+            @Override
+            public void setWidget(IsWidget w) {
+                Widget widget =
+                        Widget.asWidgetOrNull(w);
+                north.setWidget(widget);
+            }
+        };
     }
 
     @Override
     public AcceptsOneWidget getSouthRegion() {
         return new AcceptsOneWidget() {
-
             @Override
             public void setWidget(IsWidget w) {
                 Widget widget = Widget.asWidgetOrNull(w);
@@ -101,12 +124,15 @@ public class LayoutWidget implements LayoutView {
 
     @Override
     public void setDefaultLayout() {
+        
+        root.setWidgetLeftWidth(north, 0, Style.Unit.PX, Window.getClientWidth(), Style.Unit.PX);
+        root.setWidgetTopHeight(north, 0, Style.Unit.PX, NORTH_HEIGHT, Style.Unit.PX);
 
         root.setWidgetLeftWidth(west, 0, PCT, MENU_WITH, Style.Unit.PX);
-        root.setWidgetTopHeight(west, 0, PCT, 100, PCT);
+        root.setWidgetTopHeight(west, NORTH_HEIGHT, Style.Unit.PX, (Window.getClientHeight() - NORTH_HEIGHT), Style.Unit.PX);
 
         root.setWidgetLeftWidth(center, MENU_WITH + MENU_MARGIN, Style.Unit.PX, (Window.getClientWidth() - (MENU_WITH + MENU_MARGIN)), Style.Unit.PX);
-        root.setWidgetTopHeight(center, 0, Style.Unit.PX, 100, PCT);
+        root.setWidgetTopHeight(center, NORTH_HEIGHT + 5 , Style.Unit.PX, (Window.getClientHeight() - (NORTH_HEIGHT+10)), Style.Unit.PX);
 
         root.setWidgetLeftWidth(south, 0, PCT, 0, PCT);
         root.setWidgetTopHeight(south, 0, PCT, 0, PCT);

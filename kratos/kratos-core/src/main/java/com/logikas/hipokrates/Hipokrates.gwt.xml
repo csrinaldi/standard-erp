@@ -13,6 +13,7 @@
 
         <!-- Other module inherits                                      -->
     <inherits name='com.google.gwt.inject.Inject' />
+    <inherits name='com.google.gwt.activity.Activity' />
     <inherits name='com.logikas.kratos.core.plugin.Plugin' />
     <inherits name='com.logikas.kratos.main.KratosMain' />
     <inherits name='com.logikas.kratos.system.System' />

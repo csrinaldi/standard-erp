@@ -12,6 +12,8 @@ import com.google.gwt.user.client.ui.IsWidget;
  */
 public interface LayoutView extends IsWidget {
 
+  AcceptsOneWidget getNorthRegion();  
+    
   AcceptsOneWidget getCenterRegion();
 
   AcceptsOneWidget getWestRegion();

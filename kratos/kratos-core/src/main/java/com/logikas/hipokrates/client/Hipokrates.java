@@ -13,6 +13,7 @@ import com.logikas.hipokrates.client.ioc.HipokratesGinjector;
  */
 public class Hipokrates implements EntryPoint {
 
+  @Override
   public void onModuleLoad() {
     final HipokratesGinjector injector = GWT.create(HipokratesGinjector.class);
     injector.getDistribution().start();

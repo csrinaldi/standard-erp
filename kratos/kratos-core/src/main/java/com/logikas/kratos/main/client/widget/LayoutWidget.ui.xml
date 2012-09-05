@@ -9,7 +9,10 @@
     
     <g:LayoutPanel>
         <g:layer>
-            <g:SimplePanel ui:field="west" stylePrimaryName="{res.layoutStyle.borderSideMenu}"/>
+            <g:SimplePanel ui:field="north" stylePrimaryName="{res.layoutStyle.northPanel}"/>
+        </g:layer>
+        <g:layer>
+            <g:SimplePanel ui:field="west" stylePrimaryName="{res.layoutStyle.sideMenu}"/>
         </g:layer>
         <g:layer>
             <g:ScrollPanel ui:field="center" stylePrimaryName="{res.layoutStyle.backgroundCenter}"/>

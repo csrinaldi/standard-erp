@@ -13,7 +13,9 @@ import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.logikas.kratos.main.client.manager.ViewManager;
 import com.logikas.kratos.main.client.manager.ViewManagerImpl;
 import com.logikas.kratos.main.client.mvp.CenterActivityMapper;
+import com.logikas.kratos.main.client.view.ConfigureView;
 import com.logikas.kratos.main.client.view.LayoutView;
+import com.logikas.kratos.main.client.widget.ConfigureWidget;
 import com.logikas.kratos.main.client.widget.LayoutWidget;
 import com.logikas.kratos.main.shared.place.MainPlaceHistoryMapper;
 import com.logikas.kratos.main.shared.place.DefaultPlace;
@@ -23,13 +25,13 @@ public class MainClientModule extends AbstractGinModule {
     @Override
     protected void configure() {
 
-        bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
-
         bind(PlaceHistoryMapper.class).to(MainPlaceHistoryMapper.class).in(Singleton.class);
 
         bind(LayoutView.class).to(LayoutWidget.class).in(Singleton.class);
         
         bind(ViewManager.class).to(ViewManagerImpl.class).in(Singleton.class);
+        
+        bind(ConfigureView.class).to(ConfigureWidget.class).in(Singleton.class);
     }
 
     @Provides
@@ -42,11 +44,7 @@ public class MainClientModule extends AbstractGinModule {
         return historyHandler;
     }
 
-    @Provides
-    @Singleton
-    public PlaceController getPlaceController(EventBus eventBus) {
-        return new PlaceController(eventBus);
-    }
+    
 
     @Provides
     @Singleton

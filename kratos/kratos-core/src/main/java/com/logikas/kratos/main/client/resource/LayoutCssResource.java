@@ -18,8 +18,11 @@ public interface LayoutCssResource extends CssResource{
     
     String DEFAULT_CSS = "com/logikas/kratos/main/client/resource/layoutCssResource.css";
 
-    @ClassName("border-side-menu")
-    String borderSideMenu();
+    @ClassName("north-panel")
+    String northPanel();
+    
+    @ClassName("side-menu")
+    String sideMenu();
 
     @ClassName("background-center")
     String backgroundCenter();

@@ -8,6 +8,8 @@
         <inherits name='com.google.gwt.activity.Activity' />
         <inherits name='com.logikas.kratos.core.plugin.Plugin' />
         
+        <!--set-configuration-property name="CssResource.style" value="pretty"/-->
+        
 	<source path='client' />
 	<source path='shared' />
 

@@ -1,0 +1,18 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+    <ui:style>
+    </ui:style>
+    
+    <!--ui:with field="res" type="com.logikas.kratos.main.client.resource.MainResourceBundle"/-->
+    
+    <g:LayoutPanel>
+        <g:layer>
+            <g:HTMLPanel>
+                <div>SOY LA CONFIGURACION</div>
+            </g:HTMLPanel>
+        
+        </g:layer>
+    </g:LayoutPanel>
+    
+</ui:UiBinder>
