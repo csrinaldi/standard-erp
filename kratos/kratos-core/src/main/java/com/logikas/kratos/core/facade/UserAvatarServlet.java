@@ -140,7 +140,7 @@ public class UserAvatarServlet extends HttpServlet {
       } else {
         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         resp.setContentType("text/html");
-        resp.getOutputStream().print("Unable to find resource with id " + id);
+        resp.getOutputStream().print("Bad formatted id " + id);
       }
     }
   }

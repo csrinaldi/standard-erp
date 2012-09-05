@@ -5,8 +5,8 @@ import com.logikas.kratos.core.document.shared.UploadResult;
 import com.logikas.kratos.system.client.view.CreateUserView;
 import com.logikas.kratos.system.shared.proxy.UserProxy;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsonUtils;
-import com.google.gwt.core.shared.GWT;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.ui.client.ValueBoxEditorDecorator;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -39,7 +39,7 @@ public class CreateUserWidget extends Composite implements CreateUserView, Edito
   public CreateUserWidget() {
     initWidget(BINDER.createAndBindUi(this));
     formPanel.setEncoding(FormPanel.ENCODING_MULTIPART);
-    formPanel.setAction("/resources");
+    formPanel.setAction(GWT.getHostPageBaseURL() + "resources");
     formPanel.setMethod(FormPanel.METHOD_POST);
   }
 
@@ -73,11 +73,18 @@ public class CreateUserWidget extends Composite implements CreateUserView, Edito
   }
 
   @UiHandler("avatarUploader")
-  void onAvatarChange(ChangeEvent event) {
+  void onAvatarChange(ChangeEvent event) {    
+    formPanel.submit();
+    //avatarUploader.setEnabled(false);
+  }
+  /*
+  @UiHandler("upload")
+  void onUploadClick(ClickEvent event) {
     avatarUploader.setEnabled(false);
     formPanel.submit();
   }
-
+  */
+  
   @UiHandler("formPanel")
   void onSubmitComplete(SubmitCompleteEvent event) {
 
@@ -94,7 +101,7 @@ public class CreateUserWidget extends Composite implements CreateUserView, Edito
         switch (uploadResult.getStatus()) {
           
           case OK:
-            avatarView.setUrl("/resources?id=" + uploadResult.getDocumentId());
+            avatarView.setUrl(GWT.getHostPageBaseURL() + "resources?id=" + uploadResult.getDocumentId());
             break;
 
           case VALIDATION_ERROR:

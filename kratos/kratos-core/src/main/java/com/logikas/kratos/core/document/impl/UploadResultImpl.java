@@ -26,7 +26,7 @@ public class UploadResultImpl implements UploadResult {
     final String documentId = JSONObject.quote(result.getDocumentId());
     final String status = JSONObject.quote(result.getStatus().name());
     final String message = JSONObject.quote(result.getMessage());
-    return String.format("{\"documentId\": %s, \"status\": \"%s\", \"message\": %s}", documentId, status, message);
+    return String.format("{\"documentId\": %s, \"status\": %s, \"message\": %s}", documentId, status, message);
    }
   
   protected UploadResultImpl(String documentId, Status status, String message) {

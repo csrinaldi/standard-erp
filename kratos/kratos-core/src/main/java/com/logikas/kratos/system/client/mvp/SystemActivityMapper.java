@@ -8,7 +8,6 @@ import com.logikas.kratos.system.shared.place.SearchUserPlace;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
-import com.google.gwt.user.client.Window;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -24,10 +23,7 @@ public class SystemActivityMapper implements ActivityMapper {
   @Override
   public Activity getActivity(Place place) {
     if (place instanceof CreateUserPlace) {
-        
-        //Browser.getWindow().getConsole().log(place);
-        Window.alert("HOLA SOY "+place.toString());
-        
+
       return createUser.get();
     }
     if (place instanceof SearchUserPlace) {

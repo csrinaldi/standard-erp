@@ -11,6 +11,8 @@
 		<g:FormPanel ui:field="formPanel">
 			<g:FileUpload name="avatar" ui:field="avatarUploader"></g:FileUpload>
 		</g:FormPanel>
+		
+		<g:Button ui:field="upload">Upload</g:Button>
 
 		<e:ValueBoxEditorDecorator ui:field="name">
 			<e:valuebox>
