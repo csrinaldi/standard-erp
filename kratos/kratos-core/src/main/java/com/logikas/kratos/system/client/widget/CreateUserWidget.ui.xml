@@ -9,11 +9,9 @@
 		<g:Image width="100px" height="100px" ui:field="avatarView"></g:Image>
 
 		<g:FormPanel ui:field="formPanel">
-			<g:FileUpload name="avatar" ui:field="avatarUploader"></g:FileUpload>
+			<g:FileUpload name="content" ui:field="avatarUploader"></g:FileUpload>
 		</g:FormPanel>
 		
-		<g:Button ui:field="upload">Upload</g:Button>
-
 		<e:ValueBoxEditorDecorator ui:field="name">
 			<e:valuebox>
 				<g:TextBox></g:TextBox>

@@ -12,10 +12,8 @@ import com.google.common.primitives.Ints;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -55,7 +53,7 @@ public class UserAvatarServlet extends HttpServlet {
 
     try {
 
-      final Part part = req.getPart("avatar");
+      final Part part = req.getPart("content");
 
       if (part != null) {
 
@@ -76,7 +74,7 @@ public class UserAvatarServlet extends HttpServlet {
         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         resp.setContentType("text/html");
 
-        final UploadResult r = UploadResultImpl.createInternalError("Parameter \"avatar\" is required");
+        final UploadResult r = UploadResultImpl.createInternalError("Parameter \"content\" is required");
         final String result = UploadResultImpl.serialize(r);
 
         resp.getOutputStream().print(result);
