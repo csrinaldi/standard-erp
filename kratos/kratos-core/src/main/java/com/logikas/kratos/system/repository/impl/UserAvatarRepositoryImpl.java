@@ -43,11 +43,11 @@ public class UserAvatarRepositoryImpl implements UserAvatarRepository {
 
   @Override
   public boolean exists(Long primaryKey) {
-    return findOne(primaryKey) != null;
+    return find(primaryKey) != null;
   }
 
   @Override
-  public UserAvatar findOne(Long primaryKey) {
+  public UserAvatar find(Long primaryKey) {
     return em.get().find(UserAvatar.class, primaryKey);
   }
 }

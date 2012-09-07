@@ -111,7 +111,7 @@ public class UserAvatarServlet extends HttpServlet {
     if (!Strings.isNullOrEmpty(idStr)) {
       final Integer id = Ints.tryParse(idStr);
       if (id != null) {
-        final UserAvatar avatar = service.findOne(id.longValue());
+        final UserAvatar avatar = service.find(id.longValue());
 
         if (avatar != null) {
 

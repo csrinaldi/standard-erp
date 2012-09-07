@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public User find(Long id) {
-    return repository.findOne(id);
+    return repository.find(id);
   }
 
   public void save(User user) {

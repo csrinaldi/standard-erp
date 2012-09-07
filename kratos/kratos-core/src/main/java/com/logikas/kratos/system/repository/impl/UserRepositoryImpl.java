@@ -21,7 +21,7 @@ public class UserRepositoryImpl implements UserRepository {
   }
 
   @Override
-  public User findOne(Long id) {
+  public User find(Long id) {
     return em.get().find(User.class, id);
   }
 
@@ -51,7 +51,7 @@ public class UserRepositoryImpl implements UserRepository {
 
   @Override
   public boolean exists(Long primaryKey) {
-    return findOne(primaryKey) != null;
+    return find(primaryKey) != null;
   }
 
   @SuppressWarnings("unchecked")

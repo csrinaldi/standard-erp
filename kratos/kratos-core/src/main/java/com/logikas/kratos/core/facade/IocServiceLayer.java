@@ -3,6 +3,7 @@ package com.logikas.kratos.core.facade;
 import com.logikas.kratos.core.locator.GenericEntityLocator;
 import com.logikas.kratos.core.repository.EntityAccessor;
 import com.logikas.kratos.core.repository.EntityFinder;
+import com.logikas.kratos.core.repository.EntityFinderLocator;
 
 import com.google.inject.Injector;
 import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;
@@ -23,37 +24,54 @@ class IocServiceLayer extends ServiceLayerDecorator {
 
   private final EntityAccessorFactory accessorFactory;
 
+  private final EntityFinderLocator entityFinders;
+
   @Inject
   IocServiceLayer(Injector injector, ValidatorFactory validatorFactory,
-      EntityAccessorFactory accessorFactory) {
+      EntityAccessorFactory accessorFactory,
+      EntityFinderLocator entityFinders) {
     this.injector = injector;
     this.validatorFactory = validatorFactory;
     this.accessorFactory = accessorFactory;
+    this.entityFinders = entityFinders;
   }
 
-  @SuppressWarnings("unchecked")
-  @Override
+  @SuppressWarnings({"rawtypes", "unchecked"})
   public <T extends Locator<?, ?>> T createLocator(Class<T> clazz) {
-    final T locator = injector.getInstance(clazz);
 
-    if (locator instanceof GenericEntityLocator) {
-      @SuppressWarnings("rawtypes")
-      final GenericEntityLocator genericLocator = (GenericEntityLocator) locator;
+    if (GenericEntityLocator.class.isAssignableFrom(clazz)) {
 
-      @SuppressWarnings("rawtypes")
-      final EntityFinder finder =
-          (EntityFinder) injector.getInstance(genericLocator.getFinderType());
-      genericLocator.setFinder(finder);
+      EntityFinder finder;
 
-      @SuppressWarnings("rawtypes")
+      GenericEntityLocator genericLocator;
+
+      if (GenericEntityLocator.class.equals(clazz)) {
+
+        finder = entityFinders.get(clazz);
+
+        genericLocator = new GenericEntityLocator(finder.getClass());
+
+      } else {
+
+        genericLocator = (GenericEntityLocator) injector.getInstance(clazz);
+
+        finder = (EntityFinder) injector.getInstance(genericLocator.getFinderType());
+      }
+
       final EntityAccessor accessor =
           accessorFactory
               .createAccessor(genericLocator.getDomainType(), genericLocator.getIdType());
 
       genericLocator.setAccessor(accessor);
-    }
 
-    return locator;
+      genericLocator.setFinder(finder);
+
+      return (T) genericLocator;
+      
+    } else {
+
+      return injector.getInstance(clazz);
+    }
   }
 
   @Override

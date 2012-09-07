@@ -2,7 +2,7 @@ package com.logikas.kratos.core.locator;
 
 import com.logikas.kratos.core.repository.EntityAccessor;
 import com.logikas.kratos.core.repository.EntityFinder;
-import com.logikas.kratos.core.repository.Repository;
+import com.logikas.kratos.core.repository.EntityFinders;
 
 import com.google.inject.TypeLiteral;
 import com.google.web.bindery.requestfactory.shared.Locator;
@@ -13,18 +13,33 @@ import java.lang.reflect.Type;
 
 public class GenericEntityLocator<F extends EntityFinder<?, ?>> extends Locator<Object, Object> {
 
-  private final Class<? extends Object> domainType;
+  private Class<? extends Object> domainType;
 
-  private final Class<? extends Object> idType;
+  private Class<? extends Object> idType;
 
-  private final Class<F> finderType;
+  private Class<F> finderType;
 
   private EntityFinder<?, ?> finder;
 
   private EntityAccessor<?, ?> accessor;
+  
+  @SuppressWarnings({"rawtypes", "unchecked"})
+  private void init(Class<F> finderType) {
+    
+    this.finderType = finderType;
 
+    domainType = EntityFinders.getDomainType((Class)finderType);
+
+    idType = EntityFinders.getIdType((Class)finderType);   
+  }
+  
+  public GenericEntityLocator(Class<F> finderType) {    
+    init(finderType);   
+  }
+    
   @SuppressWarnings("unchecked")
-  public GenericEntityLocator() {
+  protected GenericEntityLocator() {
+    
     final TypeLiteral<?> actualLocatorLiteral =
         TypeLiteral.get(getClass()).getSupertype(GenericEntityLocator.class);
 
@@ -35,30 +50,8 @@ public class GenericEntityLocator<F extends EntityFinder<?, ?>> extends Locator<
 
     assert actualFinderType instanceof Class : "Wrong finder type parameter in "
         + getClass().getName();
-
-    finderType = (Class<F>) actualFinderType;
-
-    @SuppressWarnings({"rawtypes"})
-    final TypeLiteral<Repository<?, ?>> actualFinderLiteral =
-        (TypeLiteral) TypeLiteral.get(actualFinderType).getSupertype(EntityFinder.class);
-
-    final ParameterizedType actualFinderGeneric = (ParameterizedType) actualFinderLiteral.getType();
-
-    final Type actualDomainType = actualFinderGeneric.getActualTypeArguments()[0];
-
-    assert actualDomainType instanceof Class : "Wrong domain type parameter in "
-        + finderType.getName();
-
-    domainType = (Class<?>) actualDomainType;
-
-    final Type actualIdType = actualFinderGeneric.getActualTypeArguments()[1];
-
-    assert actualIdType instanceof Class : "Wrong id type parameter in " + finderType.getName();
-
-    idType = (Class<?>) actualIdType;
-
-    assert Serializable.class.isAssignableFrom(idType) : "ID type must implement java.io.Serializable in "
-        + finderType.getName();
+    
+    init((Class<F>) actualFinderType);
   }
 
   public void setFinder(EntityFinder<?, ?> finder) {
@@ -81,7 +74,7 @@ public class GenericEntityLocator<F extends EntityFinder<?, ?>> extends Locator<
   @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
   public Object find(Class<? extends Object> clazz, Object id) {
-    return ((EntityFinder) finder).findOne((Serializable) id);
+    return ((EntityFinder) finder).find((Serializable) id);
   }
 
   @SuppressWarnings({"unchecked", "rawtypes"})

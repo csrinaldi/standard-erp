@@ -26,6 +26,8 @@ public class KratosServletModule extends ServletModule {
 
   @Override
   protected void configureServlets() {
+    
+    install(new EntityFinderModule());
 
     bind(ExceptionHandler.class).to(DefaultExceptionHandler.class).in(Singleton.class);
     bind(EntityAccessorFactory.class).to(JpaEntityAccessorFactory.class).in(Singleton.class);

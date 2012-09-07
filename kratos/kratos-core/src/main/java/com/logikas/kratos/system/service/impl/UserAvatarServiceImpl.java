@@ -30,10 +30,10 @@ public class UserAvatarServiceImpl implements UserAvatarService {
     this.now = now;
     this.user = user;
   }
-
+  
   @Override
-  public UserAvatar findOne(Long primaryKey) {
-    return repository.findOne(primaryKey);
+  public UserAvatar find(Long primaryKey) {
+    return repository.find(primaryKey);
   }
 
   @Override
