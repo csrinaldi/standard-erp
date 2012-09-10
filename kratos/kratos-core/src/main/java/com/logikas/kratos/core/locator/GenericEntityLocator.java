@@ -12,36 +12,12 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 public class GenericEntityLocator<F extends EntityFinder<?, ?>> extends Locator<Object, Object> {
-
-  private Class<? extends Object> domainType;
-
-  private Class<? extends Object> idType;
-
-  private Class<F> finderType;
-
-  private EntityFinder<?, ?> finder;
-
-  private EntityAccessor<?, ?> accessor;
   
-  @SuppressWarnings({"rawtypes", "unchecked"})
-  private void init(Class<F> finderType) {
-    
-    this.finderType = finderType;
-
-    domainType = EntityFinders.getDomainType((Class)finderType);
-
-    idType = EntityFinders.getIdType((Class)finderType);   
-  }
-  
-  public GenericEntityLocator(Class<F> finderType) {    
-    init(finderType);   
-  }
-    
   @SuppressWarnings("unchecked")
-  protected GenericEntityLocator() {
+  public static <F extends EntityFinder<?, ?>> Class<F> getFinderType(Class<? extends GenericEntityLocator<F>> locatorType) {
     
     final TypeLiteral<?> actualLocatorLiteral =
-        TypeLiteral.get(getClass()).getSupertype(GenericEntityLocator.class);
+        TypeLiteral.get(locatorType).getSupertype(GenericEntityLocator.class);
 
     final ParameterizedType actualLocatorGeneric =
         ((ParameterizedType) actualLocatorLiteral.getType());
@@ -49,10 +25,28 @@ public class GenericEntityLocator<F extends EntityFinder<?, ?>> extends Locator<
     final Type actualFinderType = actualLocatorGeneric.getActualTypeArguments()[0];
 
     assert actualFinderType instanceof Class : "Wrong finder type parameter in "
-        + getClass().getName();
+        + locatorType.getName();
     
-    init((Class<F>) actualFinderType);
+    return (Class<F>) actualFinderType;        
   }
+
+  private Class<? extends Object> domainType;
+
+  private Class<? extends Object> idType;
+
+  private EntityFinder<?, ?> finder;
+
+  private EntityAccessor<?, ?> accessor;
+  
+  @SuppressWarnings({"rawtypes", "unchecked"})
+  public GenericEntityLocator() {
+    
+    final Class<F> finderType = getFinderType((Class)getClass()); 
+    
+    domainType = EntityFinders.getDomainType((Class)finderType);
+
+    idType = EntityFinders.getIdType((Class)finderType);   
+  }   
 
   public void setFinder(EntityFinder<?, ?> finder) {
     this.finder = finder;
@@ -93,10 +87,6 @@ public class GenericEntityLocator<F extends EntityFinder<?, ?>> extends Locator<
   @Override
   public Class<Object> getIdType() {
     return (Class) idType;
-  }
-
-  public Class<F> getFinderType() {
-    return finderType;
   }
 
   @SuppressWarnings({"unchecked", "rawtypes"})

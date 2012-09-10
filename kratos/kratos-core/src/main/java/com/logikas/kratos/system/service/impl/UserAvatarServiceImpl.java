@@ -7,8 +7,6 @@ import com.logikas.kratos.system.service.UserAvatarService;
 
 import com.google.common.io.ByteStreams;
 
-import org.hibernate.Hibernate;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;

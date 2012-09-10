@@ -1,6 +1,5 @@
-package com.logikas.kratos.core.facade;
+package com.logikas.kratos.core.repository;
 
-import com.logikas.kratos.core.repository.EntityAccessor;
 
 public interface EntityAccessorFactory {
 

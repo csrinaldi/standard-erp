@@ -2,8 +2,8 @@ package com.logikas.kratos.core.facade;
 
 import com.logikas.kratos.core.locator.GenericEntityLocator;
 import com.logikas.kratos.core.repository.EntityAccessor;
+import com.logikas.kratos.core.repository.EntityAccessorFactory;
 import com.logikas.kratos.core.repository.EntityFinder;
-import com.logikas.kratos.core.repository.EntityFinderLocator;
 
 import com.google.inject.Injector;
 import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;
@@ -24,16 +24,12 @@ class IocServiceLayer extends ServiceLayerDecorator {
 
   private final EntityAccessorFactory accessorFactory;
 
-  private final EntityFinderLocator entityFinders;
-
   @Inject
   IocServiceLayer(Injector injector, ValidatorFactory validatorFactory,
-      EntityAccessorFactory accessorFactory,
-      EntityFinderLocator entityFinders) {
+      EntityAccessorFactory accessorFactory) {
     this.injector = injector;
     this.validatorFactory = validatorFactory;
     this.accessorFactory = accessorFactory;
-    this.entityFinders = entityFinders;
   }
 
   @SuppressWarnings({"rawtypes", "unchecked"})
@@ -41,22 +37,11 @@ class IocServiceLayer extends ServiceLayerDecorator {
 
     if (GenericEntityLocator.class.isAssignableFrom(clazz)) {
 
-      EntityFinder finder;
+      final GenericEntityLocator genericLocator =
+          (GenericEntityLocator) injector.getInstance(clazz);
 
-      GenericEntityLocator genericLocator;
-
-      if (GenericEntityLocator.class.equals(clazz)) {
-
-        finder = entityFinders.get(clazz);
-
-        genericLocator = new GenericEntityLocator(finder.getClass());
-
-      } else {
-
-        genericLocator = (GenericEntityLocator) injector.getInstance(clazz);
-
-        finder = (EntityFinder) injector.getInstance(genericLocator.getFinderType());
-      }
+      final EntityFinder finder =
+          (EntityFinder) injector.getInstance(GenericEntityLocator.getFinderType((Class) clazz));
 
       final EntityAccessor accessor =
           accessorFactory
@@ -67,7 +52,7 @@ class IocServiceLayer extends ServiceLayerDecorator {
       genericLocator.setFinder(finder);
 
       return (T) genericLocator;
-      
+
     } else {
 
       return injector.getInstance(clazz);

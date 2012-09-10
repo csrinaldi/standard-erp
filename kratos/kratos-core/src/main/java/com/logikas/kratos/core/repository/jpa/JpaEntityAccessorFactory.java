@@ -1,7 +1,7 @@
-package com.logikas.kratos.core.facade.jpa;
+package com.logikas.kratos.core.repository.jpa;
 
-import com.logikas.kratos.core.facade.EntityAccessorFactory;
 import com.logikas.kratos.core.repository.EntityAccessor;
+import com.logikas.kratos.core.repository.EntityAccessorFactory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Member;

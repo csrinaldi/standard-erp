@@ -20,7 +20,7 @@ public class EntityFinders {
     final ParameterizedType actualFinderGeneric = (ParameterizedType) actualFinderLiteral.getType();
 
     final Type actualDomainType = actualFinderGeneric.getActualTypeArguments()[0];
-
+    
     assert actualDomainType instanceof Class : "Wrong domain type parameter in "
         + finderLiteral.getRawType().getName();
 

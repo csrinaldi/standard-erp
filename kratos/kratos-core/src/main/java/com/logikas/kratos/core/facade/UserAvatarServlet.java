@@ -1,13 +1,17 @@
 package com.logikas.kratos.core.facade;
 
-import com.logikas.kratos.core.document.impl.UploadResultImpl;
+import com.logikas.kratos.core.document.shared.DocumentFactory;
 import com.logikas.kratos.core.document.shared.UploadResult;
+import com.logikas.kratos.core.document.shared.UploadResult.Status;
 import com.logikas.kratos.system.domain.UserAvatar;
 import com.logikas.kratos.system.service.UserAvatarService;
 
 import com.google.common.base.Strings;
 import com.google.common.io.ByteStreams;
 import com.google.common.primitives.Ints;
+import com.google.web.bindery.autobean.shared.AutoBean;
+import com.google.web.bindery.autobean.shared.AutoBeanCodex;
+import com.google.web.bindery.autobean.vm.AutoBeanFactorySource;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -16,7 +20,6 @@ import java.io.InputStream;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +27,6 @@ import javax.servlet.http.Part;
 import javax.validation.ValidationException;
 
 @Singleton
-@MultipartConfig
 public class UserAvatarServlet extends HttpServlet {
 
   private static final String CONTENT_DISPOSITION = "Content-Disposition";
@@ -50,6 +52,10 @@ public class UserAvatarServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
       IOException {
+    
+    final DocumentFactory factory = AutoBeanFactorySource.create(DocumentFactory.class);
+    final AutoBean<UploadResult> autoBean = factory.uploadResult();
+    final UploadResult ur = autoBean.as();
 
     try {
 
@@ -62,20 +68,23 @@ public class UserAvatarServlet extends HttpServlet {
         final InputStream content = part.getInputStream();
         final UserAvatar avatar = service.create(filename, contentType, content);
 
-        final UploadResult r = UploadResultImpl.createValid(avatar.getId().toString());
-        final String result = UploadResultImpl.serialize(r);
+        ur.setStatus(Status.OK);
+        ur.setDocumentId(avatar.getId().toString());
+
+        final String result = AutoBeanCodex.encode(autoBean).getPayload();
 
         resp.setStatus(HttpServletResponse.SC_OK);
         resp.setContentType("text/html");
         resp.getOutputStream().print(result);
 
       } else {
+        
         // Usado por Google cuando se requieren parametros
         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         resp.setContentType("text/html");
-
-        final UploadResult r = UploadResultImpl.createInternalError("Parameter \"content\" is required");
-        final String result = UploadResultImpl.serialize(r);
+        
+        ur.setMessage("Parameter \"content\" is required");
+        final String result = AutoBeanCodex.encode(autoBean).getPayload();
 
         resp.getOutputStream().print(result);
       }
@@ -84,8 +93,10 @@ public class UserAvatarServlet extends HttpServlet {
       resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
       resp.setContentType("text/html");
 
-      final UploadResult r = UploadResultImpl.createValidationError(e.getMessage());
-      final String result = UploadResultImpl.serialize(r);
+      ur.setStatus(Status.VALIDATION_ERROR);
+      ur.setMessage(e.getMessage());
+      
+      final String result = AutoBeanCodex.encode(autoBean).getPayload();
 
       resp.getOutputStream().print(result);
 
@@ -94,10 +105,12 @@ public class UserAvatarServlet extends HttpServlet {
       // Usado por Google cuando se requieren parametros
       resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
       resp.setContentType("text/html");
-
-      final UploadResult r = UploadResultImpl.createInternalError("Multipart request is required");
-      final String result = UploadResultImpl.serialize(r);
-
+      
+      ur.setStatus(Status.INTERNAL_ERROR);
+      ur.setMessage("Multipart request is required");
+      
+      final String result = AutoBeanCodex.encode(autoBean).getPayload();
+      
       resp.getOutputStream().print(result);
     }
   }

@@ -1,11 +1,12 @@
 package com.logikas.kratos.core.ioc;
 
-import com.logikas.kratos.core.facade.EntityAccessorFactory;
 import com.logikas.kratos.core.facade.KratosRequestFactoryServlet;
 import com.logikas.kratos.core.facade.UserAvatarServlet;
-import com.logikas.kratos.core.facade.jpa.JpaEntityAccessorFactory;
 import com.logikas.kratos.core.ioc.validation.ValidationModule;
+import com.logikas.kratos.core.repository.EntityAccessorFactory;
 import com.logikas.kratos.core.repository.jpa.EventBusEntityListener;
+import com.logikas.kratos.core.repository.jpa.JpaEntityAccessorFactory;
+import com.logikas.kratos.security.ioc.SecurityMainModule;
 import com.logikas.kratos.system.ioc.SystemModule;
 
 import com.google.inject.Provides;
@@ -14,7 +15,6 @@ import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.ServletModule;
 import com.google.web.bindery.requestfactory.server.DefaultExceptionHandler;
 import com.google.web.bindery.requestfactory.server.ExceptionHandler;
-import com.logikas.kratos.security.ioc.SecurityMainModule;
 
 import javax.inject.Singleton;
 import javax.persistence.EntityManagerFactory;
@@ -27,7 +27,7 @@ public class KratosServletModule extends ServletModule {
   @Override
   protected void configureServlets() {
     
-    install(new EntityFinderModule());
+    //install(new AutodiscoveredEntityFinderModule());
 
     bind(ExceptionHandler.class).to(DefaultExceptionHandler.class).in(Singleton.class);
     bind(EntityAccessorFactory.class).to(JpaEntityAccessorFactory.class).in(Singleton.class);

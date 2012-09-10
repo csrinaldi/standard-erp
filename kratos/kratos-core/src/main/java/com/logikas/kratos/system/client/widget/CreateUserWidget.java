@@ -1,12 +1,11 @@
 package com.logikas.kratos.system.client.widget;
 
-import com.logikas.kratos.core.document.client.UploadResultJso;
+import com.logikas.kratos.core.document.shared.DocumentFactory;
 import com.logikas.kratos.core.document.shared.UploadResult;
 import com.logikas.kratos.system.client.view.CreateUserView;
 import com.logikas.kratos.system.shared.proxy.UserProxy;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.JsonUtils;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.ui.client.ValueBoxEditorDecorator;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -21,6 +20,7 @@ import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
 import com.google.web.bindery.requestfactory.shared.RequestFactory;
 
@@ -85,6 +85,8 @@ public class CreateUserWidget extends Composite implements CreateUserView, Edito
   }
   */
   
+  private final DocumentFactory documentFactory = GWT.create(DocumentFactory.class);
+  
   @UiHandler("formPanel")
   void onSubmitComplete(SubmitCompleteEvent event) {
 
@@ -94,9 +96,9 @@ public class CreateUserWidget extends Composite implements CreateUserView, Edito
 
     if (result != null) {
 
-      try {
+      try {       
         
-        final UploadResult uploadResult = JsonUtils.<UploadResultJso> safeEval(result);
+        final UploadResult uploadResult = AutoBeanCodex.decode(documentFactory, UploadResult.class, result).as();
 
         switch (uploadResult.getStatus()) {
           
