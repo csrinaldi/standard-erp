@@ -1,7 +1,7 @@
 package com.logikas.kratos.core.ioc;
 
-import com.logikas.kratos.core.repository.EntityFinder;
-import com.logikas.kratos.core.repository.EntityFinders;
+import com.logikas.kratos.core.service.EntityFinder;
+import com.logikas.kratos.core.service.EntityFinders;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Key;

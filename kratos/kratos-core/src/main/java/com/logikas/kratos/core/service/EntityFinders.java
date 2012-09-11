@@ -1,4 +1,5 @@
-package com.logikas.kratos.core.repository;
+package com.logikas.kratos.core.service;
+
 
 import com.google.inject.TypeLiteral;
 

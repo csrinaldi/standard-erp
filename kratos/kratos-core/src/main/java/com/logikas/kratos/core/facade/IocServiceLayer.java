@@ -3,7 +3,7 @@ package com.logikas.kratos.core.facade;
 import com.logikas.kratos.core.locator.GenericEntityLocator;
 import com.logikas.kratos.core.repository.EntityAccessor;
 import com.logikas.kratos.core.repository.EntityAccessorFactory;
-import com.logikas.kratos.core.repository.EntityFinder;
+import com.logikas.kratos.core.service.EntityFinder;
 
 import com.google.inject.Injector;
 import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;

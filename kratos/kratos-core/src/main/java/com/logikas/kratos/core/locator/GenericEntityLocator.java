@@ -1,8 +1,8 @@
 package com.logikas.kratos.core.locator;
 
 import com.logikas.kratos.core.repository.EntityAccessor;
-import com.logikas.kratos.core.repository.EntityFinder;
-import com.logikas.kratos.core.repository.EntityFinders;
+import com.logikas.kratos.core.service.EntityFinder;
+import com.logikas.kratos.core.service.EntityFinders;
 
 import com.google.inject.TypeLiteral;
 import com.google.web.bindery.requestfactory.shared.Locator;

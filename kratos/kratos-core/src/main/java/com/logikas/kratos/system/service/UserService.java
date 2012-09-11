@@ -1,6 +1,6 @@
 package com.logikas.kratos.system.service;
 
-import com.logikas.kratos.core.repository.EntityFinder;
+import com.logikas.kratos.core.service.EntityFinder;
 import com.logikas.kratos.core.validation.Validated;
 import com.logikas.kratos.system.domain.User;
 import com.logikas.kratos.system.validation.Admin;

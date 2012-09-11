@@ -1,4 +1,4 @@
-package com.logikas.kratos.core.repository;
+package com.logikas.kratos.core.service;
 
 import java.io.Serializable;
 

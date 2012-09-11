@@ -132,7 +132,7 @@ public class UserAvatarServlet extends HttpServlet {
 
             resp.setStatus(HttpServletResponse.SC_OK);
             resp.setContentType(avatar.getContentType());
-            resp.setHeader(CONTENT_DISPOSITION, "attachment;  filename=" + avatar.getFilename());
+      //      resp.setHeader(CONTENT_DISPOSITION, "attachment;  filename=" + avatar.getFilename());
 
             // TODO deberian enviarse streams a la base de datos
             final InputStream content = new ByteArrayInputStream(avatar.getContent());  
