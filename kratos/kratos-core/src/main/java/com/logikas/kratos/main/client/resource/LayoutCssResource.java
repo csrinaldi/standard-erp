@@ -26,4 +26,7 @@ public interface LayoutCssResource extends CssResource{
 
     @ClassName("background-center")
     String backgroundCenter();
+    
+    @ClassName("menu-module")
+    String menuModule();
 }

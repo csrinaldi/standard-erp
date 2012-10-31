@@ -54,9 +54,8 @@ public class JsoMenuNodeBuilder implements MenuNodeBuilder {
   }
 
   @Override
-  public final MenuNodeBuilder child(String name) {
-    final JsoMenuNodeBuilder child = new JsoMenuNodeBuilder(JsoMenuNode.create());
-    getMenuNode().addChild(name, child.getMenuNode());
-    return child;
+  public final MenuNodeBuilder child(String name, MenuNode node) {
+    getMenuNode().addChild(name, (JsoMenuNode)node);
+    return this;
   }
 }

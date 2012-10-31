@@ -9,7 +9,7 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.*;
-import com.logikas.kratos.main.client.view.LayoutView;
+import com.logikas.kratos.core.ui.client.LayoutView;
 import static com.google.gwt.dom.client.Style.Unit.PCT;
 import com.google.gwt.user.client.Window;
 import com.logikas.kratos.main.client.resource.MainResourceBundle;
@@ -34,6 +34,10 @@ public class LayoutWidget implements LayoutView {
      */
     private final int NORTH_HEIGHT = 80;
     
+    /**
+     * Representa el alto del menu de modulos
+     */
+    private final int MENU_MODULE_HEIGHT = 50;
     
     private static LayoutWidgetUiBinder uiBinder = GWT.create(LayoutWidgetUiBinder.class);
 
@@ -49,6 +53,9 @@ public class LayoutWidget implements LayoutView {
     SimplePanel south;
     @UiField
     SimplePanel east;
+    @UiField
+    SimplePanel menuModule;
+    
     @UiField
     MainResourceBundle res;
     private static MainResourceBundle DEFAULT_RESOURCES;
@@ -121,18 +128,41 @@ public class LayoutWidget implements LayoutView {
             }
         };
     }
+    
+    @Override
+    public AcceptsOneWidget getMenuModuleRegion() {
+        return new AcceptsOneWidget() {
+            @Override
+            public void setWidget(IsWidget w) {
+                Widget widget = Widget.asWidgetOrNull(w);
+                menuModule.setWidget(widget);
+            }
+        };
+    }
 
     @Override
     public void setDefaultLayout() {
         
+        final int padding = 5;
+        
         root.setWidgetLeftWidth(north, 0, Style.Unit.PX, Window.getClientWidth(), Style.Unit.PX);
         root.setWidgetTopHeight(north, 0, Style.Unit.PX, NORTH_HEIGHT, Style.Unit.PX);
 
+        root.setWidgetLeftWidth(menuModule, MENU_WITH + MENU_MARGIN + padding, 
+                                Style.Unit.PX, 
+                                Window.getClientWidth() - (MENU_WITH + MENU_MARGIN + padding * 2), 
+                                Style.Unit.PX);
+        root.setWidgetTopHeight(menuModule, NORTH_HEIGHT + padding, Style.Unit.PX, MENU_MODULE_HEIGHT, Style.Unit.PX);
+
+        
         root.setWidgetLeftWidth(west, 0, PCT, MENU_WITH, Style.Unit.PX);
         root.setWidgetTopHeight(west, NORTH_HEIGHT, Style.Unit.PX, (Window.getClientHeight() - NORTH_HEIGHT), Style.Unit.PX);
 
         root.setWidgetLeftWidth(center, MENU_WITH + MENU_MARGIN, Style.Unit.PX, (Window.getClientWidth() - (MENU_WITH + MENU_MARGIN)), Style.Unit.PX);
-        root.setWidgetTopHeight(center, NORTH_HEIGHT + 5 , Style.Unit.PX, (Window.getClientHeight() - (NORTH_HEIGHT+10)), Style.Unit.PX);
+        root.setWidgetTopHeight(center, NORTH_HEIGHT + padding + MENU_MODULE_HEIGHT , 
+                                        Style.Unit.PX, 
+                                        (Window.getClientHeight() - (NORTH_HEIGHT + (padding*2) + MENU_MODULE_HEIGHT)), Style.Unit.PX);
+        
 
         root.setWidgetLeftWidth(south, 0, PCT, 0, PCT);
         root.setWidgetTopHeight(south, 0, PCT, 0, PCT);

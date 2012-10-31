@@ -10,6 +10,6 @@ import com.google.gwt.user.client.ui.IsWidget;
  *
  * @author cristian
  */
-public interface ConfigureView extends IsWidget{
+public interface DashboardView extends IsWidget{
     
 }

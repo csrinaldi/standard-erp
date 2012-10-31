@@ -12,6 +12,9 @@
             <g:SimplePanel ui:field="north" stylePrimaryName="{res.layoutStyle.northPanel}"/>
         </g:layer>
         <g:layer>
+            <g:SimplePanel ui:field="menuModule" stylePrimaryName="{res.layoutStyle.menuModule}"/>
+        </g:layer>
+        <g:layer>
             <g:SimplePanel ui:field="west" stylePrimaryName="{res.layoutStyle.sideMenu}"/>
         </g:layer>
         <g:layer>

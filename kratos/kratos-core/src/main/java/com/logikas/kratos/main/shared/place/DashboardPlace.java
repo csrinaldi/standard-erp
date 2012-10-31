@@ -12,22 +12,23 @@ import com.google.gwt.place.shared.Prefix;
  *
  * @author cristian
  */
-public class ConfigurePlace extends Place {
+public class DashboardPlace extends Place {
 
-    public ConfigurePlace() {
+    public DashboardPlace() {
     }
 
-    
-    public static class Tokenizer implements PlaceTokenizer<ConfigurePlace> {
+    @Prefix("Dashboard")
+    public static class Tokenizer implements PlaceTokenizer<DashboardPlace> {
 
         @Override
-        public ConfigurePlace getPlace(String token) {
-            return new ConfigurePlace();
+        public DashboardPlace getPlace(String token) {
+            return new DashboardPlace();
         }
 
         @Override
-        public String getToken(ConfigurePlace place) {
+        public String getToken(DashboardPlace place) {
             return "";
         }
     }
+    
 }

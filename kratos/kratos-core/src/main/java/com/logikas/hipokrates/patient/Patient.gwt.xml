@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 1.7.0//EN" "http://google-web-toolkit.googlecode.com/svn/tags/1.7.0/distro-source/core/src/gwt-module.dtd">
+<module rename-to="patient">
+
+    <inherits name='com.google.gwt.user.User' />
+    
+    <inherits name='com.google.gwt.inject.Inject' />
+    <inherits name='com.google.gwt.activity.Activity' />
+    <inherits name='com.google.gwt.place.Place' />
+    <inherits name='com.google.web.bindery.requestfactory.RequestFactory' />
+
+    <inherits name='com.logikas.kratos.core.plugin.Plugin' />
+    <inherits name='com.logikas.kratos.core.ui.CoreUi' />        
+   
+    <source path='client' />
+    <source path='shared' />
+        
+</module>

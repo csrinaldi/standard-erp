@@ -28,6 +28,12 @@ root {
     border-top: none;
 }
 
+.menu-module{
+    border-bottom-color: rgba(0, 0, 0, .2);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
 
 
 .background-center{

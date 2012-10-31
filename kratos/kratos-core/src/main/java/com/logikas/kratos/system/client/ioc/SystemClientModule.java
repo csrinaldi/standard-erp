@@ -8,11 +8,8 @@ import com.logikas.kratos.system.shared.request.SystemRequestFactory;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.inject.client.AbstractGinModule;
-import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.inject.Provides;
-import com.google.inject.name.Named;
 import com.google.web.bindery.event.shared.EventBus;
-import com.logikas.kratos.system.client.mvp.SystemPlaceHistoryMapper;
 
 import javax.inject.Singleton;
 
@@ -22,14 +19,6 @@ public class SystemClientModule extends AbstractGinModule {
   protected void configure() {
     bind(CreateUserView.class).to(CreateUserWidget.class).in(Singleton.class);
     bind(SearchUserView.class).to(SearchUserWidget.class).in(Singleton.class);
-  }
-  
-  @Provides
-  @Singleton
-  @Named("System")
-  PlaceHistoryHandler getHistoryHandler(SystemPlaceHistoryMapper mapper){
-      return new PlaceHistoryHandler(mapper);
-      
   }
 
   // TODO utilizar el request factory global definido en main

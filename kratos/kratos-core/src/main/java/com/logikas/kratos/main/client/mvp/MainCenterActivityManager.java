@@ -13,13 +13,9 @@ import javax.inject.Inject;
  * @author cristian
  */
 public class MainCenterActivityManager extends ActivityManager{
-
     
     @Inject
     public MainCenterActivityManager(CenterActivityMapper mapper, EventBus eventBus) {
         super(mapper, eventBus);
     }
-    
-    
-    
 }

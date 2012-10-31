@@ -3,6 +3,7 @@
  */
 package com.logikas.kratos.security.client;
 
+import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.logikas.kratos.core.plugin.shared.Plugin;
 import com.logikas.kratos.core.plugin.shared.model.PluginDescription;
 
@@ -23,5 +24,10 @@ public class SecurityPlugin implements Plugin {
   public PluginDescription getDescription() {
     return null;
   }
+
+    @Override
+    public PlaceHistoryMapper getHistoryMapper() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
 }

@@ -3,6 +3,7 @@
  */
 package com.logikas.kratos.core.plugin.shared;
 
+import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.logikas.kratos.core.plugin.shared.model.PluginDescription;
 
 /**
@@ -16,4 +17,6 @@ public interface Plugin {
   void shutdown();
 
   PluginDescription getDescription();
+  
+  PlaceHistoryMapper getHistoryMapper();
 }

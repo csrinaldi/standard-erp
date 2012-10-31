@@ -1,7 +1,7 @@
 /*
  * To change this template, choose Tools | Templates and open the template in the editor.
  */
-package com.logikas.kratos.main.client.view;
+package com.logikas.kratos.core.ui.client;
 
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -19,6 +19,8 @@ public interface LayoutView extends IsWidget {
   AcceptsOneWidget getWestRegion();
   
   AcceptsOneWidget getSouthRegion();
+  
+  AcceptsOneWidget getMenuModuleRegion();
   
   void setDefaultLayout();
 

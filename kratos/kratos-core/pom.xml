@@ -31,6 +31,7 @@
         <spring.version>3.1.2.RELEASE</spring.version>
         <slf4j.version>1.6.6</slf4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server-->
     </properties>
 
     <dependencies>
@@ -190,7 +191,12 @@
         <!-- Server Dependences -->
         <!-- <dependency> <groupId>javax</groupId> <artifactId>javaee-web-api</artifactId> 
      			<version>6.0</version> <scope>provided</scope> </dependency> -->
-        
+        <dependency>
+            <groupId>org.jboss.weld.osgi</groupId>
+            <artifactId>weld-osgi-core-api</artifactId>
+            <version>1.2.0.Beta1</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>

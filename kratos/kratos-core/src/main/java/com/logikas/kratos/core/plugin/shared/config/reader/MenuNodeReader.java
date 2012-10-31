@@ -25,7 +25,7 @@ public class MenuNodeReader implements MenuConfiguration {
 
       @Override
       public void visit(String name, MenuNode child) {
-        configure(builder.child(name));
+        //configure(builder.child(name));
       }
     });
   }

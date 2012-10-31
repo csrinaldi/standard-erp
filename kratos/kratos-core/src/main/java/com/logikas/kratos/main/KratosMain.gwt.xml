@@ -8,6 +8,10 @@
         <inherits name='com.google.gwt.activity.Activity' />
         <inherits name='com.logikas.kratos.core.plugin.Plugin' />
         
+        <inherits name='elemental.Elemental'/>
+        
+        <set-property name="user.agent" value="safari"/>
+        
         <!--set-configuration-property name="CssResource.style" value="pretty"/-->
         
 	<source path='client' />

@@ -14,9 +14,14 @@
         <!-- Other module inherits                                      -->
     <inherits name='com.google.gwt.inject.Inject' />
     <inherits name='com.google.gwt.activity.Activity' />
+    <inherits name='com.google.gwt.place.Place'/>
     <inherits name='com.logikas.kratos.core.plugin.Plugin' />
+    
+    <inherits name='com.logikas.kratos.core.ui.CoreUi' />
     <inherits name='com.logikas.kratos.main.KratosMain' />
     <inherits name='com.logikas.kratos.system.System' />
+    
+    <inherits name='com.logikas.hipokrates.patient.Patient' />
 
     <entry-point class="com.logikas.hipokrates.client.Hipokrates"/>
         

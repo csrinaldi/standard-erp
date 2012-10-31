@@ -6,26 +6,25 @@ package com.logikas.kratos.main.client.widget;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.LayoutPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.logikas.kratos.main.client.view.ConfigureView;
+import com.logikas.kratos.main.client.view.DashboardView;
 
 /**
  *
  * @author cristian
  */
-public class ConfigureWidget implements ConfigureView{
+public class DashboardWidget implements DashboardView{
 
-    private static ConfigureWidget.ConfigureWidgetUiBinder uiBinder = GWT.create(ConfigureWidget.ConfigureWidgetUiBinder.class);
+    private static DashboardWidget.ConfigureWidgetUiBinder uiBinder = GWT.create(DashboardWidget.ConfigureWidgetUiBinder.class);
 
-    interface ConfigureWidgetUiBinder extends UiBinder<LayoutPanel, ConfigureWidget> {
+    interface ConfigureWidgetUiBinder extends UiBinder<VerticalPanel, DashboardWidget> {
     }
     
-    LayoutPanel root;
+    VerticalPanel root;
 
-    public ConfigureWidget() {
+    public DashboardWidget() {
         root = uiBinder.createAndBindUi(this);
     }
     

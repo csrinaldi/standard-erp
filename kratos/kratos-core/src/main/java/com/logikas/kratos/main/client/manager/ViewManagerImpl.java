@@ -3,24 +3,18 @@
  */
 package com.logikas.kratos.main.client.manager;
 
+import com.google.gwt.place.shared.PlaceChangeEvent;
+import com.google.gwt.place.shared.PlaceChangeRequestEvent;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.google.gwt.user.client.ui.*;
+import com.google.web.bindery.event.shared.EventBus;
 import com.logikas.kratos.core.plugin.shared.PluginRegistry;
 import com.logikas.kratos.core.plugin.shared.event.SubscriptionEvent;
 import com.logikas.kratos.core.plugin.shared.event.SubscriptionHandler;
 import com.logikas.kratos.core.plugin.shared.model.PluginDescription;
-
-import com.google.gwt.core.shared.GWT;
-import com.google.gwt.place.shared.Place;
-import com.google.gwt.place.shared.PlaceChangeEvent;
-import com.google.gwt.place.shared.PlaceChangeRequestEvent;
-import com.google.gwt.safehtml.shared.SafeHtml;
-import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.*;
-import com.google.web.bindery.event.shared.EventBus;
-import com.logikas.kratos.main.client.view.LayoutView;
+import com.logikas.kratos.core.ui.client.LayoutView;
 import com.logikas.kratos.main.shared.place.DefaultPlace;
 import com.logikas.kratos.main.shared.place.MainPlaceHistoryMapper;
-
 import javax.inject.Inject;
 
 /**
@@ -57,6 +51,7 @@ public class ViewManagerImpl implements ViewManager {
     }
 
     protected void processMenu(PluginDescription info) {
+        
         SafeHtmlBuilder htmlBuilder = new SafeHtmlBuilder();
         htmlBuilder.appendEscaped(info.getMenuNode().getTitle());
 

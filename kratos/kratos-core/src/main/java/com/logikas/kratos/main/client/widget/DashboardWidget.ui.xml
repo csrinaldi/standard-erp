@@ -6,13 +6,11 @@
     
     <!--ui:with field="res" type="com.logikas.kratos.main.client.resource.MainResourceBundle"/-->
     
-    <g:LayoutPanel>
-        <g:layer>
-            <g:HTMLPanel>
-                <div>SOY LA CONFIGURACION</div>
-            </g:HTMLPanel>
-        
-        </g:layer>
-    </g:LayoutPanel>
+    <g:VerticalPanel>
+        <g:Image width="100px" height="100px" ui:field="avatarView"></g:Image>
+
+		
+        <g:Button ui:field="save">save</g:Button>
+    </g:VerticalPanel>
     
 </ui:UiBinder>
