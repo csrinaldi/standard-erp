@@ -7,8 +7,11 @@ public interface UploadResult {
   }
   
   String getDocumentId();
+  void setDocumentId(String documentId);
   
   Status getStatus();
+  void setStatus(Status status);
   
   String getMessage();
+  void setMessage(String message);
 }

@@ -5,6 +5,9 @@ import com.logikas.kratos.system.domain.UserAvatar;
 import com.logikas.kratos.system.repository.UserAvatarRepository;
 import com.logikas.kratos.system.service.UserAvatarService;
 
+import com.google.common.io.ByteStreams;
+
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 
@@ -25,10 +28,10 @@ public class UserAvatarServiceImpl implements UserAvatarService {
     this.now = now;
     this.user = user;
   }
-
+  
   @Override
-  public UserAvatar findOne(Long primaryKey) {
-    return repository.findOne(primaryKey);
+  public UserAvatar find(Long primaryKey) {
+    return repository.find(primaryKey);
   }
 
   @Override
@@ -38,6 +41,11 @@ public class UserAvatarServiceImpl implements UserAvatarService {
     avatar.setContentType(contentType);
     avatar.setOwner(user.get());
     avatar.setCreated(now.get());
+    try {
+      avatar.setContent(ByteStreams.toByteArray(content));
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
     repository.save(avatar);
     return avatar;
   }

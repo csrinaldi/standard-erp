@@ -45,10 +45,6 @@ public abstract class AbstractProduct implements Product {
     return true;
   }
 
-  protected Object get(int index, Object... members) {
-    return members[index];
-  }
-
   @Override
   public int hashCode() {
     return Objects.hashCode(members);

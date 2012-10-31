@@ -3,6 +3,8 @@ package com.logikas.kratos.system.repository.impl;
 import com.logikas.kratos.system.domain.UserAvatar;
 import com.logikas.kratos.system.repository.UserAvatarRepository;
 
+import com.google.inject.persist.Transactional;
+
 import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
@@ -16,6 +18,7 @@ public class UserAvatarRepositoryImpl implements UserAvatarRepository {
     this.em = em;
   }
 
+  @Transactional
   @Override
   public UserAvatar save(UserAvatar entity) {
     em.get().persist(entity);
@@ -40,11 +43,11 @@ public class UserAvatarRepositoryImpl implements UserAvatarRepository {
 
   @Override
   public boolean exists(Long primaryKey) {
-    return findOne(primaryKey) != null;
+    return find(primaryKey) != null;
   }
 
   @Override
-  public UserAvatar findOne(Long primaryKey) {
+  public UserAvatar find(Long primaryKey) {
     return em.get().find(UserAvatar.class, primaryKey);
   }
 }

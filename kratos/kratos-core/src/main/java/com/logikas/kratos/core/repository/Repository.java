@@ -2,7 +2,9 @@ package com.logikas.kratos.core.repository;
 
 import java.io.Serializable;
 
-public interface Repository<T, ID extends Serializable> extends EntityFinder<T, ID> {
+public interface Repository<T, ID extends Serializable> {
+  
+  T find(ID id);
 
   T save(T entity);
 

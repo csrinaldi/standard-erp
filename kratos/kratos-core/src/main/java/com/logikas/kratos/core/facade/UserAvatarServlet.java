@@ -1,17 +1,21 @@
 package com.logikas.kratos.core.facade;
 
-import com.logikas.kratos.core.document.impl.UploadResultImpl;
+import com.logikas.kratos.core.document.shared.DocumentFactory;
 import com.logikas.kratos.core.document.shared.UploadResult;
+import com.logikas.kratos.core.document.shared.UploadResult.Status;
 import com.logikas.kratos.system.domain.UserAvatar;
 import com.logikas.kratos.system.service.UserAvatarService;
 
 import com.google.common.base.Strings;
 import com.google.common.io.ByteStreams;
 import com.google.common.primitives.Ints;
+import com.google.web.bindery.autobean.shared.AutoBean;
+import com.google.web.bindery.autobean.shared.AutoBeanCodex;
+import com.google.web.bindery.autobean.vm.AutoBeanFactorySource;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -28,12 +32,8 @@ public class UserAvatarServlet extends HttpServlet {
   private static final String CONTENT_DISPOSITION = "Content-Disposition";
   private static final String FILENAME = "filename";
 
-  private final UserAvatarService service;
-
   @Inject
-  UserAvatarServlet(UserAvatarService service) {
-    this.service = service;
-  }
+  private UserAvatarService service;
 
   private String getFileName(Part part) {
 
@@ -52,10 +52,14 @@ public class UserAvatarServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
       IOException {
+    
+    final DocumentFactory factory = AutoBeanFactorySource.create(DocumentFactory.class);
+    final AutoBean<UploadResult> autoBean = factory.uploadResult();
+    final UploadResult ur = autoBean.as();
 
     try {
 
-      final Part part = req.getPart("avatar");
+      final Part part = req.getPart("content");
 
       if (part != null) {
 
@@ -64,20 +68,23 @@ public class UserAvatarServlet extends HttpServlet {
         final InputStream content = part.getInputStream();
         final UserAvatar avatar = service.create(filename, contentType, content);
 
-        final UploadResult r = UploadResultImpl.createValid(avatar.getId().toString());
-        final String result = UploadResultImpl.serialize(r);
+        ur.setStatus(Status.OK);
+        ur.setDocumentId(avatar.getId().toString());
+
+        final String result = AutoBeanCodex.encode(autoBean).getPayload();
 
         resp.setStatus(HttpServletResponse.SC_OK);
         resp.setContentType("text/html");
         resp.getOutputStream().print(result);
 
       } else {
+        
         // Usado por Google cuando se requieren parametros
         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         resp.setContentType("text/html");
-
-        final UploadResult r = UploadResultImpl.createInternalError("Parameter \"avatar\" is required");
-        final String result = UploadResultImpl.serialize(r);
+        
+        ur.setMessage("Parameter \"content\" is required");
+        final String result = AutoBeanCodex.encode(autoBean).getPayload();
 
         resp.getOutputStream().print(result);
       }
@@ -86,8 +93,10 @@ public class UserAvatarServlet extends HttpServlet {
       resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
       resp.setContentType("text/html");
 
-      final UploadResult r = UploadResultImpl.createValidationError(e.getMessage());
-      final String result = UploadResultImpl.serialize(r);
+      ur.setStatus(Status.VALIDATION_ERROR);
+      ur.setMessage(e.getMessage());
+      
+      final String result = AutoBeanCodex.encode(autoBean).getPayload();
 
       resp.getOutputStream().print(result);
 
@@ -96,10 +105,12 @@ public class UserAvatarServlet extends HttpServlet {
       // Usado por Google cuando se requieren parametros
       resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
       resp.setContentType("text/html");
-
-      final UploadResult r = UploadResultImpl.createInternalError("Multipart request is required");
-      final String result = UploadResultImpl.serialize(r);
-
+      
+      ur.setStatus(Status.INTERNAL_ERROR);
+      ur.setMessage("Multipart request is required");
+      
+      final String result = AutoBeanCodex.encode(autoBean).getPayload();
+      
       resp.getOutputStream().print(result);
     }
   }
@@ -113,23 +124,27 @@ public class UserAvatarServlet extends HttpServlet {
     if (!Strings.isNullOrEmpty(idStr)) {
       final Integer id = Ints.tryParse(idStr);
       if (id != null) {
-        final UserAvatar avatar = service.findOne(id.longValue());
+        final UserAvatar avatar = service.find(id.longValue());
 
         if (avatar != null) {
 
-          try {
+      //    try {
 
             resp.setStatus(HttpServletResponse.SC_OK);
             resp.setContentType(avatar.getContentType());
-            resp.setHeader(CONTENT_DISPOSITION, "attachment;  filename=" + avatar.getFilename());
+      //      resp.setHeader(CONTENT_DISPOSITION, "attachment;  filename=" + avatar.getFilename());
 
-            ByteStreams.copy(avatar.getContent().getBinaryStream(), resp.getOutputStream());
+            // TODO deberian enviarse streams a la base de datos
+            final InputStream content = new ByteArrayInputStream(avatar.getContent());  
+            ByteStreams.copy(content, resp.getOutputStream());
+/*            
           } catch (SQLException e) {
 
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             resp.setContentType("text/html");
             resp.getOutputStream().print("File Database Exception: " + e.getMessage());
           }
+  */
         } else {
 
           resp.setStatus(HttpServletResponse.SC_NOT_FOUND);

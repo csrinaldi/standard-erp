@@ -2,7 +2,8 @@ package com.logikas.kratos.core.facade;
 
 import com.logikas.kratos.core.locator.GenericEntityLocator;
 import com.logikas.kratos.core.repository.EntityAccessor;
-import com.logikas.kratos.core.repository.EntityFinder;
+import com.logikas.kratos.core.repository.EntityAccessorFactory;
+import com.logikas.kratos.core.service.EntityFinder;
 
 import com.google.inject.Injector;
 import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;
@@ -31,29 +32,31 @@ class IocServiceLayer extends ServiceLayerDecorator {
     this.accessorFactory = accessorFactory;
   }
 
-  @SuppressWarnings("unchecked")
-  @Override
+  @SuppressWarnings({"rawtypes", "unchecked"})
   public <T extends Locator<?, ?>> T createLocator(Class<T> clazz) {
-    final T locator = injector.getInstance(clazz);
 
-    if (locator instanceof GenericEntityLocator) {
-      @SuppressWarnings("rawtypes")
-      final GenericEntityLocator genericLocator = (GenericEntityLocator) locator;
+    if (GenericEntityLocator.class.isAssignableFrom(clazz)) {
 
-      @SuppressWarnings("rawtypes")
+      final GenericEntityLocator genericLocator =
+          (GenericEntityLocator) injector.getInstance(clazz);
+
       final EntityFinder finder =
-          (EntityFinder) injector.getInstance(genericLocator.getFinderType());
-      genericLocator.setFinder(finder);
+          (EntityFinder) injector.getInstance(GenericEntityLocator.getFinderType((Class) clazz));
 
-      @SuppressWarnings("rawtypes")
       final EntityAccessor accessor =
           accessorFactory
               .createAccessor(genericLocator.getDomainType(), genericLocator.getIdType());
 
       genericLocator.setAccessor(accessor);
-    }
 
-    return locator;
+      genericLocator.setFinder(finder);
+
+      return (T) genericLocator;
+
+    } else {
+
+      return injector.getInstance(clazz);
+    }
   }
 
   @Override
