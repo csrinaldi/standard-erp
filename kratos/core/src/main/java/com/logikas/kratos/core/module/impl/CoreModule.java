@@ -4,7 +4,7 @@
  */
 package com.logikas.kratos.core.module.impl;
 
-import com.logikas.kratos.core.Module;
+import com.logikas.kratos.core.module.Module;
 
 /**
  *

@@ -1,4 +1,4 @@
-package com.logikas.kratos.core;
+package com.logikas.kratos.core.module;
 
 /**
  *

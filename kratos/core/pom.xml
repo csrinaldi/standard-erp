@@ -2,6 +2,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>com.logikas.kratos</groupId>
+        <artifactId>kratos</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <groupId>com.logikas.kratos.core</groupId>
     <artifactId>core</artifactId>
@@ -13,97 +18,122 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <guice.version>3.0</guice.version>
+        <guice-repository.version>1.0.0</guice-repository.version>
     </properties>
- 
+    
     <dependencies>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>3.8.1</version>
-        <scope>test</scope>
-      </dependency>
-            
-      <dependency>
-        <groupId>org.glassfish</groupId>
-        <artifactId>osgi-cdi-api</artifactId>
-        <version>3.1.1-b05</version>
-        <scope>provided</scope>
-      </dependency>
+        
+        <dependency>
+            <groupId>org.ops4j</groupId>
+            <artifactId>peaberry</artifactId>
+            <version>1.3</version>
+        </dependency>
+     
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-multibindings</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-persist</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>4.1.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     
     <build>
-      <pluginManagement>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>maven-bundle-plugin</artifactId>
-            <version>2.3.7</version>
-            <extensions>true</extensions>
-            <configuration>
-              <supportedProjectTypes>
-                <supportedProjectType>ejb</supportedProjectType>
-                <supportedProjectType>war</supportedProjectType>
-                <supportedProjectType>bundle</supportedProjectType>
-                <supportedProjectType>jar</supportedProjectType>
-              </supportedProjectTypes>
-              <instructions>
-                <!-- Read all OSGi configuration info from this optional file -->
-                <_include>-osgi.properties</_include>
-                <!-- By default, we don't export anything -->
-                <Export-Package>!\*.impl.\*, \*</Export-Package>
-              </instructions>
-            </configuration>
-            <executions>
-              <execution>
-                <id>bundle-manifest</id>
-                <phase>process-classes</phase>
-                <goals>
-                  <goal>manifest</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>bundle-install</id>
-                <phase>install</phase>
-                <goals>
-                  <goal>install</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-              <source>1.5</source>
-              <target>1.5</target>
-            </configuration>
-          </plugin>
-          <plugin> <!-- Need to use this plugin to build war files -->
-            <artifactId>maven-war-plugin</artifactId>
-            <groupId>org.apache.maven.plugins</groupId>
-            <!-- Use version 2.1-beta-1, as it supports the new property failOnMissingWebXml -->
-            <version>2.1</version>
-            <configuration>
-              <archive>
-                <!-- add bundle plugin generated manifest to the war -->
-                <manifestFile>
-                  ${project.build.outputDirectory}/META-INF/MANIFEST.MF
-                </manifestFile>
-                <!-- For some reason, adding Bundle-ClassPath in maven-bundle-plugin
-                     confuses that plugin and it generates wrong Import-Package, etc.
-                     So, we generate it here.
-                -->
-                <manifestEntries>
-                  <Bundle-ClassPath>WEB-INF/classes/
-                  </Bundle-ClassPath>
-                </manifestEntries>
-              </archive>
-              <!-- We don't have a web.xml -->
-              <failOnMissingWebXml>false</failOnMissingWebXml>
-            </configuration>
-          </plugin>
-        </plugins>
-      </pluginManagement>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>2.3.7</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <supportedProjectTypes>
+                            <supportedProjectType>ejb</supportedProjectType>
+                            <supportedProjectType>war</supportedProjectType>
+                            <supportedProjectType>bundle</supportedProjectType>
+                            <supportedProjectType>jar</supportedProjectType>
+                        </supportedProjectTypes>
+                        <instructions>
+                            <!-- Read all OSGi configuration info from this optional file -->
+                            <_include>-osgi.properties</_include>
+                            <!-- By default, we don't export anything -->
+                            <!--Export-Package>!\*.impl.\*, \*</Export-Package-->
+                            <Export-Package>com.logikas.kratos.core.module.impl</Export-Package>
+                            
+                        </instructions>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>bundle-manifest</id>
+                            <phase>process-classes</phase>
+                            <goals>
+                                <goal>manifest</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>bundle-install</id>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>install</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.5</source>
+                        <target>1.5</target>
+                    </configuration>
+                </plugin>
+                <plugin> <!-- Need to use this plugin to build war files -->
+                    <artifactId>maven-war-plugin</artifactId>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <!-- Use version 2.1-beta-1, as it supports the new property failOnMissingWebXml -->
+                    <version>2.1</version>
+                    <configuration>
+                        <archive>
+                            <!-- add bundle plugin generated manifest to the war -->
+                            <manifestFile>
+                                ${project.build.outputDirectory}/META-INF/MANIFEST.MF
+                            </manifestFile>
+                            <!-- For some reason, adding Bundle-ClassPath in maven-bundle-plugin
+                                 confuses that plugin and it generates wrong Import-Package, etc.
+                                 So, we generate it here.
+                            -->
+                            <manifestEntries>
+                                <Bundle-ClassPath>WEB-INF/classes/
+                                </Bundle-ClassPath>
+                            </manifestEntries>
+                        </archive>
+                        <!-- We don't have a web.xml -->
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
 
         <plugins>
             <plugin>
@@ -118,9 +148,5 @@
                 </configuration>
             </plugin>
         </plugins>
-      
-   </build>
-
-
-
+    </build>
 </project>
