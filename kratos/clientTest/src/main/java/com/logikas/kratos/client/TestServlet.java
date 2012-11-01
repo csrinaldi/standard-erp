@@ -4,7 +4,7 @@
  */
 package com.logikas.kratos.client;
 
-import com.logikas.kratos.core.Module;
+import com.logikas.kratos.core.module.Module;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.inject.Inject;
@@ -12,7 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.glassfish.osgicdi.OSGiService;
 
 /**
  *
@@ -21,7 +20,6 @@ import org.glassfish.osgicdi.OSGiService;
 public class TestServlet extends HttpServlet {
 
     @Inject
-    @OSGiService(dynamic = true)
     Module module;
 
     /**
@@ -58,8 +56,6 @@ public class TestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
     }
-    
-    
 
     /**
      * Returns a short description of the servlet.
