@@ -103,6 +103,8 @@
                             </Import-Package>
                             <Web-ContextPath>/guice-osgi</Web-ContextPath>
                             <Webapp-Context>/guice-osgi</Webapp-Context>
+                            
+                            <Bundle-Activator>com.logikas.kratos.client.osgi.OsgiActivator</Bundle-Activator>
                         </instructions>
                     </configuration>
                     <executions>

@@ -4,6 +4,7 @@
  */
 package com.logikas.kratos.server;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.logikas.kratos.client.ioc.GuiceFactory;
@@ -18,8 +19,8 @@ public class ServiceContextListener extends GuiceServletContextListener {
     @Override
     protected Injector getInjector() {
 
-        GuiceFactory.getInjector().injectMembers(new ServletModule());
+        //GuiceFactory.getInjector().injectMembers(new ServletModule());
 
-        return GuiceFactory.getInjector();
+        return Guice.createInjector(new ServletModule());
     }
 }
