@@ -8,6 +8,7 @@ import com.logikas.kratos.core.module.Module;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Cristian Rinaldi
  */
+@Singleton
 public class TestServlet extends HttpServlet {
 
     @Inject

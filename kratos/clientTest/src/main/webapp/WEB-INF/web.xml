@@ -16,6 +16,16 @@
     <listener>
         <listener-class>com.logikas.kratos.server.ServiceContextListener</listener-class>
     </listener>
+    
+    <!--servlet>
+        <servlet-name>test-servlet</servlet-name>
+        <servlet-class>com.logikas.kratos.client.TestServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>test-servlet</servlet-name>
+        <url-pattern>/test/*</url-pattern>
+    </servlet-mapping-->
 
     <!-- Default page to serve -->
     <welcome-file-list>
