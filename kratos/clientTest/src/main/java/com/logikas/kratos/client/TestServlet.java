@@ -7,12 +7,14 @@ package com.logikas.kratos.client;
 import com.logikas.kratos.core.module.Module;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.ops4j.peaberry.Import;
 
 /**
  *
@@ -22,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 public class TestServlet extends HttpServlet {
 
     @Inject
-    Module module;
+    Iterable<Module> modules;
 
     /**
      * Processes requests for both HTTP
@@ -46,7 +48,14 @@ public class TestServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet TestServlet at " + request.getContextPath() + "</h1>");
-            out.println("<h1>El modulo " + module.getName() + " is Loaded </h1>");
+            out.println("<h1>Modulos : "+modules.iterator().hasNext()+"</h1>");
+            
+            Iterator<Module> it = modules.iterator();
+            while (it.hasNext()) {
+                Module module = it.next();
+                out.println("<h2>El modulo " + module.getName() + " is Loaded </h2>");
+            }
+            
             out.println("</body>");
             out.println("</html>");
         } finally {

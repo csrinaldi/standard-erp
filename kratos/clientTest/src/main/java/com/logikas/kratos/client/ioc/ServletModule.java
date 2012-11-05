@@ -14,9 +14,6 @@ public class ServletModule extends com.google.inject.servlet.ServletModule {
 
     @Override
     protected void configureServlets() {
-
         serve("/test").with(TestServlet.class);
-
-        install(new ImportModule());
     }
 }
