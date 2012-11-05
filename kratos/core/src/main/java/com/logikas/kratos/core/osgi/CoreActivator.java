@@ -22,10 +22,12 @@ public class CoreActivator implements BundleActivator{
     @Inject
     Export<Module> hanlde;
 
+    @Override
     public void start(BundleContext bc) throws Exception {
         createInjector(osgiModule(bc), new OsgiModule()).injectMembers(this);
     }
 
+    @Override
     public void stop(BundleContext bc) throws Exception {
         hanlde.unput();
     }

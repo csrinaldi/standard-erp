@@ -18,7 +18,7 @@ public class OsgiModule extends AbstractModule{
 
     @Override
     protected void configure() {
-        bind(export(Module.class)).toProvider(service(new CoreModule()).export());
+        bind(export(Module.class)).toProvider(service(CoreModule.class).export());
     }
     
 }
