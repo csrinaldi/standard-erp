@@ -19,8 +19,12 @@ public class ActivationModule extends PeaberryActivationModule {
     @Override
     protected void configure() {
         bind(Watcher.class).in(Singleton.class);
-        //bindService(Module.class).single();
+        
+        bindService(Module.class).multiple();
         bindService(Module.class).out(Key.get(Watcher.class)).multiple();
+        
         requestInjection(this);
+        
+        //install(new ServletModule());
     }
 }

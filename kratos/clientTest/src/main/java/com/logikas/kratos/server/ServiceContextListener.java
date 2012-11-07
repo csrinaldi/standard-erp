@@ -30,7 +30,7 @@ public class ServiceContextListener implements ServletContextListener {
             System.out.println(string);
         }
 
-        BundleContext cb = (BundleContext) sce.getServletContext().getAttribute("contextInitialized");
+        BundleContext cb = (BundleContext) sce.getServletContext().getAttribute("osgi-bundlecontext");
         if (cb != null) {
 
             cb.addBundleListener(new BundleListener() {

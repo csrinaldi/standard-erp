@@ -22,6 +22,8 @@ import org.osgi.framework.ServiceListener;
  *
  * @author cristian
  */
+
+@Deprecated
 public class OsgiActivator implements BundleActivator {
 
     @Override
