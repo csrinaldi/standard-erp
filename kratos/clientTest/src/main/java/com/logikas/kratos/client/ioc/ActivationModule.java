@@ -4,11 +4,14 @@
  */
 package com.logikas.kratos.client.ioc;
 
-import com.google.inject.Key;
+import com.google.common.eventbus.EventBus;
 import com.google.inject.Singleton;
-import com.logikas.kratos.client.osgi.Watcher;
+import com.logikas.kratos.client.module.ClientModule;
 import com.logikas.kratos.core.module.Module;
+import com.logikas.kratos.core.module.event.ModuleInitializeEventHandler;
 import org.ops4j.peaberry.activation.util.PeaberryActivationModule;
+import static org.ops4j.peaberry.Peaberry.service;
+import static org.ops4j.peaberry.util.TypeLiterals.iterable;
 
 /**
  *
@@ -18,13 +21,17 @@ public class ActivationModule extends PeaberryActivationModule {
 
     @Override
     protected void configure() {
-        bind(Watcher.class).in(Singleton.class);
         
-        bindService(Module.class).multiple();
-        bindService(Module.class).out(Key.get(Watcher.class)).multiple();
+        bind(ClientModule.class).in(Singleton.class);
+
+        bind(iterable(Module.class)).toProvider(service(Module.class).multiple());
+        
+        bind(EventBus.class).toProvider(service(EventBus.class).single());
+        
+        //bind(ModuleInitializeEventHandler.class).toProvider(service(ModuleInitializeEventHandler.class).single());
+
+        install(new ServletModule());
         
         requestInjection(this);
-        
-        //install(new ServletModule());
     }
 }

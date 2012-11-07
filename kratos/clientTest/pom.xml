@@ -117,12 +117,14 @@
                             <!-- By default, we don't export anything -->
                             <!--Export-Package>!\*.impl.\*, \*</Export-Package-->
                             <Import-Package>
-                                com.google.inject;version="[1.3,3)",com.google.inject.bi
-                                nder;version="[1.3,3)",com.google.inject.servlet;version="[1.3,3)",*
+                                com.google.inject;version="[1.3,3)",
+                                com.google.inject.binder;version="[1.3,3)",
+                                com.google.inject.servlet;version="[1.3,3)",
+                                *
                             </Import-Package>
                             <Web-ContextPath>/guice-osgi</Web-ContextPath>
                             <Webapp-Context>/guice-osgi</Webapp-Context>
-                            <Bundle-Activator>com.logikas.kratos.client.osgi.OsgiActivator</Bundle-Activator>
+                            <!--Bundle-Activator>com.logikas.kratos.client.osgi.OsgiActivator</Bundle-Activator-->
                         </instructions>
                     </configuration>
                     <executions>

@@ -23,12 +23,6 @@ public class ServiceContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        Enumeration<String> e = sce.getServletContext().getAttributeNames();
-        System.out.println("\ncontextInitialized");
-        while (e.hasMoreElements()) {
-            String string = e.nextElement();
-            System.out.println(string);
-        }
 
         BundleContext cb = (BundleContext) sce.getServletContext().getAttribute("osgi-bundlecontext");
         if (cb != null) {
@@ -36,21 +30,21 @@ public class ServiceContextListener implements ServletContextListener {
             cb.addBundleListener(new BundleListener() {
                 @Override
                 public void bundleChanged(BundleEvent be) {
-                    System.out.println("\n BundleChange" + be.getBundle().getSymbolicName() + "\n");
+                    System.out.println("\n ServiceContextListener BundleChange" + be.getBundle().getSymbolicName() + "\n");
                 }
             });
 
             cb.addServiceListener(new ServiceListener() {
                 @Override
                 public void serviceChanged(ServiceEvent se) {
-                    System.out.println("\n ServiceChange" + se.getServiceReference().getBundle().getSymbolicName() + "\n");
+                    System.out.println("\n ServiceContextListener ServiceChange" + se.getServiceReference().getBundle().getSymbolicName() + "\n");
                 }
             });
 
             cb.addFrameworkListener(new FrameworkListener() {
                 @Override
                 public void frameworkEvent(FrameworkEvent fe) {
-                    System.out.println("\n frameworkEvent" + fe.getBundle().getSymbolicName() + "\n");
+                    System.out.println("\n ServiceContextListener frameworkEvent" + fe.getBundle().getSymbolicName() + "\n");
                 }
             });
         }
@@ -58,6 +52,6 @@ public class ServiceContextListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //TODO
     }
 }

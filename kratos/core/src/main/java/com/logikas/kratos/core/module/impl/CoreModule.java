@@ -3,7 +3,6 @@ package com.logikas.kratos.core.module.impl;
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.logikas.kratos.core.module.Module;
-import com.logikas.kratos.core.module.event.ModuleInitializedEvent;
 import com.logikas.kratos.core.module.event.ModuleShutdownEvent;
 import org.ops4j.peaberry.activation.Start;
 import org.ops4j.peaberry.activation.Stop;
@@ -31,6 +30,9 @@ import org.ops4j.peaberry.activation.Stop;
 
 public class CoreModule implements Module{
 
+    @Inject
+    Iterable<Module> modules;
+    
     private Boolean active;
     private final EventBus eventBus;
     

@@ -32,17 +32,20 @@ public class WatcherCore extends AbstractWatcher<Module> {
     
     @Inject
     public WatcherCore(final EventBus eventBus) {
+        System.out.println("\nCreando el Watcher\n");
         this.eventBus = eventBus;
     }
 
     @Override
     protected Module adding(Import<Module> service) {
+        System.out.println("\nLanzando el Evento "+service.get().getName()+"\n");
         this.eventBus.post(new ModuleInitializedEvent(service.get()));
         return super.adding(service);
     }
 
     @Override
     protected void removed(Module instance) {
+        System.out.println("\nLanzando el Evento "+instance.getName()+"\n");
         this.eventBus.post(new ModuleShutdownEvent(instance));
         super.removed(instance);
     }
