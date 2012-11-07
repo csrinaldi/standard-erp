@@ -13,12 +13,16 @@ import static org.ops4j.peaberry.util.TypeLiterals.export;
 /**
  *
  * @author cristian
+ * @deprecated @see AcrivationModule
  */
+
+@Deprecated
 public class OsgiModule extends AbstractModule{
 
     @Override
     protected void configure() {
         bind(export(Module.class)).toProvider(service(CoreModule.class).export());
+       
     }
     
 }

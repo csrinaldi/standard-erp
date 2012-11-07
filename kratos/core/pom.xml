@@ -13,7 +13,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
-    <name>core</name>
+    <name>kratos Core OSGI Bundle</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -57,6 +57,20 @@
             <version>4.1.0</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>org.ops4j.peaberry.extensions</groupId>
+            <artifactId>peaberry.activation</artifactId>
+            <version>1.2</version>
+            <type>jar</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.googlecode.guava-osgi</groupId>
+            <artifactId>guava-osgi</artifactId>
+
+            <version>11.0.1</version>
+        </dependency>
+        
     </dependencies>
     
     <build>
@@ -68,24 +82,27 @@
                     <version>2.3.7</version>
                     <extensions>true</extensions>
                     <configuration>
+  
                         <supportedProjectTypes>
                             <supportedProjectType>ejb</supportedProjectType>
                             <supportedProjectType>war</supportedProjectType>
                             <supportedProjectType>bundle</supportedProjectType>
                             <supportedProjectType>jar</supportedProjectType>
                         </supportedProjectTypes>
+                        
                         <instructions>
                             <!-- Read all OSGi configuration info from this optional file -->
                             <_include>-osgi.properties</_include>
+                            <_include>src/main/resources/core.properties</_include>
                             <!-- By default, we don't export anything -->
                             <!--Export-Package>!\*.impl.\*, \*</Export-Package-->
-                            <Export-Package>com.logikas.kratos.core.module,com.logikas.kratos.core.module.impl</Export-Package>
+                            <Export-Package>com.logikas.kratos.core.module,com.logikas.kratos.core.module.event</Export-Package>
                             <Import-Package>com.google.inject;version="[1.3,3)",com.google.inject.bi
                                 nder;version="[1.3,3)",org.ops4j.peaberry;version="[1.1,2)",org.ops4j.p
                                 eaberry.builders;version="[1.1,2)",org.ops4j.peaberry.util;version="[1.
-                                1,2)",org.osgi.framework;version="[1.4,2)"
+                                1,2)",org.osgi.framework;version="[1.4,2)",*
                             </Import-Package>
-                            <Bundle-Activator>com.logikas.kratos.core.osgi.CoreActivator</Bundle-Activator>
+                            <!--Bundle-Activator>com.logikas.kratos.core.osgi.CoreActivator</Bundle-Activator-->
                             
                         </instructions>
                     </configuration>
@@ -122,10 +139,12 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
+                
                 <configuration>
                     <instructions>
+                        
                         <Export-Package>com.logikas.kratos.core.module,com.logikas.kratos.core.module.impl</Export-Package>
-                        <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                     </instructions>
                 </configuration>
             </plugin>

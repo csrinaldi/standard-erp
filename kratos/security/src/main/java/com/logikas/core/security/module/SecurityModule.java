@@ -17,5 +17,20 @@ public class SecurityModule implements Module{
     public String getName() {
         return this.getClass().getName();
     }
+
+    @Override
+    public Boolean initialize() {
+        return true;
+    }
+
+    @Override
+    public Boolean isActive() {
+        return true;
+    }
+
+    @Override
+    public Boolean shutdown() {
+        return true;
+    }
     
 }

@@ -6,7 +6,7 @@ package com.logikas.kratos.core.osgi;
 
 import static com.google.inject.Guice.createInjector;
 import com.google.inject.Inject;
-import com.logikas.kratos.core.ioc.OsgiModule;
+import com.logikas.kratos.core.ioc.ActivationModule;
 import com.logikas.kratos.core.module.Module;
 import org.ops4j.peaberry.Export;
 import static org.ops4j.peaberry.Peaberry.osgiModule;
@@ -16,6 +16,7 @@ import org.osgi.framework.BundleContext;
 /**
  *
  * @author cristian
+ * @deprecated @see ActivationModule
  */
 public class CoreActivator implements BundleActivator{
 
@@ -24,7 +25,7 @@ public class CoreActivator implements BundleActivator{
 
     @Override
     public void start(BundleContext bc) throws Exception {
-        createInjector(osgiModule(bc), new OsgiModule()).injectMembers(this);
+        createInjector(osgiModule(bc), new ActivationModule()).injectMembers(this);
     }
 
     @Override

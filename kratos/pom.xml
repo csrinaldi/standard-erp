@@ -31,5 +31,6 @@
         <module>clientTest</module>
         <module>core</module>
     <module>security</module>
+    <module>domain</module>
   </modules>
 </project>
