@@ -32,5 +32,6 @@
         <module>core</module>
     <module>security</module>
     <module>domain</module>
+    <module>HumanResources</module>
   </modules>
 </project>

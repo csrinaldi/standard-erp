@@ -24,4 +24,6 @@ public interface Module {
     Boolean isActive();
     
     Boolean shutdown();
+    
+    void setName(String name);
 }

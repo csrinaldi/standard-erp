@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Export-Package: com.logikas.kratos.helth.humanresources.client;uses:="
+ org.osgi.framework"
+Built-By: cristian
+Tool: Bnd-1.15.0
+Bundle-Name: ClientHumanResources OSGi Bundle
+Created-By: Apache Maven Bundle Plugin
+Bundle-Version: 1.0.0.SNAPSHOT
+Build-Jdk: 1.6.0_26
+Bnd-LastModified: 1354747149914
+Bundle-ManifestVersion: 2
+Bundle-Activator: com.logikas.kratos.helth.humanresources.client.Activ
+ ator
+Import-Package: org.osgi.framework;version="[1.5,2)"
+Bundle-SymbolicName: com.logikas.kratos.helth.humanresources.client.Cl
+ ientHumanResources
+

@@ -5,6 +5,7 @@
 package com.logikas.kratos.server;
 
 import java.util.Enumeration;
+import javax.persistence.Persistence;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import org.osgi.framework.BundleContext;
@@ -30,6 +31,8 @@ public class ServiceContextListener implements ServletContextListener {
             cb.addBundleListener(new BundleListener() {
                 @Override
                 public void bundleChanged(BundleEvent be) {
+                    
+                            
                     System.out.println("\n ServiceContextListener BundleChange" + be.getBundle().getSymbolicName() + "\n");
                 }
             });

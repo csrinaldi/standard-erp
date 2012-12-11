@@ -7,8 +7,10 @@ package com.logikas.kratos.core.osgi;
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.logikas.kratos.core.module.Module;
+import com.logikas.kratos.core.module.event.CoreEventBus;
 import com.logikas.kratos.core.module.event.ModuleInitializedEvent;
 import com.logikas.kratos.core.module.event.ModuleShutdownEvent;
+import com.logikas.kratos.core.module.impl.CoreModule;
 import java.util.Map;
 import org.ops4j.peaberry.Import;
 import org.ops4j.peaberry.util.AbstractWatcher;
@@ -28,10 +30,10 @@ import org.ops4j.peaberry.util.AbstractWatcher;
  */
 public class WatcherCore extends AbstractWatcher<Module> {
 
-    private final EventBus eventBus;
+    private final CoreEventBus eventBus;
     
     @Inject
-    public WatcherCore(final EventBus eventBus) {
+    public WatcherCore(final CoreEventBus eventBus) {
         System.out.println("\nCreando el Watcher\n");
         this.eventBus = eventBus;
     }

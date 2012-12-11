@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1353617888774
+Build-Jdk: 1.6.0_26
+Built-By: cristian
+Bundle-ManifestVersion: 2
+Bundle-Name: Kratos Persistence OSGi Bundle
+Bundle-SymbolicName: com.logikas.core.domain
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.logikas.core.domain.osgi;uses:="org.osgi.framework";
+ version="1.0.0.SNAPSHOT",com.logikas.core.persistence;uses:="org.hibern
+ ate.engine.spi,org.hibernate.service.spi,org.hibernate.metamodel.source
+ ,org.hibernate.cfg,org.hibernate.integrator.spi";version="1.0.0.SNAPSHO
+ T"
+Import-Package: org.hibernate.cfg,org.hibernate.engine.spi,org.hibernate
+ .integrator.spi,org.hibernate.metamodel.source,org.hibernate.service.sp
+ i,org.osgi.framework;version="[1.4,2)"
+Tool: Bnd-1.50.0

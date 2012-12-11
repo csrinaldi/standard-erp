@@ -1,0 +1,42 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="kratos" transaction-type="RESOURCE_LOCAL">
+	
+        <provider>org.datanucleus.jpa.PersistenceProviderImpl</provider>
+        <properties>
+
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/kratosdb" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="GUN5NR0535" />
+            
+            
+            <!--property name="datanucleus.storeManagerType" value="rdbms"/>
+            <property name="datanucleus.ConnectionDriverName"  value="org.apache.derby.jdbc.EmbeddedDriver"/>
+            <property name="datanucleus.ConnectionURL" value="jdbc:derby:runtime;create=true"/-->
+            <!-- 
+            <property name="datanucleus.ConnectionUserName" value=""/>
+            <property name="datanucleus.ConnectionPassword" value=""/>
+            -->
+            <property name="datanucleus.autoCreateSchema" value="true"/>
+            <property name="datanucleus.validateTables" value="false"/>
+            <property name="datanucleus.validateConstraints" value="false"/>
+
+            <property name="datanucleus.connectionPoolingType" value="C3P0"/>
+            <property name="datanucleus.connectionPool.minPoolSize" value="5" />
+            <property name="datanucleus.connectionPool.initialPoolSize" value="5" />
+            <property name="datanucleus.connectionPool.maxPoolSize" value="20" />
+            <property name="datanucleus.connectionPool.maxStatements" value="50" />
+
+            <!--property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+            <property name="hibernate.hbm2ddli.mport_files" value="/db/hsqldb/kratos_fixture.sql" />
+            <property name="hibernate.show_sql" value="true" /-->
+
+        </properties>
+    </persistence-unit>
+
+</persistence>

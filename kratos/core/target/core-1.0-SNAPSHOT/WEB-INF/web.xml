@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+    
+    
+
+    <!--filter>
+        <filter-name>guiceFilter</filter-name>
+        <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+    </filter>
+	
+    <filter-mapping>
+        <filter-name>guiceFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping-->
+
+    <!--listener>
+        <listener-class>com.logikas.kratos.core.server.KratosServletContextListener</listener-class>
+    </listener-->
+
+
+    <!--listener>
+        <listener-class>com.logikas.kratos.core.server.StartupListener</listener-class>
+    </listener-->
+
+    <!--listener>
+        <listener-class>org.apache.felix.http.proxy.ProxyListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>proxy</servlet-name>
+        <servlet-class>org.apache.felix.http.proxy.ProxyServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>proxy</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping-->
+    
+    <!-- Default page to serve -->
+    <welcome-file-list>
+        <welcome-file>kratoscore.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>

@@ -63,6 +63,8 @@ public class OsgiActivator implements BundleActivator {
                     System.out.println("\n Activator  frameworkEvent" + fe.getBundle().getSymbolicName() + "\n");
                 }
             });
+            
+            
         }
 
 

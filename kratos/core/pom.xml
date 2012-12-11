@@ -11,13 +11,22 @@
     <groupId>com.logikas.kratos.core</groupId>
     <artifactId>core</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>bundle</packaging>
+    <packaging>war</packaging>
 
     <name>kratos Core OSGI Bundle</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <guice.version>3.0</guice.version>
+        <guice-repository.version>1.0.0</guice-repository.version>
+        
+        <hibernate.entityManager.version>4.1.5.Final</hibernate.entityManager.version>
+        <hibernate.validator.version>4.3.0.Final</hibernate.validator.version>
+        <validation.version>1.0.0.GA</validation.version>
+        <!--jpa.configurationFile>src/main/resources/META-INF/persistence.xml</jpa.configurationFile-->
+        <jpa.persistenceUnit>Kratos</jpa.persistenceUnit>
+        <hsqldb.version>2.2.8</hsqldb.version>
         <guice.version>3.0</guice.version>
         <guice-repository.version>1.0.0</guice-repository.version>
     </properties>
@@ -73,12 +82,101 @@
             <artifactId>guava-osgi</artifactId>
             <version>11.0.1</version>
         </dependency>
+       
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        
+        <!-- DataNucleus -->
+        <dependency>
+            <groupId>org.datanucleus</groupId>
+            <artifactId>datanucleus-core</artifactId>
+            <version>3.1.3</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.datanucleus</groupId>
+            <artifactId>datanucleus-api-jpa</artifactId>
+            <version>3.1.3</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-jpa_2.0_spec</artifactId>
+            <version>1.1</version>
+        </dependency>
 
+        <dependency>
+            <groupId>javax.jdo</groupId>
+            <artifactId>jdo-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.datanucleus</groupId>
+            <artifactId>datanucleus-rdbms</artifactId>
+            <version>3.1.3</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.21</version>
+        </dependency>
+        
+        
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.http.bundle</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.http.proxy</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.http.api</artifactId>
+            <version>2.2.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.framework</artifactId>
+            <version>3.0.7</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     
     <build>
         <pluginManagement>
             <plugins>
+                
+                <!-- Datanucleus Plugin Configuration 
+                <plugin>
+                    <groupId>org.datanucleus</groupId>
+                    <artifactId>maven-datanucleus-plugin</artifactId>
+                    <version>3.0.1</version>
+                    <configuration>
+                        <api>JPA</api>
+                        <log4jConfiguration>${basedir}/log4j.properties</log4jConfiguration>
+                        <verbose>true</verbose>
+                        <persistenceUnitName>Kratos</persistenceUnitName>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>process-classes</phase>
+                            <goals>
+                                <goal>enhance</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin -->
+                
+                <!-- Apache Felix (Osgi) Plugin Configuration -->
+                
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
@@ -103,6 +201,7 @@
                                 com.logikas.kratos.core.module,
                                 com.logikas.kratos.core.module.impl,
                                 com.logikas.kratos.core.module.event,
+                                com.logikas.kratos.core.persistence.api
                                 
                             </Export-Package>
                             <Import-Package>
@@ -111,12 +210,17 @@
                                 com.google.inject.spi;version="[1.3,3)",
                                 com.google.inject;version="[1.3,3)",
                                 com.google.inject.binder;version="[1.3,3)",
+                                com.google.inject.persist;version="[1.3,3)",
                                 org.ops4j.peaberry;version="[1.1,2)",
                                 org.ops4j.peaberry.builders;version="[1.1,2)",
                                 org.ops4j.peaberry.util;version="[1.1,2)",
-                                org.osgi.framework;version="[1.4,2)",*
+                                org.osgi.framework;version="[1.4,2)",
+                                javax.persistence;version="[0,4)",*
                             </Import-Package>
-                            <!--Bundle-Activator>com.logikas.kratos.core.osgi.CoreActivator</Bundle-Activator-->
+                            <Web-ContextPath>/kratos</Web-ContextPath>
+                            <Webapp-Context>/kratos</Webapp-Context>
+                            <Bundle-SymbolicName>com.logikas.kratos.core</Bundle-SymbolicName>
+                            <Bundle-Activator>com.logikas.kratos.core.osgi.CoreActivator</Bundle-Activator>
                             
                         </instructions>
                     </configuration>
@@ -145,6 +249,33 @@
                         <target>1.6</target>
                     </configuration>
                 </plugin>
+                <plugin> <!-- Need to use this plugin to build war files -->
+                    <artifactId>maven-war-plugin</artifactId>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <!-- Use version 2.1-beta-1, as it supports the new property failOnMissingWebXml -->
+                    <version>2.3</version>
+                    
+                    <configuration>
+                        <archive>
+                            <!-- add bundle plugin generated manifest to the war -->
+                            <manifestFile>
+                                ${project.build.outputDirectory}/META-INF/MANIFEST.MF
+                            </manifestFile>
+                            <!-- For some reason, adding Bundle-ClassPath in maven-bundle-plugin
+                                 confuses that plugin and it generates wrong Import-Package, etc.
+                                 So, we generate it here.
+                            -->
+                            <manifestEntries>
+                                <Bundle-ClassPath>WEB-INF/classes/
+                                </Bundle-ClassPath>
+                            </manifestEntries>
+                        </archive>
+                        
+                        
+                        <!-- We don't have a web.xml -->
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
 
@@ -152,14 +283,45 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-                
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <goals>    
+                            <goal>manifest</goal>
+                        </goals>   
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
                 <configuration>
-                    <instructions>
-                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-                    </instructions>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>DN_M2_Repo</id>
+            <name>DataNucleus Repository</name>
+            <url>http://www.datanucleus.org/downloads/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>DataNucleus_2</id>
+            <url>http://www.datanucleus.org/downloads/maven2/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

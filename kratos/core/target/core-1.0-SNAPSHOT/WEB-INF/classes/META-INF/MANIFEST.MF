@@ -1,0 +1,37 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1355183780279
+Build-Jdk: 1.6.0_26
+Built-By: cristian
+Bundle-Activator: com.logikas.kratos.core.osgi.CoreActivator
+Bundle-ManifestVersion: 2
+Bundle-Name: kratos Core OSGI Bundle
+Bundle-SymbolicName: com.logikas.kratos.core
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.logikas.kratos.core.module;version="1.0.0.SNAPSHOT",
+ com.logikas.kratos.core.module.impl;uses:="com.google.common.eventbus,o
+ rg.ops4j.peaberry.activation,com.logikas.kratos.core.module.event,org.o
+ sgi.framework,com.google.inject,com.logikas.kratos.core.module";version
+ ="1.0.0.SNAPSHOT",com.logikas.kratos.core.module.event;uses:="com.googl
+ e.common.eventbus,com.logikas.kratos.core.module";version="1.0.0.SNAPSH
+ OT",com.logikas.kratos.core.persistence.api;uses:="com.logikas.kratos.c
+ ore.module";version="1.0.0.SNAPSHOT"
+Import-Package: com.google.common.base;version="[11.0,12)",com.google.co
+ mmon.eventbus;version="[11.0,12)",com.google.inject;version="[1.3,3)",c
+ om.google.inject.binder;version="[1.3,3)",com.google.inject.matcher;ver
+ sion="[1.3,3)",com.google.inject.name;version="[1.3,3)",com.google.inje
+ ct.persist;version="[1.3,3)",com.google.inject.servlet;version="[1.3,2)
+ ",com.google.inject.spi;version="[1.3,3)",com.logikas.kratos.core.modul
+ e,com.logikas.kratos.core.module.event,com.logikas.kratos.core.module.i
+ mpl,javax.inject;version="[1.0,2)",javax.persistence;version="[0,4)",ja
+ vax.servlet;version="[3.0,4)",javax.servlet.http;version="[3.0,4)",org.
+ aopalliance.intercept;version="[1.0,2)",org.datanucleus.api.jpa;version
+ ="[3.1,4)",org.datanucleus.metadata;version="[3.1,4)",org.ops4j.peaberr
+ y;version="[1.1,2)",org.ops4j.peaberry.activation;version="[1.0,2)",org
+ .ops4j.peaberry.activation.util;version="[1.0,2)",org.ops4j.peaberry.bu
+ ilders;version="[1.1,2)",org.ops4j.peaberry.util;version="[1.1,2)",org.
+ osgi.framework;version="[1.4,2)",org.osgi.framework.launch;version="[1.
+ 0,2)"
+Tool: Bnd-1.50.0
+Web-ContextPath: /kratos
+Webapp-Context: /kratos
