@@ -28,10 +28,10 @@
         </dependencies>
     </dependencyManagement>
     <modules>
-        <module>clientTest</module>
+        <!--module>clientTest</module-->
         <module>core</module>
-    <module>security</module>
-    <module>domain</module>
-    <module>HumanResources</module>
+        <module>security</module>
+        <!--module>domain</module-->
+        <!--module>HumanResources</module-->
   </modules>
 </project>
