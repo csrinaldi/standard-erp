@@ -1,0 +1,27 @@
+#java specific
+*.class
+
+#netbeans ignore personal stuff 
+nbproject/private/
+
+
+#eclipse project
+eclipse
+
+
+#target of projects
+*/target/*
+*/target/**
+
+#hipokrates
+hipokrates
+
+#design folder
+design
+
+## generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out

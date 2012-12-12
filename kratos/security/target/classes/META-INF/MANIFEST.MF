@@ -1,26 +1,23 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1354535829464
-Build-Jdk: 1.6.0_26
-Built-By: cristian
+Bnd-LastModified: 1355340835913
+Build-Jdk: 1.6.0_24
+Built-By: atesti
 Bundle-Activator: com.logikas.core.security.osgi.SecurityActivator
 Bundle-ManifestVersion: 2
 Bundle-Name: Kratos Security OSGi Bundle
 Bundle-SymbolicName: security
 Bundle-Version: 1.0.0.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
-Export-Package: com.logikas.core.security.module;uses:="com.logikas.krat
- os.core.persistence.api,com.logikas.core.security.persistence";version=
- "1.0.0.SNAPSHOT",com.logikas.core.security.persistence;uses:="javax.per
- sistence";version="1.0.0.SNAPSHOT"
+Export-Package: com.logikas.core.security.module;version="1.0.0.SNAPSHOT
+ ",com.logikas.core.security.persistence;uses:="javax.persistence";versi
+ on="1.0.0.SNAPSHOT"
 Fragment-Host: com.logikas.kratos.core
 Import-Package: com.google.inject;version="[1.3,3)",com.google.inject.bi
  nder;version="[1.3,3)",com.google.inject.servlet;version="[1.3,2)",com.
- logikas.core.security.persistence;version="[1.0,2)",com.logikas.kratos.
- core.module;version="[1.0,2)",com.logikas.kratos.core.persistence.api;v
- ersion="[1.0,2)",javax.inject;version="[1.0,2)",javax.persistence;versi
- on="[0.0,4)",javax.servlet;version="[3.0,4)",javax.servlet.http;version
- ="[3.0,4)",org.ops4j.peaberry;version="[1.1,2)",org.osgi.framework;vers
- ion="[1.4,2)"
+ logikas.core.security.osgi,com.logikas.core.security.persistence;versio
+ n="[1.0,2)",javax.inject;version="[1.0,2)",javax.persistence;version="[
+ 0.0,4)",javax.servlet;version="[3.0,4)",javax.servlet.http;version="[3.
+ 0,4)"
 Kratos-Bundle: security
 Kratos-Module: com.logikas.core.security.ioc.OsgiModule
 Tool: Bnd-1.50.0

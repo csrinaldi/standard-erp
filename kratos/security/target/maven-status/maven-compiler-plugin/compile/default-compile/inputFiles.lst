@@ -1,0 +1,8 @@
+/home/atesti/develop/git/standard-erp/kratos/security/src/main/java/com/logikas/core/security/osgi/SecurityActivator.java
+/home/atesti/develop/git/standard-erp/kratos/security/src/main/java/com/logikas/core/security/service/impl/UserServiceImpl.java
+/home/atesti/develop/git/standard-erp/kratos/security/src/main/java/com/logikas/core/security/persistence/User.java
+/home/atesti/develop/git/standard-erp/kratos/security/src/main/java/com/logikas/core/security/module/SecurityModule.java
+/home/atesti/develop/git/standard-erp/kratos/security/src/main/java/com/logikas/core/security/service/UserService.java
+/home/atesti/develop/git/standard-erp/kratos/security/src/main/java/com/logikas/core/security/ioc/SecurityServletModule.java
+/home/atesti/develop/git/standard-erp/kratos/security/src/main/java/com/logikas/core/security/server/SecurityServlet.java
+/home/atesti/develop/git/standard-erp/kratos/security/src/main/java/com/logikas/core/security/ioc/OsgiModule.java
