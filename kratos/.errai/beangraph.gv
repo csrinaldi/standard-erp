@@ -1,0 +1,34 @@
+//
+// Generated IOC bean dependency graph in GraphViz DOT format.
+//
+
+digraph g {
+  "org.jboss.errai.databinding.client.DataBinderProvider"
+  "org.jboss.errai.databinding.client.api.DataBinder" -> "org.jboss.errai.databinding.client.DataBinderProvider"
+  "org.jboss.errai.ioc.client.api.builtin.RequestDispatcherProvider"
+  "org.jboss.errai.enterprise.client.cdi.InstanceProvider"
+  "javax.enterprise.inject.Instance" -> "org.jboss.errai.enterprise.client.cdi.InstanceProvider"
+  "org.jboss.errai.enterprise.client.cdi.EventProvider"
+  "javax.enterprise.event.Event" -> "org.jboss.errai.enterprise.client.cdi.EventProvider"
+  "org.jboss.errai.ioc.client.api.builtin.IOCBeanManagerProvider"
+  "org.jboss.errai.ioc.client.container.IOCBeanManager" -> "org.jboss.errai.ioc.client.api.builtin.IOCBeanManagerProvider"
+  "org.jboss.errai.ui.nav.client.local.Navigation" -> "org.jboss.errai.ioc.client.container.IOCBeanManager"
+  "org.jboss.errai.ioc.client.api.builtin.MessageBusProvider"
+  "org.jboss.errai.bus.client.framework.RequestDispatcher" -> "org.jboss.errai.ioc.client.api.builtin.RequestDispatcherProvider"
+  "org.jboss.errai.ioc.client.api.builtin.SenderProvider"
+  "org.jboss.errai.ioc.client.api.Sender" -> "org.jboss.errai.ioc.client.api.builtin.SenderProvider"
+  "org.jboss.errai.ioc.client.api.builtin.InitBallotProvider"
+  "org.jboss.errai.ioc.client.api.builtin.CallerProvider"
+  "org.jboss.errai.ui.nav.client.local.PageTransitionProvider" -> "org.jboss.errai.ui.nav.client.local.Navigation"
+  "org.jboss.errai.ui.nav.client.local.TransitionTo" -> "org.jboss.errai.ui.nav.client.local.Navigation"
+  "org.jboss.errai.ui.nav.client.local.TransitionTo" -> "org.jboss.errai.ui.nav.client.local.PageTransitionProvider"
+  "org.jboss.errai.ioc.client.api.builtin.RootPanelProvider"
+  "com.google.gwt.user.client.ui.RootPanel" -> "org.jboss.errai.ioc.client.api.builtin.RootPanelProvider"
+  "org.jboss.errai.ioc.client.api.Caller" -> "org.jboss.errai.ioc.client.api.builtin.CallerProvider"
+  "org.jboss.errai.ioc.client.api.InitBallot" -> "org.jboss.errai.ioc.client.api.builtin.InitBallotProvider"
+  "org.jboss.errai.bus.client.framework.MessageBus" -> "org.jboss.errai.ioc.client.api.builtin.MessageBusProvider"
+  "org.jboss.errai.ioc.client.api.builtin.DisposerProvider" -> "org.jboss.errai.ioc.client.container.IOCBeanManager"
+  "org.jboss.errai.ioc.client.api.Disposer" -> "org.jboss.errai.ioc.client.api.builtin.DisposerProvider"
+  "org.jboss.errai.ioc.client.api.Disposer" -> "org.jboss.errai.ioc.client.container.IOCBeanManager"
+  "com.logikas.kratos.helth.humanresources.business.mavenproject2.client.local.HelloWorldClient" -> "org.jboss.errai.ui.nav.client.local.Navigation"
+}

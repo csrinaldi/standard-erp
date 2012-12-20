@@ -1,0 +1,3 @@
+com.logikas.kratos.helth.humanresources.business.mavenproject2.client.local.ui.HomePage
+com.logikas.kratos.helth.humanresources.business.mavenproject2.client.local.ui.LoginPage
+com.logikas.kratos.helth.humanresources.business.mavenproject2.client.local.HelloWorldClient

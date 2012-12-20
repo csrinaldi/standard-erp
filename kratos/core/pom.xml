@@ -13,7 +13,8 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>kratos Core OSGI Bundle</name>
+    <name>kratos Core OSGI Bundle</name> 
+    
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

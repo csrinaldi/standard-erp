@@ -1,0 +1,4 @@
+digraph Navigation {
+"HomePage" [penwidth=3]
+"LoginPage"
+}

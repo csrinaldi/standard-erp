@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1355340835913
-Build-Jdk: 1.6.0_24
-Built-By: atesti
+Bnd-LastModified: 1355347182295
+Build-Jdk: 1.6.0_26
+Built-By: cristian
 Bundle-Activator: com.logikas.core.security.osgi.SecurityActivator
 Bundle-ManifestVersion: 2
 Bundle-Name: Kratos Security OSGi Bundle
