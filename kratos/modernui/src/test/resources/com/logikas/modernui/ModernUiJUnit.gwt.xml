@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <!-- Inherit our applications main module.                      -->
+  <inherits name='com.logikas.modernui.ModernUi' />
+
+  <!-- Specify the path to any remote services.                   -->
+  <servlet path="/ModernUi/greet" class="com.logikas.modernui.server.GreetingServiceImpl" />
+
+</module>

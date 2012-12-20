@@ -1,0 +1,32 @@
+<!--
+Uncomment this for XHTML entities
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+-->
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+             xmlns:m="urn:import:com.logikas.modernui.client.ui">
+    <ui:style>
+
+    </ui:style>
+    <g:HTMLPanel>
+        <b:Container>
+            <m:Hub span="12" controls="true">
+                <m:Panorama>
+                    <m:PanoramaSection addStyleNames="tile-span-4">
+                        <m:TileApp label="Calendar" count="2" wide="true"/>
+                        <m:TileApp label="Calendar" count="8"/>
+                    </m:PanoramaSection>
+                    <m:PanoramaSection addStyleNames="tile-span-4">
+                        <m:TileApp label="Calendar" count="2"/>
+                        <m:TileApp label="Calendar" count="2"/>
+                        <m:TileApp label="Calendar" count="2"/>
+                        <m:TileApp label="Calendar" count="2"/>
+                        <m:TileApp label="Calendar" count="2"/>
+                    </m:PanoramaSection>
+
+                </m:Panorama>
+            </m:Hub>
+        </b:Container>
+    </g:HTMLPanel>
+</ui:UiBinder>
