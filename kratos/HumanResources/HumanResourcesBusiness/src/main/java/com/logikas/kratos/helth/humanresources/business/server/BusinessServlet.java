@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  * Documentation of Class BusinessServlet
  *
  *
+ *
+ *
  * Package: com.logikas.kratos.helth.humanresources.business.server 
  * Last modification: 01/12/2012
  * File: BusinessServlet.java
@@ -35,7 +37,6 @@ public class BusinessServlet extends HttpServlet{
     
     private final PersonService service;
 
-    
     @Inject
     public BusinessServlet(PersonService service) {
         this.service = service;

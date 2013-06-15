@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Osmorc" name="OSGi">
+      <configuration manifestGenerationMode="Manually" manifestLocation="src/main/resources/security.properties" jarfileLocation="security-1.0-SNAPSHOT.jar" outputPathType="CompilerOutputPath" bndFileLocation="" bundlorFileLocation="" bundleActivator="com.logikas.core.security.osgi.SecurityActivator" bundleSymbolicName="security" bundleVersion="1.0.0.SNAPSHOT" ignoreFilePattern="" useProjectDefaultManifestFileLocation="false" alwaysRebuildBundleJAR="false" doNotSynchronizeWithMaven="false">
+        <additionalProperties>
+          <property key="-include" value="src/main/resources/security.properties" />
+          <property key="Export-Package" value="com.logikas.core.security.module,com.logikas.core.security.persistence," />
+          <property key="Private-Package" value="com.logikas.core.security.*" />
+          <property key="Import-Package" value="com.google.inject;version=&quot;[1.3,3)&quot;,com.google.inject.binder;version=&quot;[1.3,3)&quot;,javax.persistence;version=&quot;[0.0,4)&quot;,*" />
+          <property key="Bundle-Name" value="Kratos Security OSGi Bundle" />
+          <property key="Include-Resource" value="security.properties=$MODULE_DIR$/src/main/resources/security.properties" />
+        </additionalProperties>
+        <additionalJARContents />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
+
